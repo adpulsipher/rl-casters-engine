@@ -1,0 +1,39 @@
+# The 24 teams at the RLCS Club Championship Kick-Off in London (Dec 9-13, 2026):
+# the 20 partner teams plus the 4 open-qualifier winners.
+# The casters say whatever team name the game reports, so if RL Career Hub spells
+# one differently, change the part before =.
+#
+# One team per line:   name as RL Career Hub shows it = how to say it
+Gentle Mates
+Team Vitality
+Karmine Corp
+All Gamers Global
+Ninjas in Pyjamas
+Man City Esports
+Team Heretics
+Geekay Esports = Gee-kay Esports
+Shopify Rebellion
+Gen.G Mobil1 Racing = Gen G Mobil One Racing
+Spacestation Gaming = Space Station Gaming
+FUT Esports = F U T Esports
+NRG = N R G
+M80 = M Eighty
+Team Falcons
+Twisted Minds
+NOT = N O T
+FURIA = Furia
+FaZe Clan = Faze Clan
+PCS Stride = P C S Stride
+Wolves Esports
+PWR = Power
+Wildcard
+Pioneers
+# ---- the rest of Europe in RL Career Hub (v1.4)
+Ikkaku = Ee-kah-koo
+Phoenix Esports
+BIG = Big
+Eintracht Spandau = Ine-trakt Shpan-dow
+Pirate Token
+Detect Esports
+Kaydop Corp = Kay-dop Corp
+SK Gaming = S K Gaming

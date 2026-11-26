@@ -1,0 +1,24 @@
+{
+  "everyone_in_my_clips_agreed": false,
+  "pack_name": "My casters",
+  "players": [],
+  "players_file": "players.txt",
+  "teams": [],
+  "lines_per_player": 5,
+  "two_takes_for": "general",
+  "one_voice": true,
+  "clips_dir": "clips",
+  "clip_texts": {
+    "hype": "Type here exactly what you say in clips/hype.wav.",
+    "lively": "Type here exactly what you say in clips/lively.wav.",
+    "calm": "Type here exactly what you say in clips/calm.wav."
+  },
+  "concurrency": 48,
+  "output_dir": "/workspace/studio-output",
+  "port": 8000,
+  "server_args": [
+    "--stage-init-timeout",
+    "1800"
+  ],
+  "teams_file": "teams.txt"
+}

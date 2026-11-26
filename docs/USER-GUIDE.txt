@@ -1,0 +1,276 @@
+RL CAREER CASTERS  v2.0.0
+=========================
+
+Two AI casters for your Rocket League / RL Career Hub matches: a male
+play-by-play caster who calls the action and a female analyst who breaks
+down goals on the replay. Both run on your own PC, so there's no account,
+no internet needed after setup, and nothing to pay for.
+
+New in 2.0: a new commentary engine, built to sound like a real broadcast.
+- Broadcast pace. The caster talks most of the time, the way an RLCS
+  broadcast does: who's on the ball, passes, clears, 50/50s, the kickoff,
+  the pressure, then colour and stories (form, stats, momentum) when play
+  calms down, and a breakdown over every goal replay.
+- On time. Goals and saves cut straight in (whatever is playing fades out).
+  A smaller call that can't start within a second is dropped instead of
+  being said late. With the ball near a goal, only short lines start.
+- Never three times. No line is said more than twice in a match. When there
+  is no fresh line, a repeat is used rather than silence.
+- Only true calls. The casters only call what Rocket League reports. The
+  game doesn't say where the cars are or where a shot went, so there are no
+  guessed "just wide!" or "on the break!" calls; hitting the post or bar is
+  called from the game's own event. Stories stay true too: "Blue need a
+  goal" is only said while Blue are behind.
+- Tested against 76 real matches (sample replays, checked against what
+  really happened): every goal called, about 95% of saves in close games,
+  every goal, save, demo and woodwork call true, passes, 50/50s, pressure
+  and kickoff winners called right 87-97% of the time, and no line ever
+  said three times.
+- New calls need new lines in your voice: record the 2.0 add-on with Cloud
+  Studio 2.0 (about 4,850 lines). Until then the engine uses the lines you
+  have, with the same timing and repeat rules; it's quieter in places,
+  because most recorded lines are long.
+- "Demo.bat" now plays the opening minutes of a real 3v3 match.
+- The "chatter" setting: "normal" is broadcast pace; "chatty", "quiet" and
+  "sparse" (big moments only) give more or less.
+
+New in 1.1: real emotion. The voices now use Kyutai Pocket TTS, which copies
+the delivery of a reference clip. Each caster has three: hype (goals, epic
+saves, overtime, the final result), lively (saves, demos, big hits, the
+clock) and calm (analysis and stats). Every line uses the one that fits.
+Each recorded line is checked with a small speech recognizer and re-taken
+automatically if words came out garbled.
+
+New in 1.2: voice packs, the Madden way. Record every line ahead of time in a
+free Google Colab "studio session" with Qwen3-TTS cloning real voices (yours,
+or a friend who agreed), then the casters just play the recordings: studio
+quality, instant, and no CPU load while you play. See VOICE PACKS below.
+
+New in 1.3: the casters follow the match better.
+- They fill the quiet: a line every 6 to 11 seconds when nothing is
+  happening (quiet / chatty in config.json still scale this).
+- A goal cuts in cleanly: the line that's playing fades out over a quarter
+  of a second and the goal call starts. Saves and demos wait for the line
+  that's playing to finish.
+- The excitement fits the score. Big calls ("What a save!") are for close
+  games, within two goals. Three or more apart, ordinary saves, shots and
+  big hits aren't called; a really close save gets a plain call; a goal gets
+  "Blue keep piling it on" or "One back, but it's too little, too late".
+- Replays are just replays: hits, saves and demos shown in a goal replay
+  aren't called again, and watching a saved replay is silent.
+- They know a series. The same two teams playing again within 30 minutes
+  is the next game: no "welcome to tonight's matchup" after game 1, just
+  "Welcome back for game three. Night Owls lead the series."
+- One caster: a voice pack recorded in one voice (the cloud studio's
+  one_voice setting) plays as a single caster. Set "casters": "one" in
+  config.json to do the same with an older pack.
+- 285 new lines in the line bank, in modern RLCS style. Voice packs made
+  before 1.3 still work; the new lines play once they're recorded (the
+  cloud studio records them).
+
+New in 1.4.2: a match recorder, for testing. Start the casters with
+"Casters with match recorder.bat" instead of the exe and play as normal. Each
+match is saved in Casters\captures ("match ....jsonl.gz", a few MB): what
+Rocket League reported during the match and what the casters said, with the
+timing of each. Nothing else on your PC is read or changed. The casters work
+exactly as usual while it records.
+
+New in 1.4.1: one voice pack again. Double-click "Combine voice packs.bat"
+to merge your pack and its add-on zips into one zip ("... (combined ...).zip",
+saved next to them). Where both have a line, the add-on's newer take is kept.
+Nothing is changed or deleted: the casters switch to the combined pack and
+ignore the old zips, so you can delete those (or keep them as a backup). It
+takes a few seconds. Do it again whenever you get a new add-on.
+
+New in 1.4: the casters know your season.
+- RL Career Hub: if it's installed, the casters read your career save (only
+  read; nothing in RL Career Hub is ever changed) and know the event, the
+  stage, the series score, each team's form and the players' season totals.
+  Game one opens with where you are ("It's the Open qualifier...", "This is
+  the grand final!"), both teams and how they come in. Later games use the
+  Hub's own series score, and say when it's match point or a decider. When
+  the game only calls the teams Blue and Orange, the casters use the real
+  club names from the Hub. Turn it off with "careerHub": "off" in config.json.
+- Stat callbacks: "That's two goals on the night.", "Save number four of the
+  night.", "That's goal number twenty this season." (season milestones),
+  "Nobody in the league has scored more this season."
+- A whole series without repeats: every line said in a series is
+  remembered, even across restarts of the casters, and a line only comes
+  back once the others have had their turn.
+- Add-on voice packs: new lines recorded later come as a small extra zip
+  ("... (add-on ...).zip"). Put it next to the full pack; both are used.
+- Accents don't matter in names any more ("Fibérr" in a pack matches the
+  game's "Fiberr").
+The new calls need lines recorded in your voice (the cloud studio's
+"record --addon"). Until then the casters just use the calls you have.
+
+New in 1.3.4: calls that fit the play better.
+- Shots get a short call ("Rw9 goes for goal!"), since most are saved within
+  a second. The longer ones only come now and again, on a shot from far out
+  that takes a while to get there.
+- The big "how did that stay out?!" save calls are for the ball right on
+  the line: the casters check where the keeper touched it. Other saves,
+  even ones the game calls "epic", get the normal save calls. If a shot
+  call is still playing when the save comes, it fades out for the save.
+- A little more talk in quiet moments (a filler line every 5 to 9.5
+  seconds instead of 6 to 11), and none while the ball is near a goal,
+  so a save or goal doesn't land on top of small talk.
+
+New in 1.3.3: voice packs load in under a second, even the first time.
+Nothing is converted up front any more: each line is read from the zip and
+prepared the moment it's first needed (a few hundredths of a second), then
+kept for next time. Keep the voice pack zip next to the exe. Updating from
+1.3.2? If it already imported your pack in full, that copy still works;
+to get the disk space back (about 2 GB), delete the Casters\packs folder
+and the pack is set up again in a second.
+
+New in 1.3.2: the demo uses your voice pack's names. "Demo.bat" plays a
+short scripted 3v3 match between the first two teams in your pack, with
+their players, so you hear real name calls. "Demo - Falcons vs Karmine
+Corp.bat" picks a different matchup; copy it and edit the names for others.
+
+They call goals (with the scorer, assister and score), saves, epic saves,
+demos, crossbar hits, big hits, the last minute, overtime and the final
+result, and fill the quiet moments with analysis and stats from your match.
+
+
+HOW TO USE
+----------
+1. Put "RL Career Casters.exe" anywhere you like (the RL Career Hub folder
+   is a good spot). It makes a "Casters" folder next to itself.
+   Updating from 1.0, 1.1 or 1.2? Just replace the exe. Your settings and
+   imported voice packs stay.
+2. Double-click it. A console window opens. Keep it open while you play.
+3. Play a match. The casters start talking when the match starts.
+
+It works alongside RL Career Hub and the Fan Replies add-on: it doesn't
+touch the Hub at all. It listens to Rocket League's own match data.
+
+Want to hear them first? Double-click "Demo.bat": the opening minutes of a
+real 3v3 match (about 3 minutes, no Rocket League needed). With a voice pack, the
+teams and players come from the pack. To choose them yourself:
+  "RL Career Casters.exe" --demo --teams "Team A,Team B" --blue "p1,p2,p3" --orange "p4,p5,p6"
+Names must be spelled as in the pack's players.txt / teams.txt (the part
+before "="), or those lines fall back to general calls.
+
+
+FIRST LAUNCH
+------------
+- Downloads the voice model (about 100 MB) and the line checker (about
+  75 MB) once, into Casters\model. The old 1.0 Kokoro model is deleted.
+- Records about 100 common lines in the background (a few minutes).
+  The first match may be a little quieter while this finishes.
+- At the start of each match it records lines with the players' names.
+  These are saved, so players you face again are ready instantly.
+- Turns on Rocket League's official match data (the "Stats API") by
+  setting PacketSendRate=30 in TAGame\Config\DefaultStatsAPI.ini (or
+  TAStatsAPI.ini) in the Rocket League folder, and in the copy under
+  Documents\My Games\Rocket League if there is one. Originals are saved in
+  Casters\backup. If the game is in Program Files, Windows asks for
+  permission once: click Yes.
+  >> If Rocket League was already open, close it and start it again once. <<
+
+Windows may say "Windows protected your PC" because the exe isn't signed.
+Click "More info" > "Run anyway".
+
+
+SETTINGS  (Casters\config.json, edit with Notepad, then restart)
+--------
+volume            100        0-100 (also in the Windows volume mixer as
+                             "Windows PowerShell")
+chatter           "normal"   "normal" = broadcast pace, "chatty" = more,
+                             "quiet" = big moments plus some colour,
+                             "sparse" = big moments only
+playByPlay        "male"     who calls the action: "male" or "female"
+expressiveness    0.7        0.5 = steadier, 0.9 = wilder (and the odd
+                             stumble)
+checkLines        true       re-take lines that come out garbled
+units             "kph"      or "mph" for shot speeds
+casters           "auto"     "one" = a single caster doing both jobs (your
+                             voice pack is one voice); "two"; "auto" = one
+                             when the pack says it was recorded in one voice
+pronunciations    {}         fix how a name is said, e.g.
+                             { "Kaydop": "Kay dop", "TechTron": "Tech Tron" }
+rocketLeagueDir   ""         only if the game isn't found automatically
+                             (the folder with Binaries and TAGame in it)
+ttsThreads        6          CPU threads for the voices
+
+
+VOICE PACKS (best quality)
+-----------
+1. Record six clips, 8-15 seconds each, of the people who will be the casters
+   (only people who agreed): pbp-hype, pbp-lively, pbp-calm, analyst-hype,
+   analyst-lively, analyst-calm. Read the script in the notebook's step 2,
+   with real energy for hype and a relaxed voice for calm.
+2. Open "RL Career Casters Studio.ipynb" in Google Colab
+   (colab.research.google.com > File > Upload notebook), choose
+   Runtime > Change runtime type > T4 GPU, fill in step 2 (tick the consent
+   box, list your players and teams), and run the steps in order.
+3. Put the zip it gives you ("RL Career Casters Voice Pack - ....zip") next to
+   RL Career Casters.exe and start the casters. They set it up on launch
+   (under a second) and say "Using voice pack". Leave the zip there: the
+   lines are read from it as they're needed.
+- Players and teams that aren't in the pack get the casters' general lines
+  ("What a save!" instead of "What a save from Vortex!").
+- To add players later, run the notebook again with the same pack name; only
+  the new lines are recorded. Replace the old zip with the new one.
+- Add-on packs ("... (add-on ...).zip") go next to the pack and are used
+  automatically. "Combine voice packs.bat" turns the pack and its add-ons
+  into one zip.
+- voicePack in config.json: "auto" (use a pack if there is one) or "off"
+  (always use live voices).
+
+CHANGE THE LIVE VOICES (no voice pack)
+--------------------------------------
+The six clips in Casters\voices are the casters:
+  male-hype.wav  male-lively.wav  male-calm.wav
+  female-hype.wav  female-lively.wav  female-calm.wav
+Replace any of them with your own 8-12 second WAV of someone talking the
+way you want (only use a voice you have permission to use). The casters
+re-record their lines with it. Delete the voices folder to get the
+originals back.
+
+
+GOOD TO KNOW
+------------
+- Commentary comes out of your default Windows audio device. If it's hard to
+  hear, turn the in-game music down a little.
+- Everything said is also written to Casters\casters.log.
+- Record a session: "RL Career Casters.exe" --record match.wav
+
+
+TROUBLESHOOTING
+---------------
+- "Waiting for Rocket League match data..." and nothing happens in a match:
+  restart Rocket League once (it reads the match data setting at launch).
+  Check Casters\casters.log for "Turned on Rocket League match data" or
+  instructions to add it by hand.
+- "Could not find Rocket League": set rocketLeagueDir in config.json.
+- "Could not start the voices": install the Microsoft Visual C++
+  Redistributable (x64) and start the casters again.
+- No sound but lines appear in the window: check the volume mixer for
+  "Windows PowerShell".
+- Too much talking: set "chatter" to "quiet" (or "sparse").
+- Without a voice pack (live voices), lines often late or skipped: lower
+  "chatter" to "quiet", or raise ttsThreads if your CPU has more cores.
+- "The casters are already running in another window" but none is open:
+  Windows has reserved the port the casters use (49198). In an
+  administrator cmd window run  net stop winnat  then  net start winnat
+  and start the casters again.
+- To re-record everything, delete the Casters\cache folder.
+
+
+REMOVE IT
+---------
+Delete the exe and the Casters folder. To switch Rocket League's match data
+back off, copy the file from Casters\backup back into the game's
+TAGame\Config folder (or set PacketSendRate=0 there).
+
+
+Credits: cloud studio voice packs are recorded with Fish Audio Drama 3 (Fish
+Audio Community License: free for personal, non-commercial use); the Colab
+studio uses Qwen3-TTS (Apache 2.0); recordings are checked with Whisper (MIT).
+The demo match is a sample replay from the boxcars project (MIT). Live voices: Pocket TTS by Kyutai (weights CC-BY-4.0), run with sherpa-onnx
+(Apache 2.0); line checker: NVIDIA NeMo Conformer CTC small (sherpa-onnx
+export). The caster clips were grown from the v1.0 Kokoro voices (Kokoro-82M
+by hexgrad, Apache 2.0); no real person's voice was cloned.

@@ -1,0 +1,18 @@
+node_modules/
+# voice packs and everything the casters make at run time
+*.zip
+Casters/
+# your voice: never commit recordings or reference clips
+studio/clips/
+studio/already_in.json
+studio/studio-output/
+app/voices/*.wav
+*.wav
+*.mp3
+# simulator data and results
+sim/data/
+sim/out/
+*.replay
+__pycache__/
+*.blob
+*.exe

@@ -1,0 +1,160 @@
+# The 72 players at the RLCS Club Championship Kick-Off in London (Dec 9-13, 2026):
+# the 20 partner teams plus the 4 open-qualifier winners, 3 starters each.
+# Sources: Liquipedia, Sheep Esports and BLAST rosters as of Nov 24, 2026.
+#
+# One player per line:   name as RL Career Hub shows it = how to say it
+# Leave out "= ..." when the name reads fine as it is.
+# Capitals, dots and spaces don't matter for matching, but letters do:
+# if RL Career Hub spells a name differently, change the part before =.
+# A ? note means: check how the casters say it, then fix the part after =.
+
+# EU - Gentle Mates
+Atow
+Vatira
+zen
+# EU - Team Vitality
+nass
+Oski
+diaz = Dee-az
+# EU - Karmine Corp
+M0nkey M00n = Monkey Moon
+bibbaba = Bibbaba
+reyyn = Rain
+# EU - All Gamers Global
+Archie
+Joyo = Joy-oh
+oaly = Oh-lee
+# EU - Ninjas in Pyjamas
+crr = C R R
+prozy = Prozzy
+stizzy
+# EU - Man City Esports
+accro = Acro
+rise = Rise
+TempoH = Tempo
+# EU - Team Heretics
+AtomiK = Atomic
+ajg = A J G
+Dorito
+# EU - Geekay Esports (qualified)
+Seikoo = Say-koo
+juicy
+mtzr = M T Z R
+# NA - Shopify Rebellion
+Atomic
+Daniel
+Firstkiller = First Killer
+# NA - Gen.G Mobil1 Racing
+BeastMode = Beast Mode
+Chronic
+Tawk = Talk
+# NA - Spacestation Gaming
+zach = Zach
+reveal
+solar
+# NA - FUT Esports
+CHEESE = Cheese
+jstn = Justin
+Lj = L J
+# NA - NRG
+2Piece = Two Piece
+frosty
+Wahvey = Wavey
+# NA - M80 (qualified)
+Joreuz = Yor-ooze
+Motta
+DRUFINHO = Drufeen-yo
+# MENA - Team Falcons
+Rw9 = R W nine
+Kiileerrz = Killers
+dralii = Drah-lee
+# MENA - Twisted Minds
+Nwpo = N W P O
+trk511 = T R K five eleven
+Ghaazi = Gah-zee
+# MENA - NOT (qualified)
+Trook
+Nush
+ops = Ops
+# SAM - FURIA
+yANXNZ = Yan
+swiftt = Swift
+kv1 = K V one
+# SAM - FaZe Clan
+Lostt = Lost
+Bemmz = Bems
+crn = C R N
+# SAM - PCS Stride (qualified)
+Droppz = Drops
+suco = Soo-ko
+wisty
+# APAC - Wolves Esports
+Catalysm = Cataclysm
+Kevin
+Sphinx
+# OCE - PWR
+Fever
+gus = Gus
+Fibérr = Fiber
+# OCE - Wildcard
+bananahead = Banana Head
+Caleb
+hntr = Hunter
+# SSA - Pioneers
+Sweaty
+gunz = Guns
+tehqoz = Tek-oz
+
+# ---- the rest of Europe in RL Career Hub (v1.4): every other EU team's roster, subs included
+# Team Vitality / Geekay / All Gamers Global / NIP / Man City / Karmine Corp / Heretics subs
+Heezzis. = Hee-zis
+Breezi = Breezy
+KeessiX = Kee-six
+Deeik = Deek
+Trelis = Trel-is
+push = Push
+Sisin = See-sin
+Loussix = Loo-six
+# Ikkaku
+ExoTiiK = Exotic
+Rezears = Reh-zeers
+yujin = Yoo-jin
+ZerkoO = Zerko
+# Phoenix Esports
+Pluvo = Ploo-vo
+badnezz = Bad-ness
+Gramma
+tokyo = Tokyo
+Kremy. = Kreh-mee
+# BIG
+Tox
+Nico = Nee-ko
+osaft = Oh-saft
+GryT = Grit
+# Eintracht Spandau
+Gnagflow06 = Gnag-flow
+EleXiT. = Elexit
+Miyjo. = Mee-jo
+prot = Prot
+# Pirate Token
+motion = Motion
+growlii = Growly
+Toxiic = Toxic
+Oscillon = Oss-ill-on
+hockis = Hock-is
+# Detect Esports
+Nuqqet = Nugget
+shila = Shee-la
+Brainiac
+zosir = Zo-seer
+# Kaydop Corp
+ejby = Edge-bee
+Radosin = Rado-sin
+Mozzarella
+Crutoo = Croo-too
+Fsol = F sol
+# SK Gaming
+ivn = I V N
+Alyiuu = Ally-you
+NKS = N K S
+Byso = Bee-so

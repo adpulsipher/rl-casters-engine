@@ -1,0 +1,2141 @@
+{
+ "version": 3,
+ "categories": {
+  "intro": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Hello and welcome, everyone! We are just moments away from kickoff, and this one should be a cracker.",
+    "Good evening and welcome along! The cars are on the line, and we are ready to go.",
+    "Welcome back to the arena, everyone! What a match we have lined up for you today.",
+    "It's match time! Buckle up, everyone, because this one could get loud.",
+    "Welcome in, everyone! The cars are on the pitch, and the lobby is ready to go.",
+    "Hello everyone, and welcome to the broadcast! This one has all the makings of a classic.",
+    "It's game day! Grab a seat, everyone, because we are about to get underway.",
+    "Welcome along, everyone! You can feel the energy in the building already."
+   ]
+  },
+  "intro_blue": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "On the blue side tonight, it's {team}.",
+    "In blue, we have {team}.",
+    "Starting on the blue side, it's {team}.",
+    "Representing blue tonight, {team}."
+   ]
+  },
+  "intro_orange": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "And in orange, it's {team}. Let's get it started!",
+    "And on the orange side, {team}. Here we go!",
+    "And over on orange, {team}. Let's get into it!",
+    "And their opponents in orange, {team}. Let's go!"
+   ]
+  },
+  "intro_color": {
+   "role": "color",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "I'm expecting a fast start from both sides. The first goal could be huge in this one.",
+    "Rotations will decide this one. Whoever stays disciplined at the back is going to win it.",
+    "Boost control is the key for me. Starve the other team of boost and the goals will come.",
+    "Two teams who love to play fast and take risks. I think we could see a lot of goals.",
+    "Watch the kickoffs early. Win the first few touches and you set the tempo for the whole match.",
+    "I want to see who controls the midfield boost. That usually tells you who's in charge.",
+    "Both of these teams love the air game. I'm expecting double taps and plenty of backboard pressure.",
+    "Patience against pressure. Whoever makes fewer mistakes at the back takes this one."
+   ]
+  },
+  "intro_star": {
+   "role": "color",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "Keep an eye on {name} today. I think a lot of the attack is going to run through that car.",
+    "{name} is the name I'm watching. Give that player any space at all and you will pay for it.",
+    "{name} has the mechanics to win a game on their own. Give that car time on the ball and something special happens.",
+    "If {name} gets possession off the wall, the defense is in real trouble.",
+    "For me, {name} is the difference maker in this match. Everything good seems to start there.",
+    "{name} comes in with a lot of confidence. Don't be surprised if that car is all over the highlights."
+   ]
+  },
+  "kickoff": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Back to the middle we go, and here comes the kickoff.",
+    "Everyone resets. Let's see who wins this kickoff.",
+    "Lining up again. These kickoffs have been so important today.",
+    "Here comes the restart. Plenty of time left for anything to happen.",
+    "Cars back on the line. Big kickoff coming up here.",
+    "Back to center, speed flips at the ready.",
+    "Kickoff time. Big first touch coming up here.",
+    "Reset, and here we go again.",
+    "Here's the kickoff. Who wins this fifty-fifty?"
+   ]
+  },
+  "kickoff_lead": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} are in front as we head back to the kickoff.",
+    "Back to the center with {team} in front. Can they keep it going?",
+    "{team} hold the advantage as we reset.",
+    "Kickoff coming up, and {team} have their noses in front."
+   ]
+  },
+  "kickoff_tie": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "a",
+   "templates": [
+    "We are level at {a} apiece, and here comes the kickoff.",
+    "All tied up at {a} each. Big kickoff coming up.",
+    "It's {a} each as we head back to the middle."
+   ]
+  },
+  "goal": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "name",
+   "templates": [
+    "{name} scores! What a finish that is, right into the back of the net!",
+    "And it's in! {name} finds the back of the net!",
+    "{name} buries it! The crowd is on its feet!",
+    "Goal! {name} with the finish, and the arena erupts!",
+    "Oh, {name} makes no mistake! That is a beautiful goal!",
+    "There it is! {name} puts it away, and the arena goes wild!",
+    "{name} lets it fly, and it's in the back of the net!",
+    "What a goal from {name}! The defense had no chance with that one!",
+    "Into the net it goes! {name} with a cool finish!",
+    "Oh, that is clinical from {name}! What a goal that is!",
+    "{name}! Hammered home! What a strike, the defense never had a chance!",
+    "{name} finishes it off! That is a dagger!",
+    "{name} makes them pay! It's in!",
+    "{name} cashes in, and this place erupts!",
+    "Goal from {name}! Nobody was stopping that one!",
+    "{name} tucks it away! What a moment!",
+    "{name}! Right into the back of the net!",
+    "Oh, {name} sends it home! The building is shaking!",
+    "And {name} gets the goal! Absolutely clinical!",
+    "{name} with the finish! That's going straight into the highlight reel!",
+    "There's the goal! {name} with the touch that matters!",
+    "{name} slots it in! The defense was left stranded!",
+    "{name} finds the net! What a way to finish the play!",
+    "Bang! {name} scores, and the crowd loves it!",
+    "{name} gets it done! Ice cold finishing!",
+    "Goal! {name} puts it past the last defender!"
+   ]
+  },
+  "goal_generic": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "And that is in the back of the net! What a goal!",
+    "Goal! Oh, they were never going to stop that one!",
+    "It's in! The crowd goes wild here in the arena!",
+    "Oh, that is a goal, and what a finish it was!",
+    "Into the back of the net! That's an absolute beauty!",
+    "Goal! You could see that one coming from a mile away!",
+    "In the back of the net! What a finish!",
+    "It goes in! The building is shaking!",
+    "Goal! That is a dagger!",
+    "They score! You love to see it!",
+    "Nobody's stopping that one! Goal!",
+    "And it's in! Clinical finishing!"
+   ]
+  },
+  "goal_ot": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "name",
+   "templates": [
+    "{name} wins it in overtime! Unbelievable scenes here in the arena!",
+    "It's over! {name} with the golden goal, and what a way to end it!",
+    "{name} ends it! What a way to win a match!",
+    "{name} with the golden goal! Overtime is over!",
+    "{name} sends everyone home! What an overtime winner!",
+    "{name}! Game over in overtime!",
+    "Overtime belongs to {name}! It's in, and it's over!",
+    "{name} with the golden dagger! What a way to end it!"
+   ]
+  },
+  "goal_ot_generic": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "It's over! The golden goal, and what a way to end it!",
+    "Overtime winner! Unbelievable scenes here in the arena!",
+    "That's the golden goal! Game over!",
+    "Overtime is done! What a finish to end it!",
+    "Golden goal! Cue the celebrations!"
+   ]
+  },
+  "score_first": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "{team} draw first blood!",
+    "And {team} open the scoring! First blood to them in this one.",
+    "The first goal of the match goes to {team}!",
+    "{team} strike first!",
+    "First goal goes the way of {team}, and that is a huge start!"
+   ]
+  },
+  "score_take_lead": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "{team} take the lead!",
+    "{team} edge in front, and what a moment for them!",
+    "That puts {team} ahead!",
+    "{team} go ahead!",
+    "{team} jump in front!",
+    "{team} have the lead, and the momentum!"
+   ]
+  },
+  "score_extend": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} extend the lead, and they are in control!",
+    "{team} are pulling away now!",
+    "{team} add another one!",
+    "{team} keep rolling, and the lead keeps growing!",
+    "{team} are running away with it now!"
+   ]
+  },
+  "score_equalize": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "{team} level it up! What a response that is!",
+    "Game on! {team} have tied it up, and we have a match on our hands!",
+    "{team} are back on level terms!",
+    "{team} draw level!",
+    "{team} answer straight back! We're all tied up!",
+    "And just like that, {team} are back in it!"
+   ]
+  },
+  "score_pull_back": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} pull one back, and this is a game again!",
+    "That's a lifeline for {team}!",
+    "{team} aren't done yet!",
+    "{team} get one back!",
+    "{team} cut into the lead!"
+   ]
+  },
+  "score_late_lead": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "{team} take the lead in the dying seconds!",
+    "Huge goal! {team} go in front with time running out!",
+    "{team} go ahead late! What timing!",
+    "{team} strike with the clock almost gone!"
+   ]
+  },
+  "score_late_tie": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "{team} equalize with seconds to go! Can you believe it?",
+    "Tied up in the final seconds! {team} have done it!",
+    "{team} find the equalizer at the death!",
+    "Late drama! {team} have tied it!"
+   ]
+  },
+  "score_now": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "score",
+   "templates": [
+    "It's {score} now.",
+    "That makes it {score}.",
+    "The score is {score}.",
+    "We're at {score}."
+   ]
+  },
+  "score_tie": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "a",
+   "templates": [
+    "All square at {a} apiece!",
+    "It's {a} all!",
+    "We're level at {a}!"
+   ]
+  },
+  "an_aerial": {
+   "role": "color",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "That's a great aerial from {name}. Read the bounce early and met it at the highest point.",
+    "Look at the air control from {name} there. Perfect timing on the jump.",
+    "Watch {name} commit early here. No hesitation, straight up to meet it.",
+    "{name} reads it before anyone else and is already in the air when the defense reacts.",
+    "That's what hours in free play look like. Beautiful aerial finish from {name}."
+   ]
+  },
+  "an_bicycle": {
+   "role": "color",
+   "mood": "hype",
+   "fill": "name",
+   "templates": [
+    "A bicycle kick! You don't see that very often. Absolutely outrageous from {name}.",
+    "Bicycle kick! {name} goes full acrobat on that one, and it's in!",
+    "Look at that from {name}! A bicycle finish in a match like this takes real nerve!"
+   ]
+  },
+  "an_long": {
+   "role": "color",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "From way out there! {name} saw the open net and didn't hesitate for a second.",
+    "That is a long range effort, and {name} picked out the empty net perfectly.",
+    "{name} saw the defense out of position and punished it from distance.",
+    "That's a long way out. Credit to {name} for having the confidence to send it.",
+    "{name} let it go from deep, and nobody was home to stop it."
+   ]
+  },
+  "an_backwards": {
+   "role": "color",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} scores going backwards! Some players just have a feel for where the goal is.",
+    "Going away from goal, and {name} still finds the net. That's pure feel.",
+    "The reverse finish from {name}! The defense never saw it coming."
+   ]
+  },
+  "an_turtle": {
+   "role": "color",
+   "mood": "hype",
+   "fill": "name",
+   "templates": [
+    "Upside down! {name} turtles it in. That is pure showboating, and I love it.",
+    "{name} is on the roof, and it still goes in! You cannot teach that!",
+    "A turtle goal from {name}! That is going to be in every highlight package!"
+   ]
+  },
+  "an_hattrick": {
+   "role": "color",
+   "mood": "hype",
+   "fill": "name",
+   "templates": [
+    "That's a hat trick for {name}! Three goals and still hungry for more.",
+    "Hat trick! {name} is running the show today, and nobody can stop it.",
+    "Three for {name}! That's a hat trick, and this has been a clinic!",
+    "{name} completes the hat trick! What a performance this is!",
+    "Hat trick! Somebody has to find an answer for {name}!"
+   ]
+  },
+  "an_speed": {
+   "role": "color",
+   "mood": "lively",
+   "fill": "speed",
+   "templates": [
+    "That one was hit at {speed}. Nobody is saving that.",
+    "Look at the power on that shot. {speed}! The defense barely saw it.",
+    "{speed} off the car. Good luck stopping that.",
+    "That ball left at {speed}. An absolute rocket."
+   ]
+  },
+  "an_assist": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "Watch the pass from {name} here. Patience, and then a perfect ball into the danger zone.",
+    "You have to give credit to {name}. That setup made the goal easy.",
+    "The key is {name} holding the ball until the shot was on. Great vision.",
+    "That's an unselfish play from {name}. Could have taken the shot, chose the pass instead.",
+    "Look at the pass from {name}. Right into the space, perfectly weighted.",
+    "{name} draws the defender in, and that opens up the whole play.",
+    "The real highlight is the setup from {name}. Head up, and picked out the right option.",
+    "Great awareness from {name}, finding the teammate in space at exactly the right moment."
+   ]
+  },
+  "an_named": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "That's all about the first touch. {name} controls it, and the defense is already beaten.",
+    "Great awareness from {name}. Saw the gap and went for it straight away.",
+    "You can't leave {name} that much space. That's the punishment for sloppy defending.",
+    "Watch the boost on the defense here. They were empty, and {name} knew it.",
+    "{name} stayed patient there and waited for the defender to commit first.",
+    "Watch {name} here. One little hesitation, and the defense is completely frozen.",
+    "That's {name} reading the play two touches ahead of everyone else.",
+    "Notice the speed {name} carries into that touch. That's what beats a rotation.",
+    "Look at {name} picking up small pads on the way in. Arrives with enough boost to finish it.",
+    "Simple and effective from {name}. Nothing fancy, just the right touch at the right time.",
+    "The defense got caught in two minds, and {name} punished the hesitation.",
+    "{name} was in the right place before the ball even got there. That's positioning."
+   ]
+  },
+  "an_generic": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Look at the defense here. One player overcommits, and suddenly the whole net is open.",
+    "On the replay, you can see the rotation break down. Nobody was covering the back post.",
+    "Clean and simple. The best goals are often the ones that make it look easy.",
+    "That was coming. The pressure had been building for a while, and finally it paid off.",
+    "Watch the double commit here. Two defenders go for the same ball, and the net opens right up.",
+    "Look at the boost on the defense. Empty tanks, and that's exactly what gets punished.",
+    "Great rotation on that play. Everyone was in position for the second touch.",
+    "That's a well worked goal. Pressure, a boost steal, and then a clean finish.",
+    "On the replay you can see the hesitation. One second of doubt, and it's in the net.",
+    "The pressure forced a weak clear, and they did not waste the second chance."
+   ]
+  },
+  "save": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "Saved by {name}! Great reactions there to keep that one out.",
+    "{name} gets a piece of it! Kept out!",
+    "Big save from {name} to keep that one out!",
+    "{name} with the stop! Nothing doing for the attack.",
+    "Denied by {name}! What a block that is in front of goal!",
+    "{name} comes up big in defense! That was heading in for sure.",
+    "{name} gets a body on it! Saved!",
+    "{name} reads it perfectly and keeps it out!",
+    "{name} stands tall in net!",
+    "{name} with the clutch stop!",
+    "{name} gets just enough of it!",
+    "{name} turns it away!",
+    "{name} shuts the door!",
+    "Not today! {name} with the save!"
+   ]
+  },
+  "save_generic": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "And it's saved! Great defending there to stop that one.",
+    "Kept out! What a stop that is from the defense!",
+    "Blocked on the line! They'll have to try again.",
+    "Saved! What a stop!",
+    "Denied! Not this time!",
+    "Kept out! Great defensive read!",
+    "They get a body on it! Saved!"
+   ]
+  },
+  "save_again": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Another save! The pressure is really building now.",
+    "They keep knocking, but the defense keeps answering!",
+    "Saved again! How long can they hold out?",
+    "And another one! This defense will not break!",
+    "Saved again! The attack just keeps on coming!",
+    "One more save! This is a goal line siege!"
+   ]
+  },
+  "epicsave": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "name",
+   "templates": [
+    "Oh my word, what a save from {name}! How did that stay out?",
+    "Incredible from {name}! That is a save of the season contender!",
+    "{name} with an absolute miracle! That should have been a goal!",
+    "Stop it right there! {name} pulls off the impossible save!",
+    "{name} at full stretch! I do not know how that stayed out!",
+    "Unreal from {name}! The whole building thought that was in!",
+    "{name} with the last second rescue! What a save!",
+    "How did {name} get there? That is a highlight reel save!",
+    "{name} steals a certain goal! Unbelievable!",
+    "Oh, {name}! That should be in the net, and somehow it isn't!"
+   ]
+  },
+  "epicsave_generic": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "What a save! I have no idea how that stayed out of the net!",
+    "Unbelievable stop! That had goal written all over it!",
+    "How is that not a goal? Incredible save!",
+    "Unbelievable! What a stop under pressure!",
+    "Oh, what a save! The whole arena thought that was in!",
+    "That is a highlight reel save! Absolutely ridiculous!"
+   ]
+  },
+  "demo": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} with a massive demolition! Someone's taking a trip back to the respawn.",
+    "Boom! {name} takes somebody out, and that is a huge demolition!",
+    "Big demo from {name}! That changes everything in this attack.",
+    "{name} lands the demo, and now it's a numbers game!",
+    "{name} goes hunting, and gets one!",
+    "Clean demo from {name}! That's a man advantage for now.",
+    "{name} with the demo, and that opens up the whole field!",
+    "{name} catches somebody napping! Big demolition!"
+   ]
+  },
+  "demo_victim": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} gets blown up! Sent back to the respawn!",
+    "Oh, {name} gets demolished. That's going to hurt.",
+    "{name} gets caught, and that is a long way back.",
+    "{name} is out of the play! Demolished!",
+    "{name} takes a trip back to the respawn, and that could cost them!",
+    "{name} never saw that coming!"
+   ]
+  },
+  "demo_generic": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Oh, there's a big demolition! Someone's taking a trip back to the respawn.",
+    "Boom! Somebody just got demolished, and that changes everything.",
+    "Demo! And now there's space to work with!",
+    "Big demolition there! That opens up the field.",
+    "Somebody gets blown up, and the whole play changes!"
+   ]
+  },
+  "crossbar": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} rattles the crossbar! Inches away from a goal!",
+    "Off the crossbar from {name}! So close to a goal there!",
+    "{name} hits the bar! The whole building gasped!",
+    "So close from {name}! Off the crossbar!",
+    "{name} rings it off the bar!",
+    "Crossbar! {name} was a coat of paint away!"
+   ]
+  },
+  "crossbar_generic": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Clang! It hits the bar and stays out!",
+    "The crossbar saves them! What a let off that is!",
+    "Off the bar! So close!",
+    "Crossbar! Inches away!",
+    "It clips the crossbar and stays out!"
+   ]
+  },
+  "bighit_clear": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "Massive clear from {name}! Sent all the way down the field!",
+    "{name} smashes it clear! Danger over for now.",
+    "{name} sends it into orbit! That's the clear!",
+    "{name} boots it away, and the pressure is released!",
+    "{name} launches it the length of the field!",
+    "{name} clears the danger with authority!"
+   ]
+  },
+  "bighit_attack": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} lets one rip! What power on that shot!",
+    "Oh, {name} hits that with absolutely everything!",
+    "What a strike from {name}! That ball is flying!",
+    "{name} absolutely rips that one!",
+    "{name} smokes it toward goal!",
+    "{name} puts everything into that hit!",
+    "What a rocket from {name}!"
+   ]
+  },
+  "aerial": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} goes up in the air to meet it, and what a touch that is!",
+    "{name} takes to the skies, looking to make something happen!",
+    "{name} goes up for the aerial, and that is a big touch!",
+    "{name} is up early, and that is a great read!",
+    "{name} wins the touch up high, and this could get dangerous!",
+    "Look at {name} in the air, keeping this attack alive!",
+    "{name} gets up there first! Is there a double tap look here?",
+    "{name} takes it out of the air! Pressure building!"
+   ]
+  },
+  "shot": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} takes the shot, and it's heading for goal!",
+    "{name} with a chance here. Can they find the net?",
+    "Here's {name}, looking for a goal from out there!",
+    "{name} lets one go! Is it on target?",
+    "{name} goes for goal!",
+    "{name} with the shot! Somebody has to get in the way!",
+    "{name} fires one toward the net!",
+    "{name} wants the goal here!"
+   ]
+  },
+  "t60_tie": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "a",
+   "templates": [
+    "One minute left, and we are all square at {a}! Who wants it?",
+    "Sixty seconds to go, and it's tied at {a}. The next goal could be the winner.",
+    "Sixty seconds left, all square at {a}. This is anybody's game."
+   ]
+  },
+  "t60_nil": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "One minute to go and still no goals! Somebody has to break this deadlock.",
+    "One minute left, and nobody has found the net yet. Somebody needs to step up.",
+    "Sixty seconds to go, still goalless. The next goal probably wins it."
+   ]
+  },
+  "t60_close": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "Sixty seconds to go, and {team} lead by just one. Can they hang on?",
+    "One minute left, and {team} are hanging on to a one goal lead!",
+    "One minute to go, and {team} are protecting a one goal lead.",
+    "Sixty seconds left. {team} are so close, but it's only one goal."
+   ]
+  },
+  "t60_big": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "One minute left, and {team} are cruising here.",
+    "Sixty seconds left, and {team} are in total control.",
+    "One minute to go, and {team} have this one wrapped up, barring a miracle."
+   ]
+  },
+  "t30_tie": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Thirty seconds left, and it's still tied! This is getting tense!",
+    "Thirty seconds to go, and we're still level! Who wants to be the hero?",
+    "Half a minute left, all square. Every touch counts now."
+   ]
+  },
+  "t30_close": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "Thirty seconds to go. Can {team} hold on?",
+    "Thirty seconds left, and {team} are so close to getting it done!",
+    "Thirty seconds. {team} just need to survive.",
+    "Half a minute left, and {team} can almost taste it."
+   ]
+  },
+  "t10_tie": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Ten seconds left! We could be heading to overtime!",
+    "Ten seconds left, still tied! Overtime is calling!",
+    "Ten seconds! Can anyone find a zero-second goal?"
+   ]
+  },
+  "t10_close": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "Ten seconds left! Can {team} find a miracle from somewhere?",
+    "Ten seconds! {team} need something special, and fast!",
+    "Ten seconds to go, and {team} are throwing everything forward!"
+   ]
+  },
+  "ot": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "We are going to overtime! Next goal wins it!",
+    "Overtime! It's sudden death, and anything can happen now!",
+    "Overtime! First goal wins it!",
+    "Sudden death overtime! One goal ends it!",
+    "We need more Rocket League! It's overtime!"
+   ]
+  },
+  "ot_color": {
+   "role": "color",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Nerves will be jangling now. One mistake and it's all over.",
+    "This is where legends are made. Who wants to be the hero?",
+    "Overtime is all about composure. Don't give them anything cheap.",
+    "Whoever stays patient here usually wins it.",
+    "The kickoff matters even more now. One bad touch and it's over."
+   ]
+  },
+  "end": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "And that's the match! {team} win it!",
+    "There's the final buzzer! {team} take the victory!",
+    "It's all over! {team} come out on top!",
+    "That's it! {team} take the win!",
+    "The buzzer sounds, and {team} have done it!",
+    "Game over! {team} get the victory!"
+   ]
+  },
+  "end_close": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "What a finish! {team} hold on to win it!",
+    "{team} survive! What a nail biter that was!",
+    "{team} hang on by a thread! What a game!",
+    "{team} see it out! That was tense right to the end!"
+   ]
+  },
+  "end_blowout": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "A dominant display from {team}! They cruise to the win.",
+    "That was one way traffic. {team} win it easily.",
+    "{team} were simply on another level today.",
+    "Total control from {team}, start to finish."
+   ]
+  },
+  "end_ot": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "{team} win it in overtime! What a match that was!",
+    "{team} take it in overtime! You couldn't write it any better!",
+    "Overtime victory for {team}! What a way to win!"
+   ]
+  },
+  "end_score": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "score",
+   "templates": [
+    "The final score, {score}.",
+    "It finishes {score}.",
+    "That one ends {score}."
+   ]
+  },
+  "end_mvp": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "{name} was the player of the match for me. Involved in absolutely everything.",
+    "Give the player of the match to {name}. What a performance that was.",
+    "{name} gets my player of the match. Clutch when it mattered most.",
+    "For me, it has to be {name}. Every big moment seemed to go through that car.",
+    "{name} was outstanding today, at both ends of the field.",
+    "A top performance from {name}. That is how you take over a match."
+   ]
+  },
+  "end_winner": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "Credit to {team}. They were sharper on the ball and smarter in rotation.",
+    "{team} did the simple things well and made the most of their chances.",
+    "That's a really mature performance from {team}. They controlled the big moments.",
+    "{team} won the fifty-fifties, and that made all the difference."
+   ]
+  },
+  "end_loser": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} will be disappointed, but there were positives to take from that one.",
+    "A tough one for {team}. They'll go back to the replays and find what went wrong.",
+    "{team} had their chances. They just couldn't find the finishing touch today.",
+    "Not their day for {team}, but there's plenty to build on."
+   ]
+  },
+  "signoff": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "That's all from us for this one. Thanks for watching, everyone!",
+    "What a game. We'll see you next time, everyone!",
+    "That's going to do it from us. Thanks for tuning in, everyone!",
+    "What a match to be a part of. See you next time, everyone!",
+    "Thanks for watching, everyone. Take care, and we'll see you soon!"
+   ]
+  },
+  "filler_color": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Both teams are being patient here, waiting for someone to make a mistake.",
+    "You can see the defense rotating well. Nobody is getting caught out.",
+    "This is a real battle in the midfield right now. Neither team can take control.",
+    "Boost management is so important at this level. Run out at the wrong time and you get punished.",
+    "I like the way they're using the walls. It keeps the ball away from danger.",
+    "Lots of pressure, but no clear chances yet. Someone needs to make something happen.",
+    "The pace of this game is incredible. Nobody wants to give an inch.",
+    "Watch the last player back. That's the one who decides if this attack works.",
+    "Good, smart challenges. Nobody is diving in recklessly.",
+    "Watch how they're using the small pads. Nobody is wasting boost.",
+    "Those fifty-fifties matter more than they look. Win them, and you control the tempo.",
+    "The defense is shadowing well, just waiting for the attacker to make a decision.",
+    "You can see the last player hanging back. Nobody wants to give up an open net.",
+    "Lots of bumps in this one. The physical side of the game is really showing.",
+    "Speed is everything at this level. Whoever gets there first wins the touch.",
+    "Both teams are fighting for the big boost pads. That's the hidden battle in this game.",
+    "The air game is so strong at this level. Any ball off the wall is dangerous.",
+    "The kickoffs have been so even. Nobody is getting anything for free.",
+    "This is a chess match right now. Everyone is waiting for the other side to overcommit.",
+    "Watch for the double commit. One bad decision at the back and the net is wide open."
+   ]
+  },
+  "filler_pbp": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "The ball is pinging around the arena here. Nobody can settle on it.",
+    "Back and forth we go. This is end to end stuff.",
+    "Plenty of action in the corners right now as both teams fight for control.",
+    "Big battle for the ball in midfield right now.",
+    "Both teams fighting for every single touch.",
+    "End to end action. Nobody can settle on it.",
+    "Pressure building now. Somebody is going to crack.",
+    "Lots of bumps and challenges. This is a scrappy passage of play.",
+    "Everybody is scrambling for boost right now.",
+    "Nobody can get control here. It's chaos, in the best way."
+   ]
+  },
+  "filler_ot": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Every touch matters now. One mistake and it's over.",
+    "Nobody wants to be the one who gives it away in overtime.",
+    "Every fifty-fifty feels massive in overtime.",
+    "Nobody wants to overcommit now. It's all about patience.",
+    "This is nerve-wracking stuff. Nobody can afford a bad touch.",
+    "Somebody has to be brave eventually. Who's it going to be?"
+   ]
+  },
+  "filler_pressure": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} keeping the pressure on here. The other side can't get out of their own half.",
+    "{team} are camped in the attacking half. Something has to give.",
+    "Wave after wave from {team} right now. They just keep on coming.",
+    "{team} have the other side pinned back right now.",
+    "{team} are holding the ball in the attacking half, and the defense is scrambling.",
+    "Sustained pressure from {team}. They're stealing every boost they can find."
+   ]
+  },
+  "filler_saves": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "{name} has been a wall in defense today. Save after save after save.",
+    "{name} has been a brick wall today. The attack just can't find a way past.",
+    "Another strong defensive shift from {name}. Those saves are really adding up.",
+    "If you're wondering why the score is so close, look at {name} in defense."
+   ]
+  },
+  "filler_goals": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "{name} already has a couple of goals. Leave that player open at your peril.",
+    "{name} is finding the net with ease today. The defense needs an answer.",
+    "Multiple goals already for {name}, and that player looks hungry for more.",
+    "{name} just keeps getting into scoring positions. That is no accident."
+   ]
+  },
+  "filler_demos": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "{name} is playing with a lot of aggression today. The demos just keep coming.",
+    "{name} has been a menace today. Those demos keep breaking up the play.",
+    "Nobody wants to be anywhere near {name} right now. The demos keep coming.",
+    "That physical style from {name} is really getting under the opponents' skin."
+   ]
+  },
+  "filler_shots": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} are winning the shot count. They just need to convert.",
+    "{team} are getting plenty of looks at goal. It's only a matter of time.",
+    "The shot count favors {team}, but they need to start finishing."
+   ]
+  },
+  "filler_trailing": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} need a goal soon. The clock is not their friend right now.",
+    "{team} are running out of time. They have to take some risks now.",
+    "{team} need to find something. A goal here changes everything."
+   ]
+  },
+  "filler_leading": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} look comfortable with this lead. They just need to stay disciplined.",
+    "{team} can afford to slow things down now and play the clock.",
+    "{team} are in a great spot. No need to force anything."
+   ]
+  },
+  "goal_rout": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} adds another one.",
+    "{name} piles on another goal.",
+    "{name} gets in on the act as well.",
+    "And {name} makes it look easy, again.",
+    "{name} adds to the tally."
+   ]
+  },
+  "goal_rout_generic": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "And another one goes in.",
+    "It's in again. This one is getting away from them.",
+    "One more goal, and the lead keeps growing."
+   ]
+  },
+  "score_rout": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} keep piling it on.",
+    "{team} are showing no mercy here.",
+    "It's all {team} at the moment."
+   ]
+  },
+  "goal_consolation": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} gets one back, for pride.",
+    "{name} pulls one back, but it may be too late.",
+    "A goal for {name}, but there's a mountain to climb.",
+    "{name} gets on the scoresheet, at least."
+   ]
+  },
+  "goal_consolation_generic": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "A consolation goal.",
+    "They get one back, for what it's worth.",
+    "One back, but it's too little, too late."
+   ]
+  },
+  "score_consolation": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} get one back, but the damage is done.",
+    "{team} aren't giving up, but time is running out."
+   ]
+  },
+  "intro_game": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "a",
+   "templates": [
+    "Welcome back for game {a}.",
+    "On to game {a}. Let's see who wants it more.",
+    "Here we go with game {a}."
+   ]
+  },
+  "series_lead": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} lead the series.",
+    "{team} have the edge in this series so far.",
+    "It's {team} in front in the series."
+   ]
+  },
+  "series_score": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "score",
+   "templates": [
+    "It's {score} in the series.",
+    "The series stands at {score}."
+   ]
+  },
+  "series_level": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "a",
+   "templates": [
+    "The series is tied at {a} apiece.",
+    "We're level at {a} apiece in the series."
+   ]
+  },
+  "series_tied": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Nothing to separate these two in the series so far.",
+    "This series is all square."
+   ]
+  },
+  "stat_goals": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "goals",
+   "templates": [
+    "That's {goals} goals on the night.",
+    "Goal number {goals} tonight!",
+    "{goals} goals already. What a night this is turning into."
+   ]
+  },
+  "stat_saves": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "saves",
+   "templates": [
+    "That's {saves} saves already tonight.",
+    "Save number {saves} of the night.",
+    "{saves} saves now. Just a wall in that net."
+   ]
+  },
+  "stat_demos": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "demos",
+   "templates": [
+    "That's {demos} demos tonight.",
+    "Demo number {demos}. Nobody is safe out there."
+   ]
+  },
+  "stat_assists": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "assists",
+   "templates": [
+    "That's {assists} assists tonight.",
+    "Assist number {assists} on the night. Always making things happen."
+   ]
+  },
+  "season_goals": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "season",
+   "templates": [
+    "That's goal number {season} this season.",
+    "{season} goals on the season now. What a campaign."
+   ]
+  },
+  "season_saves": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "season",
+   "templates": [
+    "That's save number {season} this season.",
+    "{season} saves on the season now."
+   ]
+  },
+  "season_top_scorer": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Nobody in the league has scored more this season.",
+    "That keeps them top of the scoring charts."
+   ]
+  },
+  "intro_event": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "city",
+   "templates": [
+    "Welcome to {city}!",
+    "We're live from {city}, and what a crowd we have tonight."
+   ]
+  },
+  "intro_worlds": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Welcome to the World Championship!",
+    "This is Worlds. It does not get any bigger than this."
+   ]
+  },
+  "intro_major": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Welcome to the Major!",
+    "It's Major time, and the best teams in the world are here."
+   ]
+  },
+  "intro_open": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "It's the Open qualifier, and only the best make it through.",
+    "Welcome to the Open. Every team here is fighting for a spot."
+   ]
+  },
+  "intro_regional": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "It's regional league action tonight.",
+    "Welcome to match day in the regional league."
+   ]
+  },
+  "stage_group": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "We're in the group stage, and every win counts.",
+    "Group stage action, and there's a lot riding on this one."
+   ]
+  },
+  "stage_playoffs": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "It's the playoffs. Lose now, and you go home.",
+    "Welcome to the playoffs. This is where it gets serious."
+   ]
+  },
+  "stage_quarter": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "It's the quarterfinals!",
+    "Quarterfinal time. A spot in the semis is on the line."
+   ]
+  },
+  "stage_semi": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "We're into the semifinals!",
+    "Semifinal time. One step away from the grand final."
+   ]
+  },
+  "stage_final": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "This is the grand final!",
+    "It all comes down to this. The grand final!"
+   ]
+  },
+  "intro_bestof": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "bestof",
+   "templates": [
+    "It's a best of {bestof}.",
+    "This one is a best of {bestof} series."
+   ]
+  },
+  "series_matchpoint": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "One more win, and this series is over.",
+    "Match point. Can they close it out?",
+    "Win this one, and they move on."
+   ]
+  },
+  "series_decider": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "It all comes down to one game. Winner takes the series!",
+    "A deciding game! Nobody wants to go home now."
+   ]
+  },
+  "table_top": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "This is a top of the table clash.",
+    "First against second tonight. A huge game at the top of the standings."
+   ]
+  },
+  "table_close": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Only a few points between these two in the standings.",
+    "It's tight in the standings, so this one really matters."
+   ]
+  },
+  "form_unbeaten": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "They come in unbeaten this season.",
+    "Still undefeated this season. Can anyone stop them?"
+   ]
+  },
+  "form_streak": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "streak",
+   "templates": [
+    "They've won {streak} in a row.",
+    "{streak} straight wins coming into this one."
+   ]
+  },
+  "form_slump": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "streak",
+   "templates": [
+    "They've lost their last {streak}.",
+    "{streak} straight defeats. They need a result tonight."
+   ]
+  },
+  "h2h_revenge": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "These two met earlier this season, so there's some revenge on the line.",
+    "A rematch tonight. One of these teams has a score to settle."
+   ]
+  },
+  "kickoff_go": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "And we're underway!",
+    "Here we go!",
+    "Off we go!",
+    "Kickoff!",
+    "We're live!",
+    "And away we go!",
+    "Here's the kickoff!",
+    "Let's go!"
+   ]
+  },
+  "kickoff_ready": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Here's the restart.",
+    "Back to the middle.",
+    "Ready to go again.",
+    "Kickoff coming up.",
+    "Reset, and here we go again."
+   ]
+  },
+  "kickoff_won": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "Kickoff goes to {team}.",
+    "{team} win the kickoff.",
+    "Good kickoff for {team}.",
+    "{team} take it from the kickoff."
+   ]
+  },
+  "kickoff_won_name": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} wins the kickoff.",
+    "Good kickoff from {name}.",
+    "{name} takes the kickoff.",
+    "Strong kickoff by {name}."
+   ]
+  },
+  "pbp_touch": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} with it.",
+    "{name} on the ball.",
+    "{name} takes it.",
+    "Here's {name}.",
+    "{name} picks it up.",
+    "{name} has it now.",
+    "{name} to the ball."
+   ]
+  },
+  "pbp_touch_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Good touch.",
+    "Nice control.",
+    "Picks it up.",
+    "Takes it down.",
+    "Settles it.",
+    "Lovely first touch."
+   ]
+  },
+  "pbp_wall": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} up the wall.",
+    "{name} takes it off the wall.",
+    "{name} goes up the wall."
+   ]
+  },
+  "pbp_wall_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Up the wall.",
+    "Off the wall.",
+    "Wall play.",
+    "Along the wall.",
+    "Takes it up the wall."
+   ]
+  },
+  "pbp_aerial_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Up in the air!",
+    "Aerial!",
+    "Goes up for it!",
+    "Off the ground!",
+    "Airborne!"
+   ]
+  },
+  "pbp_ceiling_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Off the ceiling!",
+    "Up to the ceiling!",
+    "Ceiling play!"
+   ]
+  },
+  "pbp_pass": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "Nice pass from {name}.",
+    "{name} finds a teammate.",
+    "{name} lays it off.",
+    "Good ball from {name}."
+   ]
+  },
+  "pbp_pass_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Lovely pass.",
+    "Good ball.",
+    "Nice pass.",
+    "Finds the teammate.",
+    "Passing it around.",
+    "Great vision.",
+    "Into the middle."
+   ]
+  },
+  "pbp_fifty_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Fifty-fifty!",
+    "Big challenge!",
+    "They meet in the middle!",
+    "Fifty-fifty, and it's loose!",
+    "Fifty on the ball!",
+    "Contested!"
+   ]
+  },
+  "pbp_clear": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} clears.",
+    "{name} sends it long.",
+    "{name} gets it away.",
+    "Big clear from {name}."
+   ]
+  },
+  "pbp_clear_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Cleared.",
+    "Away it goes.",
+    "Sent long.",
+    "Cleared up the field.",
+    "Gets it out.",
+    "And it's cleared.",
+    "Relief for the defense."
+   ]
+  },
+  "pbp_turnover_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Turned over.",
+    "Won back.",
+    "Intercepted!",
+    "Nice read.",
+    "Stolen away!",
+    "They win it back."
+   ]
+  },
+  "pbp_dribble": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "{name} dribbling.",
+    "{name} carries it.",
+    "{name} on the dribble.",
+    "{name} takes it up the field."
+   ]
+  },
+  "pbp_flick_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Flick!",
+    "What a flick!",
+    "Off the flick!"
+   ]
+  },
+  "pbp_pressure": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} keep it in.",
+    "{team} won't let it out.",
+    "{team} pressing.",
+    "{team} piling on the pressure."
+   ]
+  },
+  "pbp_pressure_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Still in there.",
+    "Kept in!",
+    "It won't go away.",
+    "They can't clear it.",
+    "Wave after wave.",
+    "Still pressing."
+   ]
+  },
+  "pbp_transition": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "{team} push forward.",
+    "{team} going the other way.",
+    "Back on the attack for {team}."
+   ]
+  },
+  "pbp_transition_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Going the other way!",
+    "Up the other end now.",
+    "Back on the attack.",
+    "Quick transition!",
+    "And now they push forward."
+   ]
+  },
+  "pbp_defend_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Good defending.",
+    "Great challenge.",
+    "Nicely defended.",
+    "Shut down.",
+    "Well read.",
+    "Good shadow defense."
+   ]
+  },
+  "pbp_flow_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Back in the middle.",
+    "Settling it down now.",
+    "Resetting the play.",
+    "Back to the defense.",
+    "Working it around.",
+    "Looking for an opening.",
+    "Loose ball.",
+    "Up the field it goes.",
+    "Into the corner.",
+    "Off the back wall."
+   ]
+  },
+  "shot_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Shot!",
+    "On target!",
+    "Here's the shot!",
+    "Goes for goal!",
+    "Shoots!",
+    "Takes the shot!"
+   ]
+  },
+  "save_g_short": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Saved!",
+    "Stopped!",
+    "Denied!",
+    "Blocked!",
+    "Kept out!",
+    "Big save!"
+   ]
+  },
+  "save_late": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "name",
+   "templates": [
+    "Good save there from {name}.",
+    "{name} with the save there.",
+    "Nice stop from {name}."
+   ]
+  },
+  "save_react_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "That was a huge save.",
+    "Brilliant goalkeeping there.",
+    "What reactions!",
+    "They were so close to scoring there."
+   ]
+  },
+  "rebound_g": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Rebound!",
+    "Second chance!",
+    "Follow-up!",
+    "Again!",
+    "Off the rebound!",
+    "Still alive!"
+   ]
+  },
+  "close_g": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "So close!",
+    "Oh, so close!",
+    "Inches away!",
+    "Nearly!",
+    "Not far away!",
+    "Denied by the woodwork!"
+   ]
+  },
+  "close_react_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "They'll be wondering how that stayed out.",
+    "That was a big chance.",
+    "That one was nearly in."
+   ]
+  },
+  "demo_g_short": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Demo!",
+    "Boom!",
+    "Blown up!",
+    "Demolished!",
+    "Take that!"
+   ]
+  },
+  "demo_numbers_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "They're a man down.",
+    "Man advantage now.",
+    "One player short for a moment.",
+    "Numbers advantage!"
+   ]
+  },
+  "goal_g_short": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Goal!",
+    "It's in!",
+    "In the net!",
+    "Scored!",
+    "In it goes!",
+    "They score!"
+   ]
+  },
+  "goal_own_g": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Oh, it's gone in off a defender!",
+    "Own goal! That's a cruel one!",
+    "Off their own player and in!"
+   ]
+  },
+  "goal_celebrate_g": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "What a moment!",
+    "Listen to that!",
+    "The place goes wild!",
+    "Huge goal!",
+    "What a time to score!",
+    "Get in!"
+   ]
+  },
+  "goal_counter_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "That came from nowhere. One clear, and it's in the net.",
+    "Counter-attacking at its best.",
+    "Caught on the break, and punished."
+   ]
+  },
+  "goal_pressure_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "That pressure finally tells.",
+    "They kept knocking, and it finally opened.",
+    "Sustained pressure, and they get their reward."
+   ]
+  },
+  "goal_solo_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "That's all individual skill.",
+    "A solo effort, start to finish.",
+    "Took it all the way on their own."
+   ]
+  },
+  "goal_team_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Great team goal.",
+    "Beautiful passing, and a clinical finish.",
+    "That's how you play as a team."
+   ]
+  },
+  "an_replay_g": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Let's have another look at this one.",
+    "Watch the build-up here.",
+    "Here it is again.",
+    "Look at the space they found.",
+    "Watch the rotation on this.",
+    "Here's how it happened."
+   ]
+  },
+  "t120_g": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Two minutes to play.",
+    "Into the final two minutes."
+   ]
+  },
+  "t120_tie": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Two minutes to go, and it's all square.",
+    "Two minutes left, and nothing between them."
+   ]
+  },
+  "t120_close": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": "team",
+   "templates": [
+    "Two minutes left, and {team} hold a slender lead.",
+    "Two to go. {team} are in front, but only just."
+   ]
+  },
+  "t5_g": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Five seconds!",
+    "Final seconds!",
+    "Last chance!",
+    "Seconds left!"
+   ]
+  },
+  "zero_g": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Zero on the clock! The ball has to touch the ground!",
+    "Zero seconds! It's not over until it hits the floor!",
+    "The clock's at zero, but the ball's still alive!"
+   ]
+  },
+  "ot_1min": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "We're a minute into overtime.",
+    "One minute of overtime gone."
+   ]
+  },
+  "ot_2min": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Two minutes of overtime, and still nothing.",
+    "Two minutes into overtime now."
+   ]
+  },
+  "ot_long": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "This overtime just keeps going!",
+    "Neither team can find the winner.",
+    "This is a marathon of an overtime."
+   ]
+  },
+  "momentum_run": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} have scored the last two.",
+    "That's back-to-back goals for {team}.",
+    "{team} have all the momentum now.",
+    "{team} are on a roll."
+   ]
+  },
+  "unanswered": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "run",
+   "templates": [
+    "That's {run} unanswered goals.",
+    "{run} goals in a row now."
+   ]
+  },
+  "comeback": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "Here come {team}!",
+    "{team} are fighting back!",
+    "Game on! {team} are back in this!"
+   ]
+  },
+  "need_goal": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} need a goal here.",
+    "{team} have to find something soon.",
+    "Time is running out for {team}."
+   ]
+  },
+  "color_team": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} have looked dangerous every time they come forward.",
+    "{team} need to settle down and find their rhythm.",
+    "{team} are controlling the tempo right now.",
+    "{team} are playing with real confidence.",
+    "{team} have been solid at the back.",
+    "{team} are pushing high, and that's risky.",
+    "You can see {team} growing into this game.",
+    "{team} have to be careful on the counter."
+   ]
+  },
+  "color_player": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "name",
+   "templates": [
+    "{name} has been everywhere in this one.",
+    "{name} is having a big game.",
+    "{name} keeps showing up in the right places.",
+    "Watch {name}, always in the play."
+   ]
+  },
+  "filler_g_color": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Good rotations from both sides so far.",
+    "The boost control has been excellent.",
+    "Nobody wants to make the first mistake.",
+    "It's all about the next touch here.",
+    "This is a real chess match.",
+    "Both teams are reading the play well.",
+    "You can feel the tension building.",
+    "The pace of this game is incredible.",
+    "Patience is going to be key.",
+    "One mistake could decide this.",
+    "They have to be careful not to overcommit.",
+    "Smart positioning from the defense.",
+    "The third player back is so important here.",
+    "That's the kind of control you love to see.",
+    "Every touch matters at this level.",
+    "They're making the field feel very small.",
+    "Communication is everything in a moment like this.",
+    "This crowd is loving every second.",
+    "Great speed on the rotations.",
+    "Neither side giving an inch.",
+    "You can't switch off for a second.",
+    "It's end to end out there.",
+    "Very disciplined play right now.",
+    "The mechanics on show are ridiculous.",
+    "Keep an eye on the boost management here.",
+    "The pressure is starting to build.",
+    "This is high level Rocket League.",
+    "That's a smart decision, not forcing it.",
+    "The defense is holding firm.",
+    "They're looking for the right opening.",
+    "You have to be patient against a defense like this.",
+    "Possession is going back and forth.",
+    "Huge energy in this one.",
+    "It's a battle in midfield.",
+    "Speed is the name of the game.",
+    "Both teams trading blows.",
+    "Nobody is backing down.",
+    "This could go either way.",
+    "What a contest this is.",
+    "The quality on display is outstanding."
+   ]
+  }
+ },
+ "domains": {
+  "score": [
+   "one to nothing",
+   "two to nothing",
+   "two to one",
+   "three to nothing",
+   "three to one",
+   "three to two",
+   "four to nothing",
+   "four to one",
+   "four to two",
+   "four to three",
+   "five to nothing",
+   "five to one",
+   "five to two",
+   "five to three",
+   "five to four",
+   "six to nothing",
+   "six to one",
+   "six to two",
+   "six to three",
+   "six to four",
+   "six to five",
+   "seven to nothing",
+   "seven to one",
+   "seven to two",
+   "seven to three",
+   "seven to four",
+   "seven to five",
+   "seven to six",
+   "eight to nothing",
+   "eight to one",
+   "eight to two",
+   "eight to three",
+   "eight to four",
+   "eight to five",
+   "eight to six",
+   "eight to seven",
+   "nine to nothing",
+   "nine to one",
+   "nine to two",
+   "nine to three",
+   "nine to four",
+   "nine to five",
+   "nine to six",
+   "nine to seven",
+   "nine to eight"
+  ],
+  "a": [
+   "zero",
+   "one",
+   "two",
+   "three",
+   "four",
+   "five",
+   "six",
+   "seven",
+   "eight",
+   "nine"
+  ],
+  "speed": [
+   "sixty kilometers an hour",
+   "seventy kilometers an hour",
+   "eighty kilometers an hour",
+   "ninety kilometers an hour",
+   "one hundred kilometers an hour",
+   "one hundred and ten kilometers an hour",
+   "one hundred and twenty kilometers an hour",
+   "one hundred and thirty kilometers an hour",
+   "one hundred and forty kilometers an hour",
+   "one hundred and fifty kilometers an hour",
+   "one hundred and sixty kilometers an hour",
+   "one hundred and seventy kilometers an hour",
+   "one hundred and eighty kilometers an hour",
+   "forty miles an hour",
+   "forty-five miles an hour",
+   "fifty miles an hour",
+   "fifty-five miles an hour",
+   "sixty miles an hour",
+   "sixty-five miles an hour",
+   "seventy miles an hour",
+   "seventy-five miles an hour",
+   "eighty miles an hour",
+   "eighty-five miles an hour",
+   "ninety miles an hour",
+   "ninety-five miles an hour",
+   "one hundred miles an hour",
+   "one hundred and five miles an hour",
+   "one hundred and ten miles an hour"
+  ],
+  "goals": [
+   "two",
+   "three",
+   "four",
+   "five",
+   "six"
+  ],
+  "saves": [
+   "three",
+   "four",
+   "five",
+   "six",
+   "seven",
+   "eight",
+   "nine"
+  ],
+  "demos": [
+   "two",
+   "three",
+   "four",
+   "five"
+  ],
+  "assists": [
+   "two",
+   "three",
+   "four",
+   "five"
+  ],
+  "streak": [
+   "two",
+   "three",
+   "four",
+   "five",
+   "six",
+   "seven",
+   "eight"
+  ],
+  "run": [
+   "three",
+   "four",
+   "five",
+   "six"
+  ],
+  "season": [
+   "five",
+   "ten",
+   "fifteen",
+   "twenty",
+   "twenty-five",
+   "thirty",
+   "forty",
+   "fifty"
+  ],
+  "bestof": [
+   "three",
+   "five",
+   "seven"
+  ],
+  "city": [
+   "London",
+   "Birmingham",
+   "Copenhagen",
+   "Raleigh",
+   "Boston",
+   "Paris",
+   "Fort Worth"
+  ]
+ }
+}
