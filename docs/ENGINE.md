@@ -1,4 +1,116 @@
-# How the engine works (2.0)
+# How the engine works (2.1)
+
+## What changed in 2.1.2
+
+Found by playing a best of five in RL Career Hub with the match recorder on (three games, 3-0):
+
+- **The intro never played, and the casters talked over the empty lobby.** On `MatchCreated` the model
+  reset its state but then marked the *old* state active, so the first `UpdateState` looked like a
+  match joined late: no intro, no "game two", and phase `live` for RL Career Hub's ~20 s empty lobby
+  (no players, teams "BLUE"/"Orange") - all filler. Now the lobby is phase `pre` (silent), and the
+  intro waits until both teams have players, then for the team names, or RL Career Hub knowing the
+  teams from the players, or 3 s (MatchInitialized and the first countdown still start it). Game 1's
+  intro is the welcome and both teams in one go (the team lines were left for a lull and never fit
+  in live play, where nothing over 3.8 s starts).
+- **Series games.** RL Career Hub's save doesn't change during a series (it said game 1 for all three),
+  so its game number and score only win when they're ahead of the casters' own count. A side is the
+  same as last game by team name, or by 60% of the same players, because the names arrive seconds
+  before kickoff. After each game: where the series stands, and the goodbye only once the series is
+  over (best of known from RL Career Hub) - "And that's the series!" lines are in the bank to record.
+- **The result was cut off.** RL Career Hub closes the match 0.1-0.6 s after the podium starts, and
+  `MatchDestroyed` stopped all speech. After a finished match it now only drops what's not the result
+  or the wrap-up, which carries on over the next match's lobby. Leaving mid-game still stops at once.
+- **Speeds were read in the wrong units.** The live Stats API gives km/h (ball hits 10-130 here); the
+  engine was tuned on match files in uu/s. So in live play every shot's time to goal came out ~25x
+  too long, no hit was ever "big", and every touch was "soft". The model now takes km/h until it sees
+  a speed over 250 (only possible in uu/s: the ball's top speed is 216 km/h).
+- **Stat events arrive once per player** (7 times over while spectating): counted once now, so a
+  player's demos and assists are right.
+- Alex's notes on the recordings:
+  - "They just need to convert" only for a team that's level or behind.
+  - A demo is always called when the ball is in the victim's own third; any other one 20% of the
+    time (10% in a blowout).
+  - At zero on the clock: a short call at once, at the next pause between words; nothing long starts
+    in the last 4 s of a close game; the result follows the zero call at a pause. The pack's zero
+    lines are all 4.7 s+, so "Last chance!" until "Zero on the clock!" is recorded.
+  - Goals: the goal itself can't be called early - the game only says where the ball is when it's
+    touched, and two shots in three are saved - so a shot keeps the air clear until it should have
+    arrived, and the goal call follows a call about the same play (the shot, a touch, off the bar)
+    at the next pause between words instead of after it. The bar call waits 0.9 s (the ball went in
+    0.2-0.8 s after hitting it in these games).
+  - "{name} lets it fly" only for a goal hit from 3000 uu out or more.
+  - Short calls ("Aerial!") can come up to 5 times a game, 30 s apart.
+  - Replay analysis started 5-10 s into a 7 s replay. When the replay starts with the goal call
+    nearly done, the line about what the goal means ("Gentle Mates extend the lead") moves to the
+    restart (not a hype line like "Orange jump in front!"), the analysis starts with less of a pause,
+    and the "here it is again" opener is only used early in the replay. In the recorded games it now
+    starts 1.5-2.5 s into the replay.
+  - More stat callouts, most in a blowout (80% of colour moments there have a stat when there's one):
+    the player's line, then the number ("That's three goals on the night."), and replay stats after
+    goals in a blowout too.
+  - One win from the series and out of reach in this game (3 up, or 2 up in the last 90 s / at the
+    one- and two-minute marks): the series is called as all but over.
+  - "{team} need something here, otherwise this might be too far to come back from." when a team
+    goes 2 down with under three minutes left, or 3 down with time left.
+  - New lines in the bank, said once recorded: `need_something`, `series_clinch`, `series_won`, and
+    "Zero on the clock!".
+
+On the 80-match set (match files, so the km/h fix doesn't show here):
+
+| | 2.1.1 | 2.1.2 |
+|---|---|---|
+| Goal call starts (p90 after the goal) | 1.44 s | 0.58 s |
+| Goals called in time | 89% | 93% |
+| Event calls started over 1.5 s late | 11% | 8% |
+| Saves called (close games) | 60% | 59% |
+| Demos called (close games) | 58% | 32% (by design) |
+| Woodwork called | 49% | 38% (waits 0.9 s now) |
+| Talking in live play / median longest silence | 66% / 3.9 s | 65% / 4.2 s |
+| Lines said 3+ times in a match | 0 | 96 in 80 matches, all short calls |
+
+In the Bo5 recordings: silent through the lobby, the welcome and both teams before kickoff, "game two"
+and "game three" with the series score, the result and the series score after each game, replay
+analysis 1.5-2.5 s into the replay (was 5-10 s).
+
+## What changed in 2.1
+
+Asked for by listening to real matches, and graded on 80 (the 76 samples plus four Worlds 2025 games):
+
+| | 2.0.4 | 2.1 | 2.1 with `cutIn: saves` |
+|---|---|---|---|
+| Lines broken off by another call, per match | 12.5 | 1.7 (game-deciding goals only, at a pause) | 6.6 (plus saves, at a pause) |
+| Sentences said twice in a match | 3.9 | 0 | 0 |
+| Speech level spread across lines (30 real lines) | 14 dB | under 1 dB | same |
+| Early routine saves called with a "miracle" line | 7% | 0% | 0% |
+| "X takes it" calls per match | 12.8 | 10.0 | 10.2 |
+| Saves called within 1.5 s | 87% | 57% (25% more a beat late) | 91% |
+| Goals called within 2 s | 100% | 90% (the rest within 5 s) | 91% |
+| Longest silence in a match (median) | 2.8 s | 3.9 s | 3.9 s |
+
+- **No cutting in**, except a game-deciding goal: one that takes the lead, any overtime goal, or with
+  under a minute left one that brings a team level or back within one. It waits for the next pause
+  between words (up to 0.45 s; the pauses are found in the rendered line), then fades over 50 ms.
+  Any other call waits for the line being said to end, and stops a run of lines after the current
+  one. `cutIn: "saves"` in config.json lets saves break in the same way.
+- **Never repeat a sentence in three games in a row** (2.1.1; 2.1.0 was per match), nor its template
+  with another name in it, so a sentence comes up three times at most in a best of seven. Calls of
+  three words or fewer ("Shot!", "{name} takes it.") can come up twice a game, or they'd run out.
+  When a call would have no line, one from the two games before is used again; generic colour and
+  flow lines never are, unless it's that or dead air. Tested on 25 games played back to back (three
+  best-of-sevens plus the four Worlds games): sentences back from the previous two games went from
+  18.7 to 3.2 a game, talking from 69% to 67% of the game, the median longest silence 4.8 s to 4.9 s.
+  The window survives a restart of the casters. Generic colour (40 lines, about 30 used a game) is
+  what runs out first.
+- **Even loudness**: every line is brought to -19 dBFS of speech (pauses left out) with a -1 dBFS
+  limiter, instead of matching peaks; moods differ by only 1-2 dB now.
+- **Stakes**: early in the game or in a blowout a routine save gets a calm line ("The defense is
+  holding firm."), a game-flagged epic save only gets a big call late in a close game or in
+  overtime, and a goal for a team already 3 up (2 up in the last minute) is called, not celebrated.
+- **Live play keeps lines short** (3.8 s at most) and nothing new starts while a shot is on its way,
+  so a save or goal rarely has to wait. Long stories are for the breaks.
+
+The rest of this page describes 2.0; the call table's "cuts in over" column is now "nothing" for
+every call but a game-deciding goal.
 
 ## What Rocket League tells us
 

@@ -26,6 +26,31 @@ def pid(x):
     return json.dumps(x, sort_keys=True) if x is not None else None
 
 
+def team_names(path):
+    """The teams' own names when the replay has them (tournament and private matches), else Blue / Orange."""
+    out = ['Blue', 'Orange']
+    try:
+        r = s.parse_replay(open(path, 'rb').read())
+    except Exception:
+        return out
+    objs = r.get('objects') or []
+    name_ids = {i for i, o in enumerate(objs) if o.endswith(':CustomTeamName')}
+    if not name_ids:
+        return out
+    team_of = {}
+    for fr in (r.get('network_frames') or {}).get('frames') or []:
+        for a in fr.get('new_actors') or []:
+            o = objs[a['object_id']] if 0 <= a.get('object_id', -1) < len(objs) else ''
+            if o.endswith('Teams.Team0'): team_of[a['actor_id']] = 0
+            elif o.endswith('Teams.Team1'): team_of[a['actor_id']] = 1
+        for u in fr.get('updated_actors') or []:
+            if u.get('object_id') in name_ids and u.get('actor_id') in team_of:
+                v = (u.get('attribute') or {}).get('String')
+                if isinstance(v, str) and v.strip():
+                    out[team_of[u['actor_id']]] = v.strip()
+    return out
+
+
 def convert(path, out_dir, seed=0):
     rnd = random.Random(seed)
     G = ['BallRigidBody', 'SecondsRemaining', 'CurrentTime', 'ReplicatedStateName']
@@ -38,6 +63,7 @@ def convert(path, out_dir, seed=0):
             roster.append({'name': p['name'], 'team': team, 'id': pid(p.get('remote_id'))})
     if len(roster) < 2:
         raise ValueError('no players')
+    teams = team_names(path)
     byid = {p['id']: p for p in roster}
     names = [p['name'] for p in roster]
     events = s.get_stats_events(path)['events']
@@ -145,7 +171,7 @@ def convert(path, out_dir, seed=0):
         return {'e': 'UpdateState', 'd': {'MatchGuid': '', 'Players': [{**P(p), 'Score': pstats[p['name']]['score'], 'Goals': pstats[p['name']]['Goal'],
             'Shots': pstats[p['name']]['Shot'], 'Assists': pstats[p['name']]['Assist'], 'Saves': pstats[p['name']]['Save'],
             'Touches': pstats[p['name']]['touch'], 'CarTouches': 0, 'Demos': pstats[p['name']]['demo']} for p in roster],
-            'Game': {'Teams': [{'Name': 'Blue', 'TeamNum': 0, 'Score': score[0]}, {'Name': 'Orange', 'TeamNum': 1, 'Score': score[1]}],
+            'Game': {'Teams': [{'Name': teams[0], 'TeamNum': 0, 'Score': score[0]}, {'Name': teams[1], 'TeamNum': 1, 'Score': score[1]}],
                      'PlaylistId': 6, 'TimeSeconds': int(secs[i]), 'bOvertime': live['ot'],
                      'Ball': {'Speed': float(speed[i]), 'TeamNum': live['last_team']}, 'bReplay': live['replay'],
                      'bHasWinner': False, 'Winner': '', 'Arena': 'Stadium_P', 'bHasTarget': False}}}
@@ -292,7 +318,7 @@ def convert(path, out_dir, seed=0):
         f.write(json.dumps({'t': 0, 'k': 'header', 'source': 'replay', 'replay': os.path.basename(path), 'players': names, 'seed': seed}) + '\n')
         for t, r in out:
             f.write(json.dumps({'t': int(round(t * 1000)), **r}) + '\n')
-    summary = {'replay': os.path.basename(path), 'players': roster, 'score': score, 'overtime': bool(goals and goals[-1]['ot']),
+    summary = {'replay': os.path.basename(path), 'teams': teams, 'players': roster, 'score': score, 'overtime': bool(goals and goals[-1]['ot']),
                'team_size': len(roster) // 2, 'duration': float(out[-1][0]), 'counts': {k: len(v) for k, v in truth.items()}}
     with open(os.path.join(out_dir, base + '.truth.json'), 'w') as f:
         json.dump({'summary': summary, **truth}, f, default=str)

@@ -45,7 +45,8 @@ function speakName(name, pronunciations) {
     .replace(/[_\-. ]*(?:x+X+|X+x+)$/, '')
     .replace(/[_|~*^]+/g, ' ')
     .replace(/\s+/g, ' ')
-    .trim();
+    .trim()
+    .replace(/[.,;:!?]+$/, '');            // "Atow." reads as "Atow"
   if (pronunciations && pronunciations[s]) return pronunciations[s];
   return s || raw || 'that player';
 }
@@ -56,4 +57,17 @@ function cleanTeamName(name, teamNum) {
   return s;
 }
 
-module.exports = { num, scoreWords, timeWords, speedWords, speakName, cleanTeamName };
+// Tournament replays and private matches send names like "NRG ESPORTS" or "TEAM VITALITY":
+// use the voice pack's spelling ("NRG", "Team Vitality") so its recorded lines are found.
+const teamNorm = (x) => String(x).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+const teamCore = (x) => teamNorm(x).replace(/\b(e ?sports?|gaming|team|club|rl|gg)\b/g, ' ').replace(/\s+/g, ' ').trim();
+function packTeamName(name, teams) {
+  const list = (teams || []).filter(Boolean);
+  if (!name || !list.length) return name;
+  const exact = list.find((x) => teamNorm(x) === teamNorm(name));
+  if (exact) return exact;
+  const core = teamCore(name);
+  return (core && list.find((x) => teamCore(x) === core)) || name;
+}
+
+module.exports = { num, scoreWords, timeWords, speedWords, speakName, cleanTeamName, packTeamName };

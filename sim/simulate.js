@@ -52,7 +52,7 @@ let rs = (SEED * 2654435761) >>> 0 || 1;
 Math.random = () => { rs ^= rs << 13; rs >>>= 0; rs ^= rs >>> 17; rs ^= rs << 5; rs >>>= 0; return rs / 4294967296; };
 
 // ------------------------------------------------------------------ the voice pack
-const APP = path.join(__dirname, '..', 'app');
+const APP = process.env.RLCC_APP || path.join(__dirname, '..', 'app'); // RLCC_APP: grade another copy of the app (an older version, say)
 const { keyOf } = require(path.join(APP, 'pack.js'));
 const INV = JSON.parse(fs.readFileSync(opt('--inventory', path.join(__dirname, 'data', 'inventory.json')), 'utf8'));
 const lineMs = new Map(Object.entries(INV.current));
@@ -71,7 +71,8 @@ const voice = {
 };
 
 // ------------------------------------------------------------------ the audio device
-const timeline = []; // { start, end, text, role, mood, how }
+const timeline = []; // { start, end, text, role, mood, cat, kind (the call it was part of), how }
+let lastSayKind = null;
 class SimPlayer {
   constructor() { this.cur = null; this.fadeUntil = 0; }
   play(clip) {
@@ -99,7 +100,8 @@ const header = rows.find((r) => r.k === 'header') || {};
 const realNames = header.players || (truth && truth.summary.players.map((p) => p.name)) || [];
 const shuffled = packPlayers.slice().sort(() => Math.random() - 0.5);
 const rename = new Map();
-realNames.forEach((n, i) => rename.set(n, i === realNames.length - 1 && !flag('--all-known') ? 'Unknown Player' : shuffled[i]));
+// --real-names keeps the match's own names (a pro match whose players are in the pack)
+realNames.forEach((n, i) => rename.set(n, flag('--real-names') ? n : i === realNames.length - 1 && !flag('--all-known') ? 'Unknown Player' : shuffled[i]));
 const R = (n) => (rename.has(n) ? rename.get(n) : n);
 function renameDeep(o) {
   if (Array.isArray(o)) return o.map(renameDeep);
@@ -115,24 +117,26 @@ const log = (m) => { logs.push(`[${((NOW - T0) / 1000).toFixed(1)}] ${m}`); if (
 const logs = [];
 const trace = [];
 let T0 = NOW;
-const hubTeams = flag('--hub') ? packTeams.slice().sort(() => Math.random() - 0.5).slice(0, 2) : null;
+// --hub: a stand-in for RL Career Hub that, like the real one mid-series, still says game 1
+// (--hub-teams "A,B" names the teams; --hub-bestof n)
+const hubTeams = flag('--hub') ? (opt('--hub-teams') ? opt('--hub-teams').split(',') : packTeams.slice().sort(() => Math.random() - 0.5).slice(0, 2)) : null;
 const hub = hubTeams ? {
-  contextFor: () => ({ teamNames: hubTeams, describe: `${hubTeams[0]} vs ${hubTeams[1]}`, game: 1, wins: [0, 0], bestOf: 5, kind: 'regional', stage: 'semi',
+  contextFor: ({ players }) => (!players.length ? null : { teamNames: hubTeams, describe: `${hubTeams[0]} vs ${hubTeams[1]}`, game: 1, wins: [0, 0], bestOf: Number(opt('--hub-bestof', 5)), kind: 'regional', stage: 'semi',
     form: [{ played: 5, won: 3, lost: 0 }, { played: 5, won: 0, lost: 2 }], table: null, metBefore: true,
     seasonGoals: () => 4, seasonSaves: () => 9, topScorer: () => false }),
 } : null;
 
 async function main() {
   const player = new SimPlayer();
-  const config = { chatter: opt('--pace', 'normal'), pronunciations: {}, units: 'kph' };
+  const config = { chatter: opt('--pace', 'normal'), pronunciations: {}, units: 'kph', cutIn: opt('--cut-in', process.env.RLCC_CUT_IN || 'deciding') };
   let commentary, speaker;
   {
     const { Speaker } = require(path.join(APP, 'speaker.js'));
     const { Commentary } = require(path.join(APP, 'commentary.js'));
     speaker = new Speaker({ tts: voice, player, log, oneVoice: true,
-      onLine: (c) => timeline.push({ start: NOW + LAT, end: null, text: c.text, role: c.role, mood: c.mood, cat: c.cat }),
+      onLine: (c) => timeline.push({ start: NOW + LAT, end: null, text: c.text, role: c.role, mood: c.mood, cat: c.cat, kind: lastSayKind }),
       onLineEnd: (c, how) => { const tl = timeline[timeline.length - 1]; if (tl && tl.text === c.text && tl.end === null) { tl.end = NOW + (how === 'cut' ? 140 : 0); tl.how = how; } } });
-    commentary = new Commentary({ tts: voice, speaker, config, log, statePath: null, hub, trace: (k, x) => trace.push({ t: NOW - T0, k, ...x, clip: x.clip ? { text: x.clip.text, cat: x.clip.cat } : undefined }) });
+    commentary = new Commentary({ tts: voice, speaker, config, log, statePath: null, hub, trace: (k, x) => { if (k === 'say') lastSayKind = x.kind; trace.push({ t: NOW - T0, k, ...x, clip: x.clip ? { text: x.clip.text, cat: x.clip.cat } : undefined }); } });
   }
   // capture each line's real end time from the player
   const origPlay = player.play.bind(player);

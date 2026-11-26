@@ -161,6 +161,7 @@ const LINES = {
     'Five seconds!', 'Final seconds!', 'Last chance!', 'Seconds left!',
   ],
   zero_g: [
+    'Zero on the clock!', // 2.1.2: short, so it's said before the ball lands (not recorded yet)
     'Zero on the clock! The ball has to touch the ground!', 'Zero seconds! It\'s not over until it hits the floor!',
     'The clock\'s at zero, but the ball\'s still alive!',
   ],
@@ -183,6 +184,20 @@ const LINES = {
   ],
   comeback: [
     'Here come {team}!', '{team} are fighting back!', 'Game on! {team} are back in this!',
+  ],
+  // 2.1.2 (not recorded yet: until they are, the lines nearest in meaning are used)
+  need_something: [
+    '{team} need something here, otherwise this might be too far to come back from.',
+  ],
+  series_clinch: [
+    '{team} are one win away from the series, and this game is all but over.',
+    '{team} are about to close out this series.',
+    'This series is nearly wrapped up. {team} are cruising.',
+  ],
+  series_won: [
+    'And that\'s the series! {team} take it {score}!',
+    '{team} win the series!',
+    '{team} close it out, and the series is theirs!',
   ],
   need_goal: [
     '{team} need a goal here.', '{team} have to find something soon.', 'Time is running out for {team}.',
@@ -219,9 +234,9 @@ const PBP_LIVELY = ['kickoff_go', 'kickoff_ready', 'kickoff_won', 'kickoff_won_n
   'pbp_dribble', 'pbp_flick_g', 'pbp_pressure', 'pbp_pressure_g', 'pbp_transition', 'pbp_transition_g', 'pbp_defend_g', 'pbp_flow_g', 'shot_g',
   'save_g_short', 'save_late', 'demo_numbers_g', 't120_g', 't120_tie', 't120_close', 'ot_1min', 'ot_2min', 'ot_long'];
 const PBP_HYPE = ['rebound_g', 'close_g', 'demo_g_short', 'goal_g_short', 'goal_own_g', 'goal_celebrate_g', 't5_g', 'zero_g',
-  'comeback'];
+  'comeback', 'series_won'];
 const COLOR_CALM = ['save_react_g', 'close_react_g', 'goal_counter_g', 'goal_pressure_g', 'goal_solo_g', 'goal_team_g', 'an_replay_g',
-  'momentum_run', 'unanswered', 'need_goal', 'color_team', 'color_player', 'filler_g_color'];
+  'momentum_run', 'unanswered', 'need_goal', 'color_team', 'color_player', 'filler_g_color', 'need_something', 'series_clinch'];
 const META = {};
 for (const c of PBP_LIVELY) META[c] = { role: 'pbp', mood: 'lively' };
 for (const c of PBP_HYPE) META[c] = { role: 'pbp', mood: 'hype' };

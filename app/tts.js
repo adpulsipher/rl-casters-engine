@@ -9,7 +9,7 @@ const fs = require('fs');
 const path = require('path');
 const crypto = require('crypto');
 
-const ENGINE_VERSION = 'pocket-2'; // cache folder version
+const ENGINE_VERSION = 'pocket-3'; // cache folder version (3: lines evened out by loudness)
 const MOODS = ['hype', 'lively', 'calm'];
 const sha = (s) => crypto.createHash('sha1').update(s).digest('hex');
 
@@ -31,7 +31,8 @@ function peaking(x, sr, f, gainDb, q) {
   biquad(x, (1 + al * A) / a0, -2 * c / a0, (1 - al * A) / a0, -2 * c / a0, (1 - al / A) / a0);
 }
 
-// broadcast voice chain: trim, low cut, presence lift, gentle compression, normalize
+// broadcast voice chain: trim, low cut, presence lift, gentle compression, then every line
+// brought to the same loudness (2.1; it used to match peaks, which left speech up to 12 dB apart)
 function processVoice(input, sr) {
   const thr = 0.008;
   let s = 0, e = input.length - 1;
@@ -56,16 +57,51 @@ function processVoice(input, sr) {
     const lvl = Math.sqrt(env);
     if (lvl > thrLin) x[i] *= (thrLin * (lvl / thrLin) ** (1 / ratio)) / lvl;
   }
-  let peak = 0;
-  for (let i = 0; i < x.length; i++) peak = Math.max(peak, Math.abs(x[i]));
-  const g = peak > 0 ? 10 ** (-1.5 / 20) / peak : 1;
+  const g = loudnessGain(x, sr);
   const fade = Math.round(sr * 0.008);
   for (let i = 0; i < x.length; i++) {
     let f = 1;
     if (i < fade) f = i / fade; else if (i > x.length - fade) f = (x.length - i) / fade;
     x[i] *= g * f;
   }
+  limit(x, sr);
   return x;
+}
+
+// the gain that brings the speech in a line (pauses left out) to -19 dBFS RMS, at most +18 dB
+const TARGET_RMS = 10 ** (-19 / 20);
+function loudnessGain(x, sr) {
+  const n = Math.max(1, Math.round(sr * 0.02));
+  const frames = [];
+  for (let i = 0; i + n <= x.length; i += n) {
+    let s = 0;
+    for (let k = i; k < i + n; k++) s += x[k] * x[k];
+    frames.push(s / n);
+  }
+  if (!frames.length) return 1;
+  const top = Math.max(...frames);
+  const gate = Math.max(1e-5, top * 10 ** (-25 / 10)); // frames within 25 dB of the loudest
+  const speech = frames.filter((v) => v >= gate);
+  const rms = Math.sqrt(speech.reduce((a, v) => a + v, 0) / speech.length);
+  return rms > 0 ? Math.min(10 ** (18 / 20), TARGET_RMS / rms) : 1;
+}
+
+// peak limiter at -1 dBFS: looks 2 ms ahead so it turns down before a peak, eases back over 60 ms
+function limit(x, sr) {
+  const ceil = 10 ** (-1 / 20);
+  const ahead = Math.max(1, Math.round(sr * 0.002));
+  const rel = Math.exp(-1 / (sr * 0.06));
+  const need = new Float32Array(x.length);
+  let any = false;
+  for (let i = 0; i < x.length; i++) { const a = Math.abs(x[i]); need[i] = a > ceil ? ceil / a : 1; if (need[i] < 1) any = true; }
+  if (!any) return;
+  let g = 1;
+  for (let i = 0; i < x.length; i++) {
+    let m = 1;
+    for (let k = i; k < Math.min(x.length, i + ahead); k++) if (need[k] < m) m = need[k];
+    g = m < g ? m : rel * g + (1 - rel) * m;
+    x[i] *= Math.min(g, need[i]);
+  }
 }
 
 function wavBuffer(samples, sr) {

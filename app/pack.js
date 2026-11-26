@@ -12,6 +12,9 @@ const path = require('path');
 const crypto = require('crypto');
 
 const PACK_TYPE = 'rl-career-casters-voicepack';
+// where each line is kept once it's been turned into a WAV; a new name re-renders them all
+// (2.1: lines are evened out by loudness, so the old renders aren't used)
+const WAV_DIR = 'wav-2.1';
 // accents don't matter (a pack's "Fibérr" matches the game's "Fiberr")
 const norm = (t) => String(t).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 const keyOf = (role, mood, text) => `${role}|${mood}|${norm(text)}`;
@@ -95,7 +98,7 @@ async function importPack({ file, packsDir, log }) {
     if (!names.has(src)) { bad++; continue; }
     lines.push({ role: l.role, mood: l.mood, text: l.text, src });
   }
-  fs.mkdirSync(path.join(dest, 'wav'), { recursive: true });
+  fs.mkdirSync(path.join(dest, WAV_DIR), { recursive: true });
   fs.writeFileSync(path.join(dest, 'pack.json'), JSON.stringify({ format: 'lazy', zip: file, name: man.name || path.basename(file), created: man.created, kbps: man.kbps, source: path.basename(file), casters: man.casters, oneVoice: !!man.oneVoice, players: man.players, teams: man.teams, lines }));
   log(`Added voice pack ${path.basename(file)}: ${lines.length} lines${bad ? ` (${bad} missing from the zip)` : ''}. Each line is prepared the first time it's used.`);
   return dest;
@@ -154,7 +157,7 @@ class PackVoice {
     this.byText = new Map(); // same line in another mood, if the exact mood wasn't recorded
     p.lines.forEach((l, i) => {
       const v = this.lazy
-        ? { src: l.src, file: path.join(dir, 'wav', `${String(i).padStart(5, '0')}.wav`), ms: 0, pending: null }
+        ? { src: l.src, file: path.join(dir, WAV_DIR, `${String(i).padStart(5, '0')}.wav`), ms: 0, pending: null }
         : { file: path.join(dir, l.file), ms: l.ms };
       this.byKey.set(keyOf(l.role, l.mood, l.text), v);
       const tk = `${l.role}|${norm(l.text)}`;
@@ -194,6 +197,7 @@ class PackVoice {
       try { r = dec.decode(new Uint8Array(buf)); } finally { dec.free(); }
       if (!r.samplesDecoded) throw new Error('could not read that line');
       const x = this.opts.processVoice ? this.opts.processVoice(r.channelData[0], r.sampleRate) : r.channelData[0];
+      fs.mkdirSync(path.dirname(v.file), { recursive: true });
       const tmp = v.file + '.tmp';
       fs.writeFileSync(tmp, this.opts.wavBuffer(x, r.sampleRate));
       fs.renameSync(tmp, v.file);

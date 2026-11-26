@@ -79,9 +79,10 @@ async function main({ exeDir, version, argv = process.argv.slice(2) }) {
     log(`Match recorder is on: each match is saved in ${path.join(dataDir, 'captures')}`);
   }
   const demo = argv.includes('--demo');
+  const play = argv.includes('--play'); // a recorded match: see matchfile.js
   const recordFile = argValue(argv, '--record');
 
-  if (!demo) {
+  if (!demo && !play) {
     // only one copy of the casters at a time
     const lockOk = await new Promise((resolve) => {
       const srv = require('net').createServer();
@@ -168,10 +169,11 @@ async function main({ exeDir, version, argv = process.argv.slice(2) }) {
     onDrop: (seg, why) => { if (capture) capture.note('drop', { why, prio: seg.prio, texts: seg.clips.map((c) => c.text) }); } });
   // RL Career Hub: the season around this match (event, stage, series, form, season stats), if it's installed
   let hub = null;
-  if (cfg.careerHub !== 'off') {
+  // (not for a recorded match: it's called as it was, not as part of your current season)
+  if (cfg.careerHub !== 'off' && !play) {
     try { hub = new (require('./hub').CareerHub)({ log }); if (!hub.available()) hub = null; else log(`RL Career Hub found: ${hub.where()}`); } catch (e) { hub = null; }
   }
-  const commentary = new Commentary({ tts, speaker, config: cfg, log, statePath: path.join(dataDir, 'series.json'), hub });
+  const commentary = new Commentary({ tts, speaker, config: cfg, log, statePath: play ? null : path.join(dataDir, 'series.json'), hub });
 
   // render the lines that never change, in the background (first run only)
   const generic = tts.strict ? [] : Commentary.genericLines().filter((c) => !tts.has(c));
@@ -200,6 +202,65 @@ async function main({ exeDir, version, argv = process.argv.slice(2) }) {
     log('\nDemo finished.');
     if (!argv.includes('--exit')) await waitForEnter();
     return shutdown(0);
+  }
+
+  if (play) {
+    const M = require('./matchfile');
+    const done = async () => { if (!argv.includes('--exit')) await waitForEnter(); return shutdown(0); };
+    const file = M.find(argValue(argv, '--play'), [path.join(dataDir, 'captures'), path.join(exeDir, 'matches'), exeDir]);
+    if (!file) {
+      log('No match file to play. Drop one on "Play a match.bat": a recording from "Casters with match recorder.bat"');
+      log('(saved in Casters\\captures), or a Rocket League replay turned into one by "Convert replay.bat".');
+      return done();
+    }
+    if (/\.replay$/i.test(file)) {
+      log(`"${path.basename(file)}" is a Rocket League replay. Drop it on "Convert replay.bat" first: that turns it into a match file and plays it.`);
+      return done();
+    }
+    let events = [];
+    try { events = M.load(file); } catch (e) { log(`Could not read "${path.basename(file)}": ${e.message}`); return done(); }
+    if (events.length < 50) { log(`"${path.basename(file)}" has almost nothing in it (${events.length} events), so there's nothing to call.`); return done(); }
+    const s = M.summary(events);
+    const side = (n) => s.teams[n] + (s.players[n].length ? ` (${s.players[n].join(', ')})` : '');
+    log(`Playing "${path.basename(file)}", about ${Math.max(1, Math.round(s.minutes))} min, as Rocket League sent it:`);
+    log(`  ${side(0)} vs ${side(1)}\n`);
+    // --sync ("Play a match.bat"): start on Space, to line it up with a video of the match
+    const sync = argv.includes('--sync') && !!process.stdin.isTTY;
+    if (argv.includes('--sync') && !sync) log('(No keyboard here, so the match starts straight away.)');
+    let endKeys = () => {};
+    if (sync) {
+      log('To line it up with a video: press SPACE the moment the first kickoff countdown starts (when the 3 appears).');
+      log('After every goal the casters hold at the next kickoff: press SPACE again when its countdown starts.');
+      log('P pauses and carries on (pause the video too). Ctrl+C stops.\n');
+      log('Waiting for SPACE...');
+    }
+    await new Promise((resolve) => {
+      demoRun = M.run(events, (n, d) => commentary.handle(n, d), {
+        onDone: resolve,
+        sync,
+        onWait: (n) => console.log(`  [kickoff ${n}: press SPACE when the countdown starts]`),
+      });
+      if (!sync) return;
+      process.stdin.setRawMode(true);
+      process.stdin.resume();
+      const onKey = (buf) => {
+        const k = buf.toString('utf8');
+        if (k === '\u0003') { endKeys(); shutdown(0); return; }
+        if (k === ' ') {
+          const r = demoRun.release();
+          if (r === 'started' || r === 'synced' || r === 'jumped') console.log('  [go]');
+          else if (r === 'live') console.log('  [SPACE only works between a goal and the next kickoff]');
+        } else if (k === 'p' || k === 'P') {
+          console.log(demoRun.togglePause() ? '  [paused: P to carry on]' : '  [carrying on]');
+        }
+      };
+      process.stdin.on('data', onKey);
+      endKeys = () => { process.stdin.off('data', onKey); try { process.stdin.setRawMode(false); } catch (e) {} process.stdin.pause(); };
+    });
+    endKeys();
+    while (speaker.busy) await new Promise((r) => setTimeout(r, 300));
+    log('\nMatch finished.');
+    return done();
   }
 
   // ---- Rocket League's Stats API

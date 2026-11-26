@@ -300,6 +300,10 @@ class Player {
     }
     this.current = null;
   }
+
+  // how long after play() a line is heard (the steady stream keeps a little queued)
+  get latencyMs() { return (this.dev && this.dev.latencyMs) || 0; }
+
   async start(volume) {
     this.volume = volume;
     const ok = await this.dev.start(volume);

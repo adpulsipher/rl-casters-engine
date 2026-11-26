@@ -1,10 +1,97 @@
-RL CAREER CASTERS  v2.0.1
+RL CAREER CASTERS  v2.1.2
 =========================
 
 Two AI casters for your Rocket League / RL Career Hub matches: a male
 play-by-play caster who calls the action and a female analyst who breaks
 down goals on the replay. Both run on your own PC, so there's no account,
 no internet needed after setup, and nothing to pay for.
+
+New in 2.1.2: RL Career Hub series, and your notes from the best of five.
+- The casters welcome you and introduce both teams before the first
+  kickoff, then say "game two", "game three" with the series score. They
+  stay quiet while RL Career Hub's lobby is still empty (they used to talk
+  over it). After each game they say where the series stands; the goodbye
+  waits until the series is over.
+- The final call is no longer cut off when RL Career Hub closes the match
+  right after the podium.
+- The game sends ball speeds in km/h, and the casters were reading them as
+  something else. Fixed: shot timing, big hits and goal speeds are right now.
+- Goals are called sooner: a shot keeps the air clear, and the goal call
+  follows "Shoots!" (or the touch before it) at the next pause.
+- Zero on the clock: a short call right away, so it's said before the ball
+  lands, and nothing long starts in the last seconds of a close game.
+- Replay analysis starts earlier, while the replay is showing the play.
+- More stat callouts, most of all in blowouts. "They just need to convert"
+  only for a team that's level or behind. "X lets it fly" only for long
+  shots. Demos: always when a defender is taken out with the ball in their
+  end, otherwise only now and then. Short calls like "Aerial!" can repeat.
+- One win from the series and cruising: the casters say the series is all
+  but over.
+- A few new lines are in the list to record (like "Zero on the clock!" and
+  "{team} win the series!"). Until they're recorded, the nearest lines you
+  have are used.
+
+New in 2.1.1: no repeats across games.
+- A sentence isn't said again for three games: in a best of seven, the most
+  you'll hear one is three times. Games played back to back count, even if
+  you restart the casters in between. If a call would have nothing else to
+  say, a line from the last two games is used rather than staying quiet.
+- A goal at the buzzer no longer pushes the "game over" call out.
+
+New in 2.1: casters that sound more like a real broadcast.
+- No more chopped lines. A line is never broken off, except for a goal that
+  decides the game: one that takes the lead, any overtime goal, or, with
+  under a minute left, one that ties it or brings a team back within one.
+  Even that waits for a pause between words. Everything else waits for the
+  line to finish. To let saves break in the same way (fewer late or missed
+  save calls), set "cutIn": "saves" in config.json.
+- No sentence is said twice in a match (2.1.1: in three games). Short calls
+  like "Shot!" can come up twice, like a real caster's.
+- Every line plays at the same loudness. Some lines used to come out much
+  quieter than others.
+- They know when it matters. A routine save early on gets "The defense is
+  holding firm.", not "an absolute miracle"; the big calls are kept for late
+  in a close game and overtime. Running up the score gets a calm call, not
+  a celebration.
+- A bit less "X takes it": about a fifth fewer of those calls.
+- Names that end in a dot (like "Atow.") read cleanly.
+- After updating, each line is prepared again the first time it's used, at
+  the new loudness (a few milliseconds each; nothing to do).
+
+New in 2.0.4: line a match up with a video of it.
+- "Play a match.bat" now waits for SPACE. Start the video (a YouTube VOD of
+  the match, say) and press SPACE the moment the first kickoff countdown
+  starts, when the 3 appears.
+- After every goal the casters hold at the next kickoff, so the goal replays
+  can be as long as the broadcast makes them: press SPACE again when that
+  kickoff's countdown starts. Pressing it early, during the replay, jumps
+  straight to the kickoff. During play SPACE does nothing, so a stray press
+  can't skip anything.
+- P pauses and carries on (pause the video at the same time). Ctrl+C stops.
+
+New in 2.0.3: real team names from tournament replays.
+- Replays of RLCS and other tournament or private matches keep the teams'
+  names ("GEEKAY ESPORTS", "NRG ESPORTS"), and the casters match them to the
+  spelling in your voice pack ("Geekay Esports", "NRG"), so the team lines
+  are used. The same goes for live private matches with team names.
+
+New in 2.0.2: hear the casters call any match, no game needed.
+- "Play a match.bat": drop a match file on it and the casters call that
+  match, with its real timing. Match files come from the match recorder
+  ("Casters with match recorder.bat" saves one per match in
+  Casters\captures) or from your own Rocket League replays (below). With
+  nothing dropped on it, it plays the newest one.
+- "Convert replay.bat": drop a .replay on it (your saved replays are in
+  Documents\My Games\Rocket League\TAGame\Demos). It turns the replay into
+  a match file in the matches folder, then plays it. Dropping a .replay on
+  "Play a match.bat" does the same. It needs uv or Python installed; the
+  first time it downloads the replay reader (about 30 MB). Replays don't
+  hold the goal replays you see in the game, so the casters get a made-up
+  one after each goal, like the game would show.
+- A recorded match is called as it happened: the real player names, no RL
+  Career Hub season, and your series score isn't changed.
+- Teams that are only "Blue" and "Orange" are no longer introduced as
+  "On the blue side tonight, it's Blue."
 
 New in 2.0.1: no more lost first words on Bluetooth.
 - The casters now keep one audio stream open for the whole session, with an
@@ -162,6 +249,9 @@ teams and players come from the pack. To choose them yourself:
 Names must be spelled as in the pack's players.txt / teams.txt (the part
 before "="), or those lines fall back to general calls.
 
+To hear them call one of your own matches, drop a replay (from Documents\My
+Games\Rocket League\TAGame\Demos) on "Play a match.bat".
+
 
 FIRST LAUNCH
 ------------
@@ -203,6 +293,9 @@ pronunciations    {}         fix how a name is said, e.g.
 rocketLeagueDir   ""         only if the game isn't found automatically
                              (the folder with Binaries and TAGame in it)
 ttsThreads        6          CPU threads for the voices
+cutIn             "deciding" "deciding" = only a game-deciding goal breaks
+                             into a line (at a pause between words);
+                             "saves" = saves can too
 audio             "auto"     "auto" = one steady audio stream (keeps
                              Bluetooth headphones awake, so no line loses
                              its first word); "basic" = the old player
@@ -259,6 +352,8 @@ TROUBLESHOOTING
   Check Casters\casters.log for "Turned on Rocket League match data" or
   instructions to add it by hand.
 - "Could not find Rocket League": set rocketLeagueDir in config.json.
+- Saves called late or not at all: set "cutIn": "saves" in config.json,
+  so a save can break in at the next pause between words.
 - Lines start late or lose their first word: make sure "audio" is "auto" in
   config.json. If casters.log says "using the basic player", the steady
   stream couldn't start on this PC; the log line says why.

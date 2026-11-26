@@ -105,8 +105,20 @@ def measure(f, res):
     cats = collections.Counter(x['cat'] for x in tl)
 
     def first_line(cats, lo, hi):
-        c = [x for x in tl if x['cat'] in cats and lo <= x['start'] <= hi]
+        ok = cats if callable(cats) else (lambda x: x['cat'] in cats)
+        c = [x for x in tl if ok(x) and lo <= x['start'] <= hi]
         return min(c, key=lambda x: x['start']) if c else None
+    # a save call: a save line, or any line said as the call for a save (2.1: a routine save
+    # can get a calm line from the defending or colour banks)
+    is_save = lambda x: x['cat'] in SAVE_CALL or x.get('kind') == 'save'
+    # how much a moment mattered: seconds left, overtime, the score
+    clock = [(t, d.get('TimeSeconds'), d.get('bOvertime')) for t, e, d in ev if e == 'ClockUpdatedSeconds']
+    def left_at(t):
+        v = (None, False)
+        for a, sec, ot in clock:
+            if a <= t: v = (sec, bool(ot))
+            else: break
+        return v
 
     goals = truth.get('goal', [])
     goal_lat, goal_hit = [], 0
@@ -127,9 +139,16 @@ def measure(f, res):
     for s in saves:
         if not close_at(s['time']): continue
         save_n += 1
-        x = first_line(SAVE_CALL, s['time'] - 0.05, s['time'] + 1.5)
+        x = first_line(is_save, s['time'] - 0.05, s['time'] + 1.5)
         if x: save_hit += 1; save_lat.append(x['start'] - s['time'])
-        if s.get('epic'):
+        # a save off the line that matters (late in a close game, or overtime) gets a big call;
+        # early on, a calm one is right (2.1)
+        sec, ot = left_at(s['time'])
+        sc = [0, 0]
+        for g in goals:
+            if g['time'] < s['time']: sc = g['score']
+        matters = ot or (sec is not None and ((sec <= 60 and abs(sc[0] - sc[1]) <= 1) or (sec <= 120 and sc[0] == sc[1])))
+        if s.get('epic') and matters:
             epic_n += 1
             if first_line(EPIC_CALL, s['time'] - 0.05, s['time'] + 1.6): epic_hit += 1
     demos = [d for d in truth.get('demo', []) if in_live(d['time']) and close_at(d['time'])]
@@ -154,7 +173,7 @@ def measure(f, res):
         def chk(k, ok):
             checked[k] += 1
             if not ok: wrong[k] += 1; x['wrong'] = k
-        if c in SAVE_CALL: chk('save', bool(near(saves + truth.get('save', []), t, -0.1, 1.8)))
+        if c in SAVE_CALL or x.get('kind') == 'save': chk('save', bool(near(saves + truth.get('save', []), t, -0.1, 1.8)))
         if c in GOAL_CALL: chk('goal', bool(near(goals, t, -0.2, 2.5)))
         if c in SHOT_CALL: chk('shot', bool(near(truth.get('shot', []), t, -0.1, 1.2)))
         if c in DEMO_CALL: chk('demo', bool(near(truth.get('demo', []), t, -0.1, 2.5)))
@@ -303,7 +322,7 @@ def grade(ms):
     # 2. coverage (14)
     item('Coverage', 'Goals called', 5, lin(S('goal_hit') / max(1, S('goals')), 0.9, 1.0), S('goal_hit') / max(1, S('goals')))
     item('Coverage', 'Saves called (close games)', 4, lin(S('save_hit') / max(1, S('saves')), 0.6, 0.85), S('save_hit') / max(1, S('saves')))
-    item('Coverage', 'Saves on the line called as big saves', 2, lin(S('epic_hit') / max(1, S('epic')), 0.3, 0.7), S('epic_hit') / max(1, S('epic')))
+    item('Coverage', 'Saves on the line that matter called as big saves', 2, lin(S('epic_hit') / max(1, S('epic')), 0.3, 0.7), S('epic_hit') / max(1, S('epic')))
     item('Coverage', 'Demos called (close games)', 1.5, lin(S('demo_hit') / S('demos'), 0.3, 0.6) if S('demos') else 1.0, f"{S('demo_hit')}/{S('demos')}")
     item('Coverage', 'Woodwork called', 1.5, lin(S('wood_hit') / S('wood'), 0.5, 0.8) if S('wood') else 1.0, f"{S('wood_hit')}/{S('wood')}")
     # 3. accuracy (22)

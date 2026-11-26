@@ -13,11 +13,16 @@ const GOAL_Y = 5120, WALL_X = 4096, POST_X = 893;
 const THIRD = 1707;
 
 const keyOf = (s) => String(s || '').toLowerCase().replace(/[^a-z]/g, '');
+// Rocket League's Stats API gives speeds in km/h; replays turned into match files (and the
+// tests) give them in Unreal units a second, which is what everything here is tuned in.
+// The ball can't go faster than 6000 uu/s (216 km/h): a speed above 250 can only be uu/s.
+const KMH = 1 / 0.036;
 
 class GameModel {
   constructor({ now = () => Date.now(), log = () => {} } = {}) {
     this.now = now;
     this.log = log;
+    this.kmh = true; // until a speed says otherwise (kept across matches: one source per run)
     this.reset();
   }
 
@@ -37,6 +42,12 @@ class GameModel {
   }
 
   get state() { return this.m; }
+  // a speed from the game, in uu/s
+  speed(v) {
+    if (typeof v !== 'number' || !isFinite(v)) return 0;
+    if (this.kmh && v > 250) this.kmh = false;
+    return this.kmh ? v * KMH : v;
+  }
   // live play: the ball is in play, no replay or break
   live() { return this.m.phase === 'live' && !this.m.stateReplay && !this.m.goalReplay && !this.m.paused; }
   count(name, k) {
@@ -85,7 +96,9 @@ class GameModel {
     d = d || {};
     switch (name) {
       case 'MatchCreated':
-        this.reset(); m.active = true; m.phase = 'pre';
+        // (2.1.2: this set the old match's state, so every match looked joined late: no intro,
+        // and the casters talked over the empty lobby as if play was on)
+        this.reset(); this.m.active = true; this.m.phase = 'pre';
         emit('match_created');
         break;
       case 'MatchInitialized':
@@ -139,7 +152,7 @@ class GameModel {
         break;
       }
       case 'PodiumStart': emit('podium'); break;
-      case 'MatchDestroyed': emit('destroyed'); this.reset(); break;
+      case 'MatchDestroyed': emit('destroyed', { ended: m.phase === 'ended' }); this.reset(); break;
       case 'PlayerLeft': if (d.PlayerName) m.players.delete(d.PlayerName); break;
       default: break;
     }
@@ -169,9 +182,9 @@ class GameModel {
     if (typeof g.TimeSeconds === 'number') this.clock(g.TimeSeconds, g.bOvertime, emit);
     if (g.Ball) {
       if (typeof g.Ball.Speed === 'number') {
-        m.ballSpeed = g.Ball.Speed;
+        m.ballSpeed = this.speed(g.Ball.Speed);
         if (this.live()) {
-          m.speeds.push({ at: this.now(), s: g.Ball.Speed });
+          m.speeds.push({ at: this.now(), s: m.ballSpeed });
           if (m.speeds.length > 240) m.speeds.splice(0, m.speeds.length - 240);
         }
       }
@@ -238,7 +251,7 @@ class GameModel {
     const p = ps[0];
     const team = p.TeamNum === 1 ? 1 : 0;
     const x = loc.X || 0, y = loc.Y, z = loc.Z || 0;
-    const post = b.PostHitSpeed || 0, pre = b.PreHitSpeed || 0;
+    const post = this.speed(b.PostHitSpeed), pre = this.speed(b.PreHitSpeed);
     const a = this.attackY(team, y);
     const zone = a > THIRD ? 'att' : a < -THIRD ? 'def' : 'mid';
     const surface = z > 1850 ? 'ceiling'
@@ -323,6 +336,11 @@ class GameModel {
     const main = d.MainTarget && d.MainTarget.Name ? d.MainTarget : null;
     const second = d.SecondaryTarget && d.SecondaryTarget.Name ? d.SecondaryTarget : null;
     const team = main ? (main.TeamNum === 1 ? 1 : 0) : -1;
+    // the game can send each stat event once per player in the match (2.1.2: seen 7 times
+    // over when spectating in RL Career Hub): one of each, please
+    const sig = `${key}|${main ? main.Name : ''}|${second ? second.Name : ''}`;
+    if (this.lastStat && this.lastStat.sig === sig && now - this.lastStat.at < 500) return;
+    this.lastStat = { sig, at: now };
     // goal types arrive with the goal
     if (m.lastGoal && now - m.lastGoal.at < 4000 && key.includes('goal') && key !== 'goal') {
       for (const tp of ['aerial', 'bicycle', 'backwards', 'turtle', 'long', 'pool', 'overtime']) if (key.includes(tp)) m.lastGoal.types.add(tp);
@@ -352,7 +370,12 @@ class GameModel {
       if (vic) m.demolished.set(vic, now);
       const vt = vic ? this.teamOf(vic) : -1;
       const down = vt >= 0 ? [...m.demolished.entries()].filter(([n, at]) => now - at < 3000 && this.teamOf(n) === vt).length : 0;
-      m.pendingDemo = { at: now, att, vic, team, victimTeam: vt, down };
+      // the ball in the victim's own third: a defender taken out with the play on top of them
+      const t = m.lastTouch;
+      const inEnd = vt >= 0 && !!t && now - t.at < 4000 && this.zoneOf(vt, t.y) === 'def';
+      const vHit = vic ? this.lastHitOf(vic, 5000) : null;
+      const defender = inEnd || !!(vHit && vHit.team === vt && this.zoneOf(vt, vHit.y) === 'def');
+      m.pendingDemo = { at: now, att, vic, team, victimTeam: vt, down, inEnd, defender };
     } else if (key === 'assist') {
       if (main) this.count(main.Name, 'assists');
     } else if (key !== 'goal') {
@@ -375,7 +398,7 @@ class GameModel {
     if (!this.live()) return;
     const p = d.BallLastTouch && d.BallLastTouch.Player;
     m.pendingMiss = null;
-    m.pendingBar = { at: this.now(), name: p && p.Name, team: p ? (p.TeamNum === 1 ? 1 : 0) : -1, speed: d.BallSpeed || 0 };
+    m.pendingBar = { at: this.now(), name: p && p.Name, team: p ? (p.TeamNum === 1 ? 1 : 0) : -1, speed: this.speed(d.BallSpeed) };
   }
 
   goal(d, emit) {
@@ -413,7 +436,8 @@ class GameModel {
     const nAssists = assister ? this.count(assister, 'assists') : 0;
     const late = !m.overtime && m.time !== null && m.time <= 30 && m.time > 0;
     const g = {
-      at: now, team, scorer, assister, own, speed: d.GoalSpeed || (d.BallLastTouch && d.BallLastTouch.Speed) || 0,
+      at: now, team, scorer, assister, own, speed: this.speed(d.GoalSpeed || (d.BallLastTouch && d.BallLastTouch.Speed) || 0),
+      dist: sHit ? Math.hypot(sHit.x, GOAL_Y - sHit.a) : null, // how far out it was hit from
       before, after, late, overtime: m.overtime, types, buildup, goals: nGoals, assists: nAssists, hattrick: nGoals === 3,
       lastToucher: lt && lt.Name,
     };
@@ -445,7 +469,7 @@ class GameModel {
         emit('save', { name: s.name, team: s.team, epic: s.epic, onLine, big: s.epic || onLine, again, n: s.n || (s.name ? this.stat(s.name, 'saves') : 0) });
       }
     }
-    if (m.pendingBar && now - m.pendingBar.at >= 300) {
+    if (m.pendingBar && now - m.pendingBar.at >= 900) { // it can still go in (0.2-0.8 s later in real matches)
       const b = m.pendingBar; m.pendingBar = null;
       if (this.live()) emit('crossbar', b);
     }

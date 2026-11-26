@@ -1,14 +1,30 @@
 'use strict';
 // Chooses the actual line to say. Knows which lines are recorded (or can be rendered),
 // how long each one is, and what has been said already:
-// - no line is said more than twice in a match (a hard rule)
-// - a line not yet said in this match (better: in this series) beats one that was
-// - the same template isn't used again for a while, even with a different name in it
-// - when nothing fresh fits, saying something twice beats saying nothing
+// - no line is said twice in three games in a row (this one and the two before), and no
+//   template either: "{name} with the save!" said for one player is used up, even with
+//   another name in it. So in a best of seven a sentence can come up three times at most.
+//   If a call would otherwise have no line, one from the last two games is used again
+//   (never one from this game).
+//   Short calls ("Shot!", "Aerial!", "{name} takes it.") are the exception: like a real
+//   caster's, they come up as often as the play does (2.1.2: not just twice), only not the
+//   same one again within 30 seconds.
+//   When it's that or dead air (pick's allowRepeat), a sentence can come up a second time,
+//   never a third. A pack without the 2.0 lines is too small for any of this: there the
+//   1.x rule stays (any line twice, never three times).
+// - a line not yet said in this series beats one said in an earlier game
+// (2.1: tested on 76 matches with the full bank, never repeating costs about a second more
+// of the longest silence in a match, and nothing else of note)
 
 const C = require('./catalog');
 
-const MAX_PER_MATCH = 2;
+const MAX_PER_MATCH = 1; // a sentence
+const WINDOW = 3; // games a sentence isn't said twice in (this one and the two before)
+const MAX_SHORT = 2; // any other line, when it's that or dead air
+const MAX_SHORT_CALL = 5; // a match
+const SHORT_GAP = 30000; // a short call (three words or fewer, not counting the name) isn't said again sooner
+const words = (t) => String(t).replace(/\{\w+\}/g, ' ').split(/\s+/).filter((w) => /[a-z0-9]/i.test(w)).length;
+const isShort = (c) => words(c.tpl || c.text) <= 3;
 const rand = (a) => a[Math.floor(Math.random() * a.length)];
 
 class Library {
@@ -17,12 +33,14 @@ class Library {
     this.matchUses = new Map(); // text -> times said this match
     this.seriesUsed = new Map(); // text -> when it was last said (this series)
     this.recentTpl = []; // templates said lately
+    this.tplUsed = new Set(); // templates said this match
+    this.past = []; // the two games before: { texts, tpls } (Sets), newest first
     this.lastCat = null;
     this.catAt = new Map(); // category -> when last said
     this.saidTotal = 0;
   }
 
-  newMatch() { this.matchUses = new Map(); this.recentTpl = []; this.catAt = new Map(); this.lastCat = null; }
+  newMatch() { this.past = this.window(); this.matchUses = new Map(); this.tplUsed = new Set(); this.recentTpl = []; this.catAt = new Map(); this.lastCat = null; }
   newSeries() { this.seriesUsed = new Map(); }
 
   // a clip is { role, mood, text }; the pack (or live voice) tells us if it exists
@@ -54,14 +72,44 @@ class Library {
     return out;
   }
 
-  has(cats, vars) { return this.options(cats, vars).some((c) => (this.matchUses.get(c.text) || 0) < MAX_PER_MATCH); }
+  // not said yet this match: neither the line nor its template
+  // is the bank big enough to never repeat? (the 2.0 lines are recorded)
+  get strict() {
+    if (this._strict === undefined) this._strict = this.options(['filler_g_color', 'pbp_flow_g', 'pbp_defend_g']).length >= 20;
+    return this._strict;
+  }
+  // the games a sentence must not come back from: this one (if anything was said) and before
+  window() {
+    const now = this.matchUses.size ? [{ texts: new Set(this.matchUses.keys()), tpls: new Set(this.tplUsed) }] : [];
+    return [...now, ...this.past].slice(0, WINDOW - 1);
+  }
+  // level 0: not said in this game or the two before; 1: not said in this game; 2: said at
+  // most once in this game (only when it's that or dead air)
+  unused(c, level = 0) {
+    const n = this.matchUses.get(c.text) || 0;
+    if (isShort(c) && this.strict) return !n || (n < MAX_SHORT_CALL && this.now() - (this.seriesUsed.get(c.text) || 0) >= SHORT_GAP);
+    if (isShort(c) || level >= 2 || !this.strict) return n < MAX_SHORT;
+    if (n >= MAX_PER_MATCH || (c.tpl && this.tplUsed.has(c.tpl))) return false;
+    if (level === 0) for (const p of this.past) if (p.texts.has(c.text) || (c.tpl && p.tpls.has(c.tpl))) return false;
+    return true;
+  }
+  has(cats, vars) { return this.options(cats, vars).some((c) => this.unused(c, 1)); }
 
   // opts: maxMs / minMs (the time there is to say it), needReady (it must play right now),
-  // filter(clip), order: 'first' (use the first category that has anything) or 'any'
+  // filter(clip), order: 'first' (use the first category that has anything) or 'any',
+  // fresh (nothing from the last three games), allowRepeat (a second time beats dead air)
   pick(cats, vars = {}, opts = {}) {
+    let lists = this.candidates(cats, vars, opts, 0);
+    // fresh: only a line not said in the last three games (filler, which there's never a need for)
+    if (!lists.length && !opts.fresh) lists = this.candidates(cats, vars, opts, 1);
+    if (!lists.length && opts.allowRepeat) lists = this.candidates(cats, vars, opts, 2);
+    return this.choose(lists, cats, vars, opts);
+  }
+
+  candidates(cats, vars, opts, level) {
     const lists = [];
     for (const entry of cats) {
-      const list = this.options([entry], vars).filter((c) => (this.matchUses.get(c.text) || 0) < MAX_PER_MATCH)
+      const list = this.options([entry], vars).filter((c) => this.unused(c, level))
         .filter((c) => !opts.needReady || this.ready(c))
         .filter((c) => !opts.filter || opts.filter(c));
       const all = list.map((c) => ({ ...c, ms: this.ms(c) }));
@@ -73,6 +121,10 @@ class Library {
         if (shortest.length) lists.push(shortest);
       }
     }
+    return lists;
+  }
+
+  choose(lists, cats, vars, opts) {
     if (!lists.length) {
       if (opts.needReady && !this.tts.strict) this.warm(cats, vars);
       return null;
@@ -110,8 +162,9 @@ class Library {
     this.matchUses.set(clip.text, (this.matchUses.get(clip.text) || 0) + 1);
     this.seriesUsed.delete(clip.text);
     this.seriesUsed.set(clip.text, this.now());
-    if (clip.tpl) { this.recentTpl.push(clip.tpl); if (this.recentTpl.length > 14) this.recentTpl.shift(); }
+    if (clip.tpl) { this.tplUsed.add(clip.tpl); this.recentTpl.push(clip.tpl); if (this.recentTpl.length > 14) this.recentTpl.shift(); }
     if (clip.cat) { this.catAt.set(clip.cat, this.now()); this.lastCat = clip.cat; }
+    if (clip.cat && /^series_/.test(clip.cat)) this.lastSeriesAt = this.now(); // kept across matches
     this.saidTotal++;
   }
   usesThisMatch(text) { return this.matchUses.get(text) || 0; }
@@ -124,8 +177,15 @@ class Library {
   }
 
   // series memory on disk: the lines said in this series (most recent 3000)
-  dump() { return [...this.seriesUsed.entries()].slice(-3000); }
-  load(entries) { this.seriesUsed = new Map(entries || []); }
+  // what survives a restart: when lines were last said this series, and the last two games
+  dump() {
+    return { used: [...this.seriesUsed.entries()].slice(-3000), past: this.window().map((p) => ({ texts: [...p.texts], tpls: [...p.tpls] })) };
+  }
+  load(saved) {
+    const old = Array.isArray(saved); // 2.0 saved only the list
+    this.seriesUsed = new Map((old ? saved : saved && saved.used) || []);
+    this.past = old || !saved ? [] : (saved.past || []).map((p) => ({ texts: new Set(p.texts || []), tpls: new Set(p.tpls || []) })).slice(0, WINDOW - 1);
+  }
 }
 
-module.exports = { Library, MAX_PER_MATCH };
+module.exports = { Library, MAX_PER_MATCH, MAX_SHORT, isShort };
