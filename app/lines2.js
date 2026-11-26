@@ -195,7 +195,7 @@ const LINES = {
     'This series is nearly wrapped up. {team} are cruising.',
   ],
   series_won: [
-    'And that\'s the series! {team} take it {score}!',
+    'And that\'s the series! {team} take it!',
     '{team} win the series!',
     '{team} close it out, and the series is theirs!',
   ],

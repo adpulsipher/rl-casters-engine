@@ -626,7 +626,7 @@ class Director {
     if (need && Math.max(w[0], w[1]) >= need) {
       const win = w[0] > w[1] ? 0 : 1;
       const score = W.scoreWords(w[win], w[1 - win]);
-      return { over: true, clips: [this.line([['series_won', { team: this.teamName(win), score }], ['series_score', { score }]])] };
+      return { over: true, clips: [this.line([['series_won', { team: this.teamName(win) }], ['series_score', { score }]])] };
     }
     if (!need && S.game < 2) return null; // one game, or the first of a series we can't tell yet
     return { over: need ? false : null, clips: this.seriesLines(w) };
