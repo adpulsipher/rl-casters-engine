@@ -44,7 +44,7 @@ Rocket League Stats API (TCP, localhost:49123)
    Library    (app/engine/library.js)  which recorded line: fits the time there is, fresh
         |                               this match/series, never a third time
         v
-   Speaker -> Player (app/speaker.js, app/player.js)   plays it (Windows audio), cuts with a fade
+   Speaker -> Player (app/speaker.js, app/player.js)   plays it on one steady Windows audio stream, cuts with a fade
 ```
 
 `app/commentary.js` wires these together and keeps what lasts longer than a match (the series,

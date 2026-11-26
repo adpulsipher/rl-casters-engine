@@ -1,10 +1,19 @@
-RL CAREER CASTERS  v2.0.0
+RL CAREER CASTERS  v2.0.1
 =========================
 
 Two AI casters for your Rocket League / RL Career Hub matches: a male
 play-by-play caster who calls the action and a female analyst who breaks
 down goals on the replay. Both run on your own PC, so there's no account,
 no internet needed after setup, and nothing to pay for.
+
+New in 2.0.1: no more lost first words on Bluetooth.
+- The casters now keep one audio stream open for the whole session, with an
+  inaudible hiss between lines. Bluetooth headphones (and TV or monitor
+  speakers) used to fall asleep in the pauses and swallow the first word of
+  the next line; now they stay awake. If this player ever gives you trouble,
+  set "audio": "basic" in config.json to go back to the old one.
+- "Combine all 3 voice packs.bat": checks that your main pack, the 1.4 add-on
+  and the 2.0 add-on are all next to the exe, then combines them into one.
 
 New in 2.0: a new commentary engine, built to sound like a real broadcast.
 - Broadcast pace. The caster talks most of the time, the way an RLCS
@@ -194,6 +203,9 @@ pronunciations    {}         fix how a name is said, e.g.
 rocketLeagueDir   ""         only if the game isn't found automatically
                              (the folder with Binaries and TAGame in it)
 ttsThreads        6          CPU threads for the voices
+audio             "auto"     "auto" = one steady audio stream (keeps
+                             Bluetooth headphones awake, so no line loses
+                             its first word); "basic" = the old player
 
 
 VOICE PACKS (best quality)
@@ -216,7 +228,8 @@ VOICE PACKS (best quality)
   the new lines are recorded. Replace the old zip with the new one.
 - Add-on packs ("... (add-on ...).zip") go next to the pack and are used
   automatically. "Combine voice packs.bat" turns the pack and its add-ons
-  into one zip.
+  into one zip. "Combine all 3 voice packs.bat" does the same, but first
+  checks that the main pack, the 1.4 add-on and the 2.0 add-on are all there.
 - voicePack in config.json: "auto" (use a pack if there is one) or "off"
   (always use live voices).
 
@@ -246,6 +259,11 @@ TROUBLESHOOTING
   Check Casters\casters.log for "Turned on Rocket League match data" or
   instructions to add it by hand.
 - "Could not find Rocket League": set rocketLeagueDir in config.json.
+- Lines start late or lose their first word: make sure "audio" is "auto" in
+  config.json. If casters.log says "using the basic player", the steady
+  stream couldn't start on this PC; the log line says why.
+- No sound at all after updating: set "audio": "basic" in config.json and
+  restart the casters.
 - "Could not start the voices": install the Microsoft Visual C++
   Redistributable (x64) and start the casters again.
 - No sound but lines appear in the window: check the volume mixer for

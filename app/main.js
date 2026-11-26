@@ -154,7 +154,7 @@ async function main({ exeDir, version, argv = process.argv.slice(2) }) {
     }
   }
 
-  const player = new Player({ log, recordFile: recordFile && path.resolve(recordFile), silent: argv.includes('--silent') });
+  const player = new Player({ log, recordFile: recordFile && path.resolve(recordFile), silent: argv.includes('--silent'), basicAudio: cfg.audio === 'basic' || argv.includes('--basic-audio') });
   await player.start(cfg.volume);
 
   // one caster doing both jobs: a voice pack recorded in one voice (or casters: "one" in config.json)

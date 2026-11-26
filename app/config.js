@@ -17,6 +17,7 @@ const DEFAULTS = {
   autoEnableStatsApi: true,
   rocketLeagueDir: '',
   statsPort: 0,
+  audio: 'auto',
   pronunciations: {},
 };
 
@@ -32,6 +33,7 @@ const HELP = {
     'voicePack: auto = use a recorded voice pack (a .zip from the studio notebook next to the exe or in this folder); off = always use live voices.',
     'casters: auto | one | two. one = a single caster doing both jobs (a voice pack recorded in one voice); auto = one when the pack says it was recorded with one voice.',
     'careerHub: auto | off. auto = read your RL Career Hub season (event, stage, series, form, season stats) for the calls; it is only ever read, never changed.',
+    'audio: auto = one steady audio stream that keeps Bluetooth headphones and TV audio awake, so no line loses its first word; basic = the old player (one sound per line), only if auto gives you trouble.',
     'pronunciations: fix how names are said, e.g. {"Kaydop": "Kay dop"}.',
   ],
 };
@@ -57,6 +59,7 @@ function loadConfig(dataDir, log) {
   cfg.casters = ['one', 'two'].includes(cfg.casters) ? cfg.casters : 'auto';
   cfg.careerHub = cfg.careerHub === 'off' ? 'off' : 'auto';
   cfg.chatter = ['sparse', 'quiet', 'normal', 'chatty'].includes(cfg.chatter) ? cfg.chatter : 'normal';
+  cfg.audio = cfg.audio === 'basic' ? 'basic' : 'auto';
   if (!cfg.pronunciations || typeof cfg.pronunciations !== 'object') cfg.pronunciations = {};
   return cfg;
 }
