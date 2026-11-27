@@ -32,6 +32,16 @@ const LEAD_INS = new Set(['shot', 'crossbar', 'rebound', 'flick', 'pass', 'clear
 // "{name} lets it fly" is for a goal from distance
 const FROM_DISTANCE = /lets it fly|from distance|from long range|from way out/i;
 
+// 2.2: places in RL Career Hub's table, and what each team-momentum line is about
+const ORD = ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth'];
+const MT = {
+  onTop: /momentum right now|taking control|firmly on top|confidence now|building something|better team for|pushing for the next/i,
+  respond: /respond to that|regroup after|response needed|big test for|stay calm here|need a big spell/i,
+  backIn: /right back in this|won't go away|making a game of it/i,
+  weathered: /weathered the storm/i,
+  due: /due a goal/i,
+};
+
 // how much talking: 'normal' is broadcast pace (the caster talks most of the time)
 const PACE = {
   normal: { gap: [250, 650], colorEvery: 6500, ratio: 0.65, minPrio: 0, flow: 1 },
@@ -74,6 +84,9 @@ class Director {
     this.shotHold = 0;
     this.replayAt = 0;
     this.clinchSaid = false;
+    this.driftAt = 0; this.backSaid = true; this.preSaid = false; this.playFrom = 0;
+    this.shots = []; // { team, at }
+    this.saves = []; // { team, at }
     this.statAt = new Map(); // player -> when a stat of theirs was last called out
   }
 
@@ -116,7 +129,8 @@ class Director {
         const u = cur.utt;
         if (c.prio <= u.prio) continue;
         const goalCall = u.kind === 'goal' || u.kind === 'end'; // never stopped early
-        if (!goalCall && c.prio >= u.prio + 10) u.trim = true; // finish this line, skip the rest
+        // (a drift - "Be honest, did you see this coming?" - is said whole, or the question hangs)
+        if (!goalCall && u.kind !== 'drift' && c.prio >= u.prio + 10) u.trim = true; // finish this line, skip the rest
         if (goalCall || !(c.decisive || (c.cutsLeadIn && LEAD_INS.has(u.kind)))) continue;
         if (this.start(c, true)) return true;
       } else {
@@ -198,6 +212,7 @@ class Director {
       }
       case 'overtime': break; // called at the overtime kickoff (above)
       case 'kickoff_go':
+        if (!this.playFrom) this.playFrom = this.now(); // the first kickoff: "early" is measured from here (2.2)
         if (!chance(0.75 * this.pace.flow)) break;
         this.call('kickoff_go', 44, () => [this.line(['kickoff_go', 'kickoff'], {}, { maxMs: 2300 })], { within: 600 });
         break;
@@ -243,6 +258,7 @@ class Director {
         if (this.since('pressure') < 18000) break;
         this.call('pressure', 32, () => [this.line(chance(0.5) ? [['pbp_pressure', { team: this.teamName(mo.team) }], 'pbp_pressure_g'] : ['pbp_pressure_g', ['filler_pressure', { team: this.teamName(mo.team) }]], {}, { maxMs: this.maxMs(3000) })], { within: 1500 });
         break;
+      case 'pressure_end': this.onPressureEnd(mo); break;
       case 'shot': this.onShot(mo); break;
       case 'save': this.onSave(mo); break;
       case 'crossbar':
@@ -329,13 +345,27 @@ class Director {
     }
   }
 
+  // a long spell of pressure, and no goal: the defense got through it
+  onPressureEnd(mo) {
+    const m = this.model.m, now = this.now();
+    const def = 1 - mo.team;
+    const since = m.pressure.since || now;
+    const saves = this.saves.filter((x) => x.team === def && x.at >= since).length;
+    if (now - since < 12000 || !saves || m.goals.some((g) => g.at >= since) || this.routState()) return;
+    const nGoals = m.goals.length;
+    const valid = () => this.model.m.goals.length === nGoals;
+    this.topic('survived', 27, () => [chance(0.6) ? this.line(['survived', ['momentum_team', { team: this.teamName(def) }]], {}, { filter: (c) => c.cat !== 'momentum_team' || MT.weathered.test(c.text) })
+      : this.line([['momentum_team', { team: this.teamName(mo.team) }], 'survived'], {}, { filter: (c) => c.cat !== 'momentum_team' || MT.due.test(c.text) })], { forMs: 15000, valid });
+  }
+
   onShot(s) {
+    this.shots.push({ team: s.team, at: this.now() });
     // keep the air clear until the ball should be there, so a goal call starts right away
     // (the game only says where the ball is when it's touched, and two shots in three are
     // saved, so the goal itself can't be called before it goes in)
     const eta = s.eta !== null && s.eta !== undefined ? Math.min(2500, s.eta) : 1500;
     this.shotHold = this.now() + eta + 400;
-    { const cur = this.speaker.current; if (cur && cur.utt.prio < 60) cur.utt.trim = true; }
+    { const cur = this.speaker.current; if (cur && cur.utt.prio < 60 && cur.utt.kind !== 'drift') cur.utt.trim = true; } // (a drift is said whole: it's a blowout)
     // most shots are saved or scored within a second: a short call, and only if there's time
     if (s.eta !== null && s.eta < 650) return;
     if (!this.model.isClose() && !chance(0.3)) return;
@@ -370,6 +400,7 @@ class Director {
 
   onSave(s) {
     const M = this.model;
+    this.saves.push({ team: s.team, at: this.now() });
     const N = { name: this.name(s.name) };
     const close = M.isClose();
     if (!close && !s.big) return; // a blowout: only the ones off the line
@@ -386,6 +417,11 @@ class Director {
     this.call('save', s.big ? 80 : 75, make, { within: 1800, decisive: this.config.cutIn === 'saves' });
     const q = this.queue.find((c) => c.kind === 'save'); if (q) q.saver = s.name;
     if (s.big && stakes !== 'low') this.topic('save_react', 26, () => [this.line(['save_react_g'])], { forMs: 7000 });
+    // a save that matters can turn the game (2.2)
+    if (s.big && stakes === 'high') {
+      const nGoals = M.m.goals.length;
+      this.topic('save_swing', 29, () => [this.line(['save_swing', 'save_react_g'])], { forMs: 10000, valid: () => this.model.m.goals.length === nGoals });
+    }
     if (close && s.name && s.n) {
       const stat = this.saveStat(s.name, s.n);
       if (stat) this.topic('save_stat', 25, () => [this.line(...stat)], { forMs: 12000 });
@@ -471,7 +507,12 @@ class Director {
     const make = () => {
       if (g.overtime) return [this.line([['goal_ot', { name: scorer }], 'goal_ot_generic', 'goal_g_short', ['goal', { name: scorer }], 'goal_generic'], {}, G)];
       if (g.own) return [this.line(['goal_own_g', 'goal_g_short', 'goal_generic'], {}, G), this.line(this.scoreCats(g.team, g.before, g.after, g.late), T)];
-      if (stakes === 'rout') return [this.line([['goal_rout', { name: scorer }], 'goal_rout_generic', 'goal_g_short', 'goal_generic'], {}, G), this.line([['score_rout', T], ['score_extend', T]])];
+      if (stakes === 'rout') {
+        // the casters' minds were elsewhere: "Oh, and that's another one." (2.2)
+        const flat = (this.driftAt && this.now() - this.driftAt < 30000) || (this.routState() && this.routState().deep && chance(0.4));
+        const cats = [['goal_rout', { name: scorer }], 'goal_rout_generic', 'goal_g_short', 'goal_generic'];
+        return [this.line(flat ? ['goal_rout_flat', ...cats] : cats, {}, G), this.line([['score_rout', T], ['score_extend', T]])];
+      }
       if (stakes === 'consolation') return [this.line([['goal_consolation', { name: scorer }], 'goal_consolation_generic', 'goal_g_short', 'goal_generic'], {}, G), this.line([['score_consolation', T]])];
       return [this.line([['goal', { name: scorer }], 'goal_generic', 'goal_g_short'], {}, G), this.line(this.scoreCats(g.team, g.before, g.after, g.late), T)];
     };
@@ -495,7 +536,28 @@ class Director {
     const nGoals = goals.length;
     const still = () => this.model.m.goals.length === nGoals; // nobody has scored since
     if (run >= 3 && run <= 6) this.topic('unanswered', 30, () => [this.line([['unanswered', { run: W.num(run) }], ['momentum_run', T]])], { forMs: 25000, valid: still });
-    else if (run === 2 && goals.length >= 3) this.topic('momentum', 28, () => [this.line([['momentum_run', T]])], { forMs: 25000, valid: still });
+    else if (run === 2 && goals.length >= 3) {
+      // (2.2: and the line about the game turning, or the team on top)
+      this.topic('momentum', 28, () => [this.line(rand([[['momentum_run', T]], ['momentum_shift'], [['momentum_team', T]]]), {}, {
+        filter: (c) => (c.cat !== 'momentum_team' || MT.onTop.test(c.text)) && (!/back foot/.test(c.text) || diffBefore >= 1),
+      })], { forMs: 25000, valid: still });
+    }
+    if (stakes === 'normal' || stakes === 'late') {
+      const prev = goals[goals.length - 2];
+      // they answer straight back (2.2)
+      if (prev && prev.team !== g.team && g.at - prev.at < 45000) this.topic('response', 37, () => [this.line(['response', ['response_team', T]])], { forMs: 12000, valid: still });
+      // back level
+      if (g.after[0] === g.after[1]) this.topic('back_level', 30, () => [this.line(['back_level'])], { forMs: 40000, valid: still });
+      // from two down to one down: a game again
+      else if (diffBefore >= 2 && g.after[1 - g.team] - g.after[g.team] === 1) this.topic('comeback_on', 35, () => [this.line(['comeback_on', ['momentum_team', T]], {}, { filter: (c) => c.cat !== 'momentum_team' || MT.backIn.test(c.text) })], { forMs: 20000, valid: still });
+      // the team that conceded is behind: how will they respond?
+      const ct = 1 - g.team, down = g.after[g.team] - g.after[ct];
+      const timeLeft = M.m.time === null || M.m.time === undefined || M.m.countsUp ? 300 : M.m.time;
+      if (down >= 1 && down <= 2 && timeLeft > 60) {
+        const C2 = { team: this.teamName(ct) };
+        this.topic('bounce_back', 25, () => [this.line(chance(0.5) ? ['bounce_back', ['momentum_team', C2]] : [['momentum_team', C2], 'bounce_back'], {}, { filter: (c) => c.cat !== 'momentum_team' || MT.respond.test(c.text) })], { forMs: 40000, valid: still });
+      }
+    }
     const lead = g.after[g.team] - g.after[1 - g.team];
     const left = M.m.time === null || M.m.time === undefined ? 300 : M.m.time;
     // one win from the series, and this game is out of reach: say the series is all but done
@@ -692,8 +754,14 @@ class Director {
       room = 4000 - (this.now() - m.countdownAt) - 300;
     }
     if (room < 1500) return;
-    const tp = this.takeTopic(room, ['intro_teams', 'form0', 'form1', 'bestof', 'table', 'h2h', 'intro_star', 'intro_color']);
-    if (tp) this.say('topic', 24, tp);
+    const S = this.ctx.series;
+    const later = S && S.game >= 2; // game two on: the series first
+    const tp = !later || this.preSaid ? this.takeTopic(room, ['intro_teams', 'form0', 'form1', 'bestof', 'table', 'h2h', 'intro_star', 'intro_color']) : null;
+    if (tp) return this.say('topic', 24, tp);
+    if (this.preSaid || room < 2500) return;
+    this.preSaid = true;
+    const c = S && S.game >= 2 ? this.seriesPreLine(Math.min(room, 6500)) : chance(0.5) ? this.line(['filler_early_long'], {}, { maxMs: Math.min(room, 6500) }) : null;
+    if (c) this.say('topic', 22, [c]);
   }
 
   flowLive(idle) {
@@ -722,6 +790,11 @@ class Director {
       }
     }
     if (d >= 0.62 && idle < 2200) return; // the ball's near a goal: wait for what happens
+    // back from drifting off (2.2): "Anyway, back to the game."
+    if (!this.backSaid && now - this.driftAt > 7000 && d < 0.6) {
+      this.backSaid = true;
+      if (now - this.driftAt < 30000 && chance(0.6)) { const c = this.line(['drift_back'], {}, { maxMs: 2600 }); if (c) return this.say('pbp_flow', 22, [c]); }
+    }
     // 2. calm enough for a story or some colour
     if (d < 0.6 && now - this.at.color >= this.pace.colorEvery / this.pace.flow) {
       const clip = this.colourLine(maxMs) || (d < 0.5 && idle > 1500 ? this.colourLine(LIVE_MAX) : null);
@@ -755,7 +828,7 @@ class Director {
         const c = this.line(['goal_celebrate_g'], {}, { maxMs: 2600 });
         if (c) return this.say('celebrate', 26, [c]);
       }
-      const tp = this.takeTopic(3500, ['comeback', 'unanswered', 'momentum']);
+      const tp = this.takeTopic(3500, ['response', 'comeback', 'comeback_on', 'unanswered', 'momentum']);
       if (tp) return this.say('topic', 24, tp);
       if (g && !g.analysed && now - g.at > 4500) return this.onReplay(); // no replay (skipped): analyse now
       return;
@@ -765,7 +838,8 @@ class Director {
     if (tp) return this.say('topic', 24, tp);
     if (g && now - g.at < 25000 && !g.colour && chance(0.5)) {
       g.colour = true;
-      const c = this.line(['filler_color', 'filler_g_color'], {}, { maxMs: 4500 });
+      const r = this.routState();
+      const c = this.line(r ? (r.deep ? ['filler_blowout_long', 'drift_muse', 'filler_color'] : ['filler_blowout_long', 'filler_blowout_color', 'filler_color']) : ['filler_color', 'filler_g_color'], {}, { maxMs: r ? 6500 : 4500 });
       if (c) return this.say('color', 20, [c]);
     }
   }
@@ -800,6 +874,15 @@ class Director {
     const tp = this.takeTopic(maxMs);
     if (tp) return { kind: 'topic', clips: tp };
     if (m.overtime) { const c = this.line(['filler_ot', 'filler_g_color'], {}, { maxMs }); return c && { clips: [c] }; }
+    // 2.2: a decided game (the casters' minds start to wander) and a quiet start
+    const now0 = this.now();
+    const rout = this.routState();
+    if (rout && chance(0.5)) { const r = this.routLine(rout, maxMs); if (r) return r; }
+    if (this.earlyQuiet() && now0 - (this.earlyAt || 0) > 25000 && chance(0.6)) {
+      this.earlyAt = now0;
+      const c = this.line(chance(0.5) ? ['filler_early_color', 'filler_early_pbp'] : ['filler_early_pbp', 'filler_early_color'], {}, { maxMs, fresh: !allowRepeat, allowRepeat });
+      if (c) return { clips: [c] };
+    }
     // what the stats say about the game so far (2.1.2: more of it, most of all in a blowout,
     // where the result is settled and the numbers are the story)
     const players = [...m.players.values()];
@@ -825,6 +908,14 @@ class Director {
     // "they just need to convert" is for a side that's level or behind, not one up five
     for (const tm of [0, 1]) if (shots[tm] - shots[1 - tm] >= 3 && m.score[tm] <= m.score[1 - tm]) opts.push({ cats: [['filler_shots', { team: this.teamName(tm) }]] });
     if (m.lastTouch && chance(0.3)) opts.push({ cats: [['color_team', { team: this.teamName(m.chain.team >= 0 ? m.chain.team : m.lastTouch.team) }]] });
+    // late in a close game: the team in front manages it, the team behind has to go (2.2)
+    const left = m.time === null || m.time === undefined || m.countsUp ? 300 : m.time;
+    if (!rout && diff >= 1 && diff <= 2 && left <= 90) opts.push({ cats: [chance(0.5) ? 'managing_lead' : 'chasing'] });
+    // the team behind has had the last few shots: they're settling in
+    const recent = this.shots.filter((x) => now - x.at < 40000);
+    for (const tm of [0, 1]) {
+      if (recent.filter((x) => x.team === tm).length >= 2 && !recent.some((x) => x.team !== tm) && m.score[tm] <= m.score[1 - tm]) opts.push({ cats: ['settling'] });
+    }
     if (opts.length && chance(diff >= 3 ? 0.8 : 0.5)) {
       // a pair is two lines: the second may run on past the live limit, as it's dropped if play heats up
       const o = rand(opts);
@@ -856,7 +947,112 @@ class Director {
       if (c) return c;
       if (this.now() - t.at < 1200 && chance(0.6)) return this.touchLine(t, maxMs);
     }
-    return this.line(loose ? ['filler_pbp', 'filler_g_color', 'filler_color'] : ['filler_pbp', 'filler_g_color'], {}, { maxMs, avoidLastCat: true, allowRepeat, fresh: !allowRepeat });
+    const early = this.earlyQuiet() && this.now() - (this.earlyAt || 0) > 25000 ? ['filler_early_pbp'] : [];
+    const r = this.routState() ? ['filler_blowout_pbp'] : [];
+    return this.line(loose ? [...early, ...r, 'filler_pbp', 'filler_g_color', 'filler_color'] : [...early, ...r, 'filler_pbp', 'filler_g_color'], {}, { maxMs, avoidLastCat: true, allowRepeat, fresh: !allowRepeat });
+  }
+
+  // ------------------------------------------------------------- 2.2: game state
+  // decided: 3 up, or 2 up in the last minute. deep: under 2.5 minutes left, or 4 up
+  routState() {
+    const m = this.model.m, diff = this.model.scoreDiff();
+    if (m.overtime || !this.model.live()) return null;
+    const left = m.time === null || m.time === undefined || m.countsUp ? 300 : m.time;
+    if (diff >= 3 || (diff >= 2 && left <= 60)) return { lead: this.model.leader(), deep: left <= 150 || diff >= 4 };
+    return null;
+  }
+  // the first 100 seconds of play, 0-0, and no shot in the last 15 (by the clock when it counts
+  // down from five minutes; some matches count up, so also by time since the first kickoff)
+  earlyQuiet() {
+    const m = this.model.m;
+    if (m.overtime || m.score[0] || m.score[1] || !this.playFrom || this.now() - this.playFrom > 110000) return false;
+    if (m.time !== null && m.time !== undefined && !m.countsUp && m.time < 200) return false;
+    return !(m.lastShot && this.now() - m.lastShot.at < 15000);
+  }
+  // the series so far is one-sided: { lead, trail } (blue/orange), or null
+  seriesRout() {
+    const S = this.ctx.series;
+    if (!S || !S.wins) return null;
+    const w = S.wins, lead = w[0] > w[1] ? 0 : 1;
+    return w[lead] >= 2 && w[lead] - w[1 - lead] >= 2 ? { lead, trail: 1 - lead } : null;
+  }
+
+  // A decided game: lines about the blowout, and deep into it, the casters drift off: the
+  // standings, the season, the bracket, or nothing much at all
+  routLine(rout, maxMs) {
+    const now = this.now(), M = this.model;
+    const TL = { team: this.teamName(rout.lead) }, TT = { team: this.teamName(1 - rout.lead) };
+    const blowout = () => {
+      const cats = [['blowout_leader', TL], ['blowout_trailer', TT], 'filler_blowout_color', 'filler_blowout_pbp'];
+      const c = this.line(chance(0.4) ? cats : [...cats.slice(2), ...cats.slice(0, 2)], {}, { maxMs, fresh: true });
+      return c && { clips: [c] };
+    };
+    if (!rout.deep || now - this.driftAt < 40000 || M.danger() >= 0.5 || chance(0.4)) return blowout();
+    const H = this.ctx.hub;
+    const L = rout.lead, Tr = 1 - L;
+    const room = 7000; // nothing is riding on it now
+    const kinds = ['muse', 'muse'];
+    if (H && H.place) kinds.push('table', 'table');
+    if (H && H.form) kinds.push('season');
+    if (H && H.stage && H.stage !== 'group') kinds.push('bracket');
+    if (this.seriesRout()) kinds.push('series');
+    const kind = rand(kinds);
+    let main = null;
+    if (kind === 'table') {
+      const place = H.place[L], ifWin = H.placeIfWin ? H.placeIfWin[L] : null;
+      const pos = (c) => (/came into this one/.test(c.text) ? c.text.includes(ORD[place]) : /moves them up/.test(c.text) ? ifWin !== null && ifWin < place && c.text.includes(ORD[ifWin]) : true);
+      main = this.line(rand([['drift_table'], [['drift_table_pos', { pos: chance(0.5) || ifWin === null ? ORD[place] : ORD[ifWin] }]], [['drift_table_team', TL]], [['drift_table_team', { team: this.teamName(Tr) }]]]), {}, {
+        maxMs: room,
+        filter: (c) => pos(c) && !(place === 0 && /teams above them/.test(c.text)) && !(c.cat === 'drift_table_team' && (/like the look/.test(c.text) !== c.text.startsWith(TL.team))),
+      });
+    } else if (kind === 'season') {
+      const f = H.form || [];
+      const ok = (c) => {
+        if (/form teams|looked sharp for weeks|one of the stories/.test(c.text)) return f[L] && (f[L].won >= 2 || f[L].unbeaten);
+        if (/rough patch/.test(c.text)) return f[Tr] && f[Tr].lost >= 1;
+        if (/season to forget/.test(c.text)) return f[Tr] && f[Tr].lost >= 2 && c.text.includes(this.teamName(Tr));
+        if (/stories of the season/.test(c.text)) return c.text.includes(TL.team);
+        return true;
+      };
+      main = this.line(['drift_season', ['drift_season_team', TL], ['drift_season_team', { team: this.teamName(Tr) }]], {}, { maxMs: room, filter: ok });
+    } else if (kind === 'bracket') {
+      const final = H.stage === 'final';
+      main = this.line(['drift_bracket', ['drift_bracket_team', TL]], {}, { maxMs: room, filter: (c) => !final || !/next round|whoever's waiting|comes through this|favorites/.test(c.text) });
+    } else if (kind === 'series') {
+      const sr = this.seriesRout();
+      main = this.line(['series_rout', ['series_rout_leader', { team: this.teamName(sr.lead) }], ['series_rout_trailer', { team: this.teamName(sr.trail) }]], {}, { maxMs: room });
+    }
+    if (!main) main = this.line(['drift_muse'], {}, { maxMs: room });
+    if (!main) return blowout();
+    // the play-by-play eases into it, or throws it to the analyst
+    const askFits = { table: /standings|table/, season: /season|worried/, series: /worried|see this coming/ }[kind] || /see this coming/;
+    const pre = chance(0.6) ? this.line(chance(0.5) ? ['drift_ask'] : ['drift_open'], {}, { maxMs: 3800, filter: (c) => c.cat !== 'drift_ask' || askFits.test(c.text) }) : null;
+    this.driftAt = now; this.backSaid = false;
+    return { kind: 'drift', clips: [pre, main].filter(Boolean) };
+  }
+
+  // before the kickoff of game two on: where the series stands, in a line (2.2)
+  seriesPreLine(maxMs) {
+    const S = this.ctx.series;
+    const w = S.wins, T = (n) => ({ team: this.teamName(n) });
+    const sr = this.seriesRout();
+    if (sr) return this.line(rand([[['series_rout_leader', T(sr.lead)], 'series_rout'], [['series_rout_trailer', T(sr.trail)], 'series_rout'], ['series_rout']]), {}, { maxMs });
+    const lw = S.lastWinner;
+    const opts = [['series_momentum']];
+    if (lw === 0 || lw === 1) opts.push([['series_momentum_team', T(lw)]], [['series_momentum_team', T(1 - lw)]]);
+    if (w[0] !== w[1]) opts.push([['series_momentum_team', T(w[0] > w[1] ? 0 : 1)]]);
+    const ok = (c) => {
+      if (c.cat === 'series_momentum_team') {
+        if (/riding the momentum/.test(c.text)) return lw !== null && lw !== undefined && c.text.startsWith(this.teamName(lw));
+        if (/bounce back|shake off/.test(c.text)) return lw !== null && lw !== undefined && c.text.startsWith(this.teamName(1 - lw));
+        if (/momentum in this series/.test(c.text)) return w[0] !== w[1] && c.text.startsWith(this.teamName(w[0] > w[1] ? 0 : 1));
+      }
+      if (/Winning that last game|Back-to-back wins/.test(c.text)) return lw === 0 || lw === 1;
+      if (/wide open again/.test(c.text)) return Math.abs(w[0] - w[1]) === 1;
+      if (/lot of series left/.test(c.text)) return S.game <= 3;
+      return true;
+    };
+    return this.line(rand(opts), {}, { maxMs, filter: ok });
   }
 }
 

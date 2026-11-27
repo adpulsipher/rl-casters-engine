@@ -1,4 +1,36 @@
-# How the engine works (2.1)
+# How the engine works (2.2)
+
+## What changed in 2.2
+
+A bigger line bank (`app/lines3.js`, recorded in bulk on 2026-11-26: 861 written lines, 3,226
+recordings with the team versions) and the game state to use it:
+
+- **More of every call** (`EXTRA` in lines3.js): 530 more versions of 58 existing kinds of line,
+  used as soon as they're in the pack.
+- **Game state**: `routState()` (3 up, or 2 up in the last minute; *deep* when under 2.5
+  minutes are left or 4 up), `earlyQuiet()` (0-0 in the first 100 s of play, no shot in the last 15 s;
+  measured from the first kickoff, since some matches' clocks count up - `m.countsUp`), and
+  `seriesRout()` (a series one side leads by two or more).
+- **Momentum topics** after goals: `response` (scored within 45 s of conceding, said right after
+  the goal call), `back_level` (an equalizer), `comeback_on` (from two down to one down),
+  `bounce_back` (the team behind by one or two, with a minute or more left: "how will they
+  respond"), `momentum` (two in a row: now also `momentum_shift` and the team lines). After a
+  long spell of pressure (12 s+) that ended with a save and no goal: `survived` (not in a
+  blowout). After a big save late in a close game: `save_swing`. In colour moments: `settling`
+  (the team behind has had the last two shots in 40 s), and with 90 s left in a one- or
+  two-goal game, `managing_lead` / `chasing`.
+- **Quiet start**: `filler_early_*` in colour moments and gap fills, at most one every 25 s;
+  `filler_early_long` before the first kickoff when there's room.
+- **Blowouts**: `blowout_leader/trailer` and `filler_blowout_*` in colour moments, longer ones in
+  the breaks. Deep into one, 60% of those moments the casters drift off (one drift per 40 s, and
+  only when the play is calm): the play-by-play eases in ("Well, while we've got a minute...") or
+  asks the analyst, who talks about RL Career Hub's table (the place now and after a win:
+  `ctx.hub.place` / `placeIfWin`), the season (form), the bracket (knockouts, not the final), a
+  one-sided series, or nothing much. A drift is said whole (nothing trims it), the next goal can
+  be called flat ("Oh, and that's another one."), and 7-30 s later: "Anyway, back to the game."
+- **Series**: before kickoff in game two on, one line about the series: one-sided, or who won
+  the last game (`ctx.series.lastWinner`), or who leads.
+- On the 80-match set (2.1.2 -> 2.2): see the release notes.
 
 ## What changed in 2.1.2
 

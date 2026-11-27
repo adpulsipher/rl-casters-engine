@@ -121,7 +121,8 @@ let T0 = NOW;
 // (--hub-teams "A,B" names the teams; --hub-bestof n)
 const hubTeams = flag('--hub') ? (opt('--hub-teams') ? opt('--hub-teams').split(',') : packTeams.slice().sort(() => Math.random() - 0.5).slice(0, 2)) : null;
 const hub = hubTeams ? {
-  contextFor: ({ players }) => (!players.length ? null : { teamNames: hubTeams, describe: `${hubTeams[0]} vs ${hubTeams[1]}`, game: 1, wins: [0, 0], bestOf: Number(opt('--hub-bestof', 5)), kind: 'regional', stage: 'semi',
+  contextFor: ({ players }) => (!players.length ? null : { teamNames: hubTeams, describe: `${hubTeams[0]} vs ${hubTeams[1]}`, game: 1, wins: [0, 0], bestOf: Number(opt('--hub-bestof', 5)), kind: 'regional', stage: opt('--hub-stage', 'semi'),
+    place: [2, 5], placeIfWin: [1, 5],
     form: [{ played: 5, won: 3, lost: 0 }, { played: 5, won: 0, lost: 2 }], table: null, metBefore: true,
     seasonGoals: () => 4, seasonSaves: () => 9, topScorer: () => false }),
 } : null;

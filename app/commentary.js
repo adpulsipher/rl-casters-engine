@@ -181,7 +181,7 @@ class Commentary {
     const S = this.series;
     if (S && this.match.game && this.match.map) {
       this.noteSides();
-      if (!S.finished && (w === 0 || w === 1)) S.wins[this.match.map[w]]++;
+      if (!S.finished && (w === 0 || w === 1)) { S.wins[this.match.map[w]]++; S.lastWin = this.match.map[w]; }
       S.finished = true;
       S.lastSeen = Date.now();
       this.director.ctx.series = this.seriesCtx(true);
@@ -193,7 +193,9 @@ class Commentary {
     const S = this.series;
     if (!S) return null;
     const H = this.hubCtx;
-    return { game: S.game, bestOf: (H && H.bestOf) || null, wins: this.winsNow(), after };
+    const map = this.match.map;
+    const lastWinner = S.lastWin === 0 || S.lastWin === 1 ? (map ? map.indexOf(S.lastWin) : null) : null; // blue or orange
+    return { game: S.game, bestOf: (H && H.bestOf) || null, wins: this.winsNow(), after, lastWinner };
   }
   seriesStatus() {
     const S = this.series;

@@ -5,11 +5,19 @@
 // categories must never change: they are copied here exactly as 1.x had them.
 
 const OLD = require('../lines');
-const { LINES: NEW, META } = require('../lines2');
+const { LINES: NEW, META: META2 } = require('../lines2');
+const { LINES: NEW3, EXTRA, META: META3 } = require('../lines3');
 const W = require('../words');
 
 for (const k of Object.keys(NEW)) if (OLD[k]) throw new Error(`line category ${k} is defined twice`);
-const LINES = { ...OLD, ...NEW };
+for (const k of Object.keys(NEW3)) if (OLD[k] || NEW[k]) throw new Error(`line category ${k} is defined twice`);
+const LINES = { ...OLD, ...NEW, ...NEW3 };
+// 2.2: more lines for categories that already exist (new arrays: the banks themselves aren't changed)
+for (const [k, more] of Object.entries(EXTRA)) {
+  if (!LINES[k]) throw new Error(`lines3: EXTRA for unknown category ${k}`);
+  LINES[k] = [...LINES[k], ...more];
+}
+const META = { ...META2, ...META3 };
 
 const COLOR_CATS = new Set(['intro_color', 'intro_star', 'ot_color', 'end_mvp', 'end_winner', 'end_loser', 'filler_color', 'filler_ot',
   'filler_saves', 'filler_goals', 'filler_demos', 'filler_shots', 'filler_trailing', 'filler_leading']);
@@ -65,6 +73,7 @@ function studioSpec() {
       goals: nums(2, 6), saves: nums(3, 9), demos: nums(2, 5), assists: nums(2, 5), streak: nums(2, 8), run: nums(3, 6),
       season: SEASON_MARKS.map((n) => W.num(n)), bestof: ['three', 'five', 'seven'],
       city: ['London', 'Birmingham', 'Copenhagen', 'Raleigh', 'Boston', 'Paris', 'Fort Worth'],
+      pos: ['first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth'],
     },
   };
 }

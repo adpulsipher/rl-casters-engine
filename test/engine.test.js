@@ -435,6 +435,36 @@ test('"they just need to convert" only for a side that is level or behind', asyn
   c.close();
 });
 
+// ---------------------------------------------------------------- 2.2: game state lines
+test('a quiet start gets the quiet-start lines, a decided game the blowout ones, and deep in it the casters drift off', async () => {
+  const { c } = await engine();
+  await advance(5000); // past the kickoff
+  const D = c.director, M = c.model.m;
+  M.score = [0, 0]; M.time = 280; M.lastShot = null;
+  const cats = new Set();
+  for (let i = 0; i < 300; i++) { D.earlyAt = 0; const r = D.colourLine(9000); if (r) r.clips.forEach((x) => cats.add(x.cat)); }
+  assert.ok([...cats].some((k) => /^filler_early/.test(k)), [...cats].join(','));
+  M.score = [5, 0]; M.time = 100;
+  cats.clear();
+  for (let i = 0; i < 300; i++) { D.driftAt = 0; const r = D.colourLine(9000); if (r) r.clips.forEach((x) => cats.add(x.cat)); }
+  assert.ok([...cats].some((k) => /^drift_/.test(k)), `drifts off (${[...cats].join(',')})`);
+  assert.ok([...cats].some((k) => /blowout/.test(k)), 'blowout lines');
+  M.score = [1, 1]; M.time = 150;
+  for (let i = 0; i < 200; i++) { const r = D.colourLine(9000); assert.ok(!r || !r.clips.some((x) => /^drift_|blowout|filler_early/.test(x.cat)), 'not in a close game'); }
+  c.close();
+});
+test('a team that answers straight back gets a "what a response" line; the team behind, a "how will they respond"', async () => {
+  const { c } = await engine();
+  c.handle('UpdateState', state([0, 0], 200)); await advance(1600); c.handle('UpdateState', state([0, 0], 199));
+  c.handle('GoalScored', { Scorer: P('B1', 1), ImpactLocation: { Y: -5200 } }); c.handle('UpdateState', state([0, 1], 199)); await advance(3000);
+  assert.ok(c.director.topics.some((t) => t.key === 'bounce_back'), c.director.topics.map((t) => t.key).join(','));
+  await advance(20000); c.handle('UpdateState', state([0, 1], 170));
+  c.handle('GoalScored', { Scorer: P('A1', 0), ImpactLocation: { Y: 5200 } }); c.handle('UpdateState', state([1, 1], 170)); await advance(300);
+  const keys = c.director.topics.map((t) => t.key);
+  assert.ok(keys.includes('response') && keys.includes('back_level'), keys.join(','));
+  c.close();
+});
+
 (async () => {
   let failed = 0;
   for (const [name, fn] of tests) {

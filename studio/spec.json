@@ -13,7 +13,15 @@
     "Welcome in, everyone! The cars are on the pitch, and the lobby is ready to go.",
     "Hello everyone, and welcome to the broadcast! This one has all the makings of a classic.",
     "It's game day! Grab a seat, everyone, because we are about to get underway.",
-    "Welcome along, everyone! You can feel the energy in the building already."
+    "Welcome along, everyone! You can feel the energy in the building already.",
+    "Welcome in, everyone!",
+    "Hello, everyone, and welcome!",
+    "Good to have you with us!",
+    "Welcome along, it's game time!",
+    "Hi, everyone. We're ready to go!",
+    "Welcome, everyone, to a big one!",
+    "We are live, and we are ready!",
+    "Glad you could join us, everyone!"
    ]
   },
   "intro_blue": {
@@ -50,7 +58,17 @@
     "Watch the kickoffs early. Win the first few touches and you set the tempo for the whole match.",
     "I want to see who controls the midfield boost. That usually tells you who's in charge.",
     "Both of these teams love the air game. I'm expecting double taps and plenty of backboard pressure.",
-    "Patience against pressure. Whoever makes fewer mistakes at the back takes this one."
+    "Patience against pressure. Whoever makes fewer mistakes at the back takes this one.",
+    "I've been looking forward to this one.",
+    "I think we're in for a close one.",
+    "There's real quality on both sides.",
+    "Expect a lot of fast, aggressive play.",
+    "Should be a great watch.",
+    "Two very different styles today.",
+    "This has all the makings of a great match.",
+    "Both teams come in with a lot to prove.",
+    "It's going to be fascinating tactically.",
+    "I can't wait to see how this plays out."
    ]
   },
   "intro_star": {
@@ -152,7 +170,19 @@
     "Goal! That is a dagger!",
     "They score! You love to see it!",
     "Nobody's stopping that one! Goal!",
-    "And it's in! Clinical finishing!"
+    "And it's in! Clinical finishing!",
+    "Back of the net!",
+    "And it's a goal!",
+    "Finished!",
+    "That's a goal!",
+    "They've found the net!",
+    "Nobody's stopping that one!",
+    "Slotted away!",
+    "Put away!",
+    "No mistake!",
+    "That's in the net!",
+    "It's a goal, and it's a beauty!",
+    "Tucked away!"
    ]
   },
   "goal_ot": {
@@ -179,7 +209,15 @@
     "Overtime winner! Unbelievable scenes here in the arena!",
     "That's the golden goal! Game over!",
     "Overtime is done! What a finish to end it!",
-    "Golden goal! Cue the celebrations!"
+    "Golden goal! Cue the celebrations!",
+    "Overtime winner!",
+    "It's over in overtime!",
+    "Golden goal!",
+    "And that ends it!",
+    "Game over in overtime!",
+    "Sudden death, and it's done!",
+    "That's the winner!",
+    "Overtime, and they've won it!"
    ]
   },
   "score_first": {
@@ -412,7 +450,33 @@
     "Great rotation on that play. Everyone was in position for the second touch.",
     "That's a well worked goal. Pressure, a boost steal, and then a clean finish.",
     "On the replay you can see the hesitation. One second of doubt, and it's in the net.",
-    "The pressure forced a weak clear, and they did not waste the second chance."
+    "The pressure forced a weak clear, and they did not waste the second chance.",
+    "Watch the setup here. The pass makes the whole play.",
+    "Look at how the defense gets pulled out of shape.",
+    "It starts with a simple touch, and everything opens up from there.",
+    "See how quickly they react to the loose ball. That's the difference.",
+    "There's the moment. One defender commits, and the lane is open.",
+    "The pace on that ball gives the defense no chance to recover.",
+    "Notice the angle. The shot comes from somewhere the defense didn't expect.",
+    "Great awareness to see the opening before anyone else.",
+    "Watch the challenge just before it. That's where the goal really comes from.",
+    "The defense was a step behind the whole way. You can't let that happen.",
+    "Look at the space in the middle. Nobody picked that up.",
+    "Everything about this was quick. Quick touch, quick decision, quick finish.",
+    "See how the rotation breaks down. One player too far up, and it's punished.",
+    "It's a patient build. They wait, wait, and then strike.",
+    "The first touch sets it up perfectly. After that, it's just a finish.",
+    "That's a ball you have to clear, and the defense just doesn't get there.",
+    "Watch the boost. The defender's running on empty, and that's why they're late.",
+    "Brilliant read off the wall. They knew exactly where it was going.",
+    "The hesitation at the back is what costs them. Commit or don't, but decide.",
+    "Pressure, pressure, pressure, and eventually the defense cracks.",
+    "That's a perfectly weighted ball. It just sits up for the shot.",
+    "The defense covers the obvious option, and they go the other way.",
+    "You can see the last player back caught leaning the wrong way.",
+    "It's not complicated. Win the challenge, find the space, finish it.",
+    "Look how few touches it takes. That's efficiency.",
+    "The finish is great, but the read before it is even better."
    ]
   },
   "save": {
@@ -447,7 +511,16 @@
     "Saved! What a stop!",
     "Denied! Not this time!",
     "Kept out! Great defensive read!",
-    "They get a body on it! Saved!"
+    "They get a body on it! Saved!",
+    "Saved, and they survive!",
+    "What a block from the defense!",
+    "Good save, and the danger's gone!",
+    "The defense holds firm!",
+    "That's a quality save!",
+    "Denied with a great read!",
+    "Superb stop!",
+    "Read it all the way!",
+    "Right place, right time for the save!"
    ]
   },
   "save_again": {
@@ -460,7 +533,16 @@
     "Saved again! How long can they hold out?",
     "And another one! This defense will not break!",
     "Saved again! The attack just keeps on coming!",
-    "One more save! This is a goal line siege!"
+    "One more save! This is a goal line siege!",
+    "Another save!",
+    "And again!",
+    "Denied again!",
+    "Twice in a row!",
+    "Back-to-back saves!",
+    "Still can't get through!",
+    "They keep stopping it!",
+    "Another one turned away!",
+    "Saved once more!"
    ]
   },
   "epicsave": {
@@ -490,7 +572,14 @@
     "How is that not a goal? Incredible save!",
     "Unbelievable! What a stop under pressure!",
     "Oh, what a save! The whole arena thought that was in!",
-    "That is a highlight reel save! Absolutely ridiculous!"
+    "That is a highlight reel save! Absolutely ridiculous!",
+    "How did that stay out?",
+    "Unbelievable stop!",
+    "That should've been a goal!",
+    "Out of nowhere, saved!",
+    "Incredible reaction save!",
+    "I don't know how that's saved!",
+    "That is a world class save!"
    ]
   },
   "demo": {
@@ -530,7 +619,11 @@
     "Boom! Somebody just got demolished, and that changes everything.",
     "Demo! And now there's space to work with!",
     "Big demolition there! That opens up the field.",
-    "Somebody gets blown up, and the whole play changes!"
+    "Somebody gets blown up, and the whole play changes!",
+    "Boom, demo!",
+    "Taken out!",
+    "Big demo!",
+    "And that's a demo!"
    ]
   },
   "crossbar": {
@@ -555,7 +648,12 @@
     "The crossbar saves them! What a let off that is!",
     "Off the bar! So close!",
     "Crossbar! Inches away!",
-    "It clips the crossbar and stays out!"
+    "It clips the crossbar and stays out!",
+    "Off the bar!",
+    "Rattles the bar!",
+    "Off the top of the bar!",
+    "Clips the crossbar!",
+    "Hits the frame!"
    ]
   },
   "bighit_clear": {
@@ -632,7 +730,11 @@
    "templates": [
     "One minute to go and still no goals! Somebody has to break this deadlock.",
     "One minute left, and nobody has found the net yet. Somebody needs to step up.",
-    "Sixty seconds to go, still goalless. The next goal probably wins it."
+    "Sixty seconds to go, still goalless. The next goal probably wins it.",
+    "Sixty seconds, and no goals yet.",
+    "One minute to find a breakthrough.",
+    "Still scoreless with a minute left.",
+    "A minute left, and still nothing in it."
    ]
   },
   "t60_close": {
@@ -663,7 +765,10 @@
    "templates": [
     "Thirty seconds left, and it's still tied! This is getting tense!",
     "Thirty seconds to go, and we're still level! Who wants to be the hero?",
-    "Half a minute left, all square. Every touch counts now."
+    "Half a minute left, all square. Every touch counts now.",
+    "Thirty seconds, and it's tied!",
+    "Half a minute, all level!",
+    "Thirty to go, and nothing between them!"
    ]
   },
   "t30_close": {
@@ -684,7 +789,10 @@
    "templates": [
     "Ten seconds left! We could be heading to overtime!",
     "Ten seconds left, still tied! Overtime is calling!",
-    "Ten seconds! Can anyone find a zero-second goal?"
+    "Ten seconds! Can anyone find a zero-second goal?",
+    "Ten seconds, all square!",
+    "Ten left, and it's level!",
+    "Ten seconds to win it!"
    ]
   },
   "t10_close": {
@@ -706,7 +814,13 @@
     "Overtime! It's sudden death, and anything can happen now!",
     "Overtime! First goal wins it!",
     "Sudden death overtime! One goal ends it!",
-    "We need more Rocket League! It's overtime!"
+    "We need more Rocket League! It's overtime!",
+    "We're going to overtime!",
+    "Overtime! Next goal wins!",
+    "Extra time!",
+    "It's sudden death!",
+    "Overtime, here we go!",
+    "Next goal takes it!"
    ]
   },
   "ot_color": {
@@ -718,7 +832,11 @@
     "This is where legends are made. Who wants to be the hero?",
     "Overtime is all about composure. Don't give them anything cheap.",
     "Whoever stays patient here usually wins it.",
-    "The kickoff matters even more now. One bad touch and it's over."
+    "The kickoff matters even more now. One bad touch and it's over.",
+    "Overtime. Anything can happen now.",
+    "Both teams have earned this.",
+    "It's going to come down to one moment.",
+    "Nobody deserved to lose that in regulation."
    ]
   },
   "end": {
@@ -820,7 +938,15 @@
     "What a game. We'll see you next time, everyone!",
     "That's going to do it from us. Thanks for tuning in, everyone!",
     "What a match to be a part of. See you next time, everyone!",
-    "Thanks for watching, everyone. Take care, and we'll see you soon!"
+    "Thanks for watching, everyone. Take care, and we'll see you soon!",
+    "Thanks for tuning in, everyone.",
+    "We'll see you next time.",
+    "That's a wrap from us.",
+    "Thanks for joining us. Take care!",
+    "Until next time, everyone!",
+    "That's the show. See you soon!",
+    "That's all from us. Thanks for watching!",
+    "That's it for today. Great to have you."
    ]
   },
   "filler_color": {
@@ -847,7 +973,29 @@
     "The air game is so strong at this level. Any ball off the wall is dangerous.",
     "The kickoffs have been so even. Nobody is getting anything for free.",
     "This is a chess match right now. Everyone is waiting for the other side to overcommit.",
-    "Watch for the double commit. One bad decision at the back and the net is wide open."
+    "Watch for the double commit. One bad decision at the back and the net is wide open.",
+    "What I love about this team is how little they panic. Even under pressure, the touches are calm.",
+    "You can see they've practiced these rotations. Nobody's ever more than a second out of position.",
+    "The thing that doesn't show up in the stats is all the boost they're stealing on the far side.",
+    "At this level, it's not the flashy plays that win. It's the dozens of small, correct decisions.",
+    "Watch the third player. They're rarely on the ball, but they're always exactly where they need to be.",
+    "When a team is this patient, the other side starts to get impatient. That's when mistakes come.",
+    "There's a calmness to the way they're playing. They know the chances will come.",
+    "They're forcing the other team to the walls, and that takes all the danger away.",
+    "Every time the ball goes up, someone's there to meet it. That's great anticipation.",
+    "You don't see many wasted touches. Every hit has a purpose.",
+    "Both teams are trying to dictate the tempo, and right now neither one is winning that battle.",
+    "I keep coming back to the positioning. It's so hard to find an open net against this.",
+    "If you're watching to learn, pay attention to how they recover after a big challenge.",
+    "The best teams make the field feel small when they defend and huge when they attack.",
+    "There's a lot of trust out there. They're letting each other make the play.",
+    "Notice how rarely anyone double commits. That's what separates the good teams from the great ones.",
+    "It's a mental game as much as a mechanical one. Whoever stays composed wins this.",
+    "The speed of the decisions is what stands out. There's no hesitation at all.",
+    "They're not just hitting the ball, they're placing it. That's a real difference.",
+    "Small pads, smart routes, quick recoveries. It's the unglamorous stuff winning out right now.",
+    "You can almost feel both teams waiting for the other to blink.",
+    "What impresses me is the reset after every play. Nobody's dwelling on a mistake."
    ]
   },
   "filler_pbp": {
@@ -877,7 +1025,18 @@
     "Every fifty-fifty feels massive in overtime.",
     "Nobody wants to overcommit now. It's all about patience.",
     "This is nerve-wracking stuff. Nobody can afford a bad touch.",
-    "Somebody has to be brave eventually. Who's it going to be?"
+    "Somebody has to be brave eventually. Who's it going to be?",
+    "This is where nerves really show.",
+    "The tension right now is unreal.",
+    "It only takes one touch.",
+    "Whoever stays calm wins this.",
+    "The next mistake ends it.",
+    "In overtime, one mistake is all it takes.",
+    "Nobody wants to be the one who gives it away.",
+    "Every challenge feels twice as big now.",
+    "You can see how careful everyone is being.",
+    "Overtime changes how teams play. Nobody takes a risk.",
+    "I wouldn't want to be defending right now."
    ]
   },
   "filler_pressure": {
@@ -943,7 +1102,12 @@
    "templates": [
     "{team} need a goal soon. The clock is not their friend right now.",
     "{team} are running out of time. They have to take some risks now.",
-    "{team} need to find something. A goal here changes everything."
+    "{team} need to find something. A goal here changes everything.",
+    "Something has to change for {team}.",
+    "{team} need a spark from somewhere.",
+    "{team} need to slow this down and regroup.",
+    "{team} have to find a way into this game.",
+    "{team} can't keep giving up chances like that."
    ]
   },
   "filler_leading": {
@@ -953,7 +1117,12 @@
    "templates": [
     "{team} look comfortable with this lead. They just need to stay disciplined.",
     "{team} can afford to slow things down now and play the clock.",
-    "{team} are in a great spot. No need to force anything."
+    "{team} are in a great spot. No need to force anything.",
+    "{team} have found their rhythm.",
+    "Everything is clicking for {team}.",
+    "{team} are dictating everything right now.",
+    "{team} look so comfortable on the ball.",
+    "{team} are playing with a lot of confidence."
    ]
   },
   "goal_rout": {
@@ -1314,7 +1483,16 @@
     "We're live!",
     "And away we go!",
     "Here's the kickoff!",
-    "Let's go!"
+    "Let's go!",
+    "And we're off!",
+    "Away we go!",
+    "Racing to the ball!",
+    "Underway!",
+    "Let's play!",
+    "And they race in!",
+    "Ball's in play!",
+    "Here they go!",
+    "And they're away!"
    ]
   },
   "kickoff_ready": {
@@ -1326,7 +1504,15 @@
     "Back to the middle.",
     "Ready to go again.",
     "Kickoff coming up.",
-    "Reset, and here we go again."
+    "Reset, and here we go again.",
+    "Set for the kickoff.",
+    "Lined up and ready.",
+    "Everyone in position.",
+    "Kickoff coming.",
+    "Cars on the line.",
+    "Reset and ready.",
+    "Ball in the middle, here we go again.",
+    "Back to center."
    ]
   },
   "kickoff_won": {
@@ -1375,7 +1561,32 @@
     "Picks it up.",
     "Takes it down.",
     "Settles it.",
-    "Lovely first touch."
+    "Lovely first touch.",
+    "Nice little touch there.",
+    "Settles it down.",
+    "Good first touch.",
+    "Takes the pace off it.",
+    "Puts it into space.",
+    "Knocks it on.",
+    "Just a nudge forward.",
+    "Pops it up.",
+    "Soft touch to control it.",
+    "Into the corner it goes.",
+    "Taps it along.",
+    "Gets a piece of it.",
+    "Turns it back up field.",
+    "Brings it down nicely.",
+    "Lifts it over the top.",
+    "Pushes it wide.",
+    "Steers it away.",
+    "Bumps it forward.",
+    "Plays it back.",
+    "Clips it into the middle.",
+    "Keeps it close.",
+    "Nudges it past.",
+    "Redirects it.",
+    "Gets it under control.",
+    "Chips it forward."
    ]
   },
   "pbp_wall": {
@@ -1397,7 +1608,15 @@
     "Off the wall.",
     "Wall play.",
     "Along the wall.",
-    "Takes it up the wall."
+    "Takes it up the wall.",
+    "Rides the wall.",
+    "Carrying it along the wall.",
+    "Off the side wall.",
+    "High on the wall.",
+    "Wall touch to keep it alive.",
+    "Jumps off the wall for it.",
+    "Using the wall.",
+    "Plays it off the wall."
    ]
   },
   "pbp_aerial_g": {
@@ -1409,7 +1628,20 @@
     "Aerial!",
     "Goes up for it!",
     "Off the ground!",
-    "Airborne!"
+    "Airborne!",
+    "Taking to the air!",
+    "Going up for it!",
+    "Leaves the ground early!",
+    "Meets it in the air!",
+    "Jumps for it!",
+    "Rising to meet it!",
+    "Early jump!",
+    "Gets up there!",
+    "Takes it in the air!",
+    "Fast aerial!",
+    "In the air again!",
+    "Goes up to challenge!",
+    "Catches it in the air!"
    ]
   },
   "pbp_ceiling_g": {
@@ -1419,7 +1651,11 @@
    "templates": [
     "Off the ceiling!",
     "Up to the ceiling!",
-    "Ceiling play!"
+    "Ceiling play!",
+    "Drops off the ceiling!",
+    "Goes all the way up.",
+    "Ceiling touch!",
+    "Ceiling setup!"
    ]
   },
   "pbp_pass": {
@@ -1444,7 +1680,19 @@
     "Finds the teammate.",
     "Passing it around.",
     "Great vision.",
-    "Into the middle."
+    "Into the middle.",
+    "Lays it off.",
+    "Plays it through.",
+    "Feeds it in.",
+    "Sets it up.",
+    "Centers it.",
+    "Swings it across.",
+    "Looks for the pass.",
+    "Threads it through.",
+    "Drops it back.",
+    "Quick pass.",
+    "Inside pass.",
+    "Plays the teammate in."
    ]
   },
   "pbp_fifty_g": {
@@ -1457,7 +1705,13 @@
     "They meet in the middle!",
     "Fifty-fifty, and it's loose!",
     "Fifty on the ball!",
-    "Contested!"
+    "Contested!",
+    "Fifty in midfield!",
+    "Neither one backs off!",
+    "Even challenge!",
+    "Both go in hard!",
+    "Meet at the ball!",
+    "Strong challenge!"
    ]
   },
   "pbp_clear": {
@@ -1482,7 +1736,17 @@
     "Cleared up the field.",
     "Gets it out.",
     "And it's cleared.",
-    "Relief for the defense."
+    "Relief for the defense.",
+    "Gets it out of there!",
+    "Away from danger.",
+    "Big clear!",
+    "Clears the lines.",
+    "Out of the box.",
+    "Relieves the pressure.",
+    "Long ball out.",
+    "Danger over, for now.",
+    "Gets rid of it.",
+    "That buys them time."
    ]
   },
   "pbp_turnover_g": {
@@ -1495,7 +1759,16 @@
     "Intercepted!",
     "Nice read.",
     "Stolen away!",
-    "They win it back."
+    "They win it back.",
+    "Lost it.",
+    "Picked off!",
+    "Stolen!",
+    "Gives it away.",
+    "Wins it back.",
+    "Possession changes.",
+    "Caught in possession.",
+    "Read that and stole it.",
+    "Cut out!"
    ]
   },
   "pbp_dribble": {
@@ -1516,7 +1789,15 @@
    "templates": [
     "Flick!",
     "What a flick!",
-    "Off the flick!"
+    "Off the flick!",
+    "Big flick!",
+    "Flicks it up!",
+    "Tries the flick!",
+    "Flick toward goal!",
+    "Nice flick!",
+    "Flicks it past!",
+    "Flick attempt!",
+    "Flicked on!"
    ]
   },
   "pbp_pressure": {
@@ -1540,7 +1821,18 @@
     "It won't go away.",
     "They can't clear it.",
     "Wave after wave.",
-    "Still pressing."
+    "Still pressing.",
+    "Keeping it in the zone.",
+    "Sustained pressure.",
+    "They won't let them out.",
+    "Pinned back!",
+    "Locked in their end.",
+    "Can't get it out!",
+    "Another attack.",
+    "Lots of traffic in front of goal.",
+    "Pushing up for more.",
+    "Another look at goal.",
+    "The defense is scrambling."
    ]
   },
   "pbp_transition": {
@@ -1562,7 +1854,18 @@
     "Up the other end now.",
     "Back on the attack.",
     "Quick transition!",
-    "And now they push forward."
+    "And now they push forward.",
+    "Here comes the counter!",
+    "On the break!",
+    "Turns defense into attack.",
+    "Fast break!",
+    "Racing up field!",
+    "Counterattack on!",
+    "Breaking forward!",
+    "They're caught upfield!",
+    "Back the other way!",
+    "Momentum swings!",
+    "Carrying it on the break!"
    ]
   },
   "pbp_defend_g": {
@@ -1575,7 +1878,25 @@
     "Nicely defended.",
     "Shut down.",
     "Well read.",
-    "Good shadow defense."
+    "Good shadow defense.",
+    "Shadowing back.",
+    "Covering the net.",
+    "Back on defense.",
+    "Retreating to the net.",
+    "Getting goal side.",
+    "Holding the line.",
+    "Blocks the lane.",
+    "Patient defending.",
+    "Staying in front of it.",
+    "Backing up the play.",
+    "Closing down the space.",
+    "Waiting for the touch.",
+    "In position.",
+    "Good defensive read.",
+    "Denying the angle.",
+    "Defense setting up.",
+    "Hanging back.",
+    "Standing their ground."
    ]
   },
   "pbp_flow_g": {
@@ -1592,7 +1913,27 @@
     "Loose ball.",
     "Up the field it goes.",
     "Into the corner.",
-    "Off the back wall."
+    "Off the back wall.",
+    "Still searching for a way in.",
+    "Nobody's settled yet.",
+    "Ball's bouncing around.",
+    "Plenty of movement.",
+    "Working it through midfield.",
+    "Recycling possession.",
+    "Probing for an opening.",
+    "Patience on the ball.",
+    "Tempo picking up.",
+    "Slowing it down now.",
+    "Building from the back.",
+    "Spreading it wide.",
+    "Looking for the gap.",
+    "Testing the defense.",
+    "Everyone's rotating.",
+    "A lot of traffic in midfield.",
+    "Working the angles.",
+    "Ball going side to side.",
+    "Waiting for the right moment.",
+    "Little lull here."
    ]
   },
   "shot_g": {
@@ -1605,7 +1946,17 @@
     "Here's the shot!",
     "Goes for goal!",
     "Shoots!",
-    "Takes the shot!"
+    "Takes the shot!",
+    "Shot on target!",
+    "Hits it!",
+    "Fires!",
+    "On goal!",
+    "Strikes it!",
+    "Puts it on frame!",
+    "Tests the defense!",
+    "Shot coming in!",
+    "Quick shot!",
+    "Drives it at the net!"
    ]
   },
   "save_g_short": {
@@ -1618,7 +1969,13 @@
     "Denied!",
     "Blocked!",
     "Kept out!",
-    "Big save!"
+    "Big save!",
+    "Turned away!",
+    "Big stop!",
+    "No way through!",
+    "Gets a piece!",
+    "Off the defender!",
+    "Great block!"
    ]
   },
   "save_late": {
@@ -1639,7 +1996,25 @@
     "That was a huge save.",
     "Brilliant goalkeeping there.",
     "What reactions!",
-    "They were so close to scoring there."
+    "They were so close to scoring there.",
+    "Good save. Nothing fancy, just right.",
+    "Solid positioning made that easy.",
+    "You expect that save at this level.",
+    "Calm and composed at the back.",
+    "Read it early, saved it easily.",
+    "Great anticipation on that one.",
+    "They make that look routine.",
+    "Never in doubt.",
+    "Exactly where they needed to be.",
+    "Good recovery to get back for that.",
+    "That's the defense doing its job.",
+    "Simple, but effective.",
+    "Nothing's getting past them right now.",
+    "They've got this covered.",
+    "Another one dealt with.",
+    "That's handled.",
+    "Comfortable for the defense.",
+    "No panic at the back."
    ]
   },
   "rebound_g": {
@@ -1652,7 +2027,14 @@
     "Follow-up!",
     "Again!",
     "Off the rebound!",
-    "Still alive!"
+    "Still alive!",
+    "Loose ball in the box!",
+    "Crashing in for the rebound!",
+    "It's bouncing around in there!",
+    "Scramble in front!",
+    "Another chance from the rebound!",
+    "Crashing the net!",
+    "Gets a second look!"
    ]
   },
   "close_g": {
@@ -1665,7 +2047,14 @@
     "Inches away!",
     "Nearly!",
     "Not far away!",
-    "Denied by the woodwork!"
+    "Denied by the woodwork!",
+    "Just wide!",
+    "Off target, but close!",
+    "Just over!",
+    "That was almost in!",
+    "Nearly a goal!",
+    "Just missed!",
+    "That was so nearly it!"
    ]
   },
   "close_react_g": {
@@ -1675,7 +2064,16 @@
    "templates": [
     "They'll be wondering how that stayed out.",
     "That was a big chance.",
-    "That one was nearly in."
+    "That one was nearly in.",
+    "Inches from a goal there.",
+    "They'll be kicking themselves.",
+    "The defense got lucky there.",
+    "That's a warning sign for the defense.",
+    "So close to a great goal.",
+    "A little more power and that's in.",
+    "They'll want that one back.",
+    "Everybody held their breath there.",
+    "Fine margins, again."
    ]
   },
   "demo_g_short": {
@@ -1698,7 +2096,15 @@
     "They're a man down.",
     "Man advantage now.",
     "One player short for a moment.",
-    "Numbers advantage!"
+    "Numbers advantage!",
+    "That's a numbers advantage now.",
+    "They're a player down for a moment.",
+    "One car short for a few seconds.",
+    "Down a player for now.",
+    "That opens things up.",
+    "Now's the time to push.",
+    "Short-handed for a moment.",
+    "Advantage on the attack."
    ]
   },
   "goal_g_short": {
@@ -1721,7 +2127,13 @@
    "templates": [
     "Oh, it's gone in off a defender!",
     "Own goal! That's a cruel one!",
-    "Off their own player and in!"
+    "Off their own player and in!",
+    "Oh no, own goal!",
+    "Into their own net!",
+    "Unlucky! Own goal!",
+    "That's gone in off the defender!",
+    "A nightmare for the defense!",
+    "Oh, that's a cruel one!"
    ]
   },
   "goal_celebrate_g": {
@@ -1734,7 +2146,13 @@
     "The place goes wild!",
     "Huge goal!",
     "What a time to score!",
-    "Get in!"
+    "Get in!",
+    "They're loving that!",
+    "That's a big one!",
+    "That's the one!",
+    "They needed that!",
+    "What a goal that is!",
+    "That'll lift them!"
    ]
   },
   "goal_counter_g": {
@@ -1744,7 +2162,13 @@
    "templates": [
     "That came from nowhere. One clear, and it's in the net.",
     "Counter-attacking at its best.",
-    "Caught on the break, and punished."
+    "Caught on the break, and punished.",
+    "One clear, one sprint, one goal.",
+    "That's how you punish a team for overcommitting.",
+    "Defense to attack in seconds. Brilliant.",
+    "They caught them out of position and made them pay.",
+    "The counter is lethal when it's this fast.",
+    "That's the danger of pushing too many players up."
    ]
   },
   "goal_pressure_g": {
@@ -1754,7 +2178,13 @@
    "templates": [
     "That pressure finally tells.",
     "They kept knocking, and it finally opened.",
-    "Sustained pressure, and they get their reward."
+    "Sustained pressure, and they get their reward.",
+    "All that pressure finally pays off.",
+    "They just kept knocking on the door.",
+    "Eventually, the defense had to crack.",
+    "That goal was coming.",
+    "Relentless, and it's rewarded.",
+    "They earned that one with sheer persistence."
    ]
   },
   "goal_solo_g": {
@@ -1764,7 +2194,13 @@
    "templates": [
     "That's all individual skill.",
     "A solo effort, start to finish.",
-    "Took it all the way on their own."
+    "Took it all the way on their own.",
+    "Took it on all by themselves.",
+    "No help needed there.",
+    "Pure skill, start to finish.",
+    "Sometimes one player just decides it.",
+    "That's one for the highlight reel.",
+    "That's an individual moment of brilliance."
    ]
   },
   "goal_team_g": {
@@ -1774,7 +2210,12 @@
    "templates": [
     "Great team goal.",
     "Beautiful passing, and a clinical finish.",
-    "That's how you play as a team."
+    "That's how you play as a team.",
+    "That's a real team goal.",
+    "Beautiful passing move.",
+    "That's what chemistry looks like.",
+    "Everyone on the same page there.",
+    "That's a goal built together."
    ]
   },
   "an_replay_g": {
@@ -1787,7 +2228,15 @@
     "Here it is again.",
     "Look at the space they found.",
     "Watch the rotation on this.",
-    "Here's how it happened."
+    "Here's how it happened.",
+    "One more time.",
+    "Let's break it down.",
+    "Watch this again.",
+    "Here's the replay.",
+    "Take a look at this.",
+    "Slow it down for a second.",
+    "Let's see how that happened.",
+    "Have a look at the build-up."
    ]
   },
   "t120_g": {
@@ -1796,7 +2245,10 @@
    "fill": null,
    "templates": [
     "Two minutes to play.",
-    "Into the final two minutes."
+    "Into the final two minutes.",
+    "Two minutes left.",
+    "Two minutes on the clock.",
+    "Two to go."
    ]
   },
   "t120_tie": {
@@ -1805,7 +2257,10 @@
    "fill": null,
    "templates": [
     "Two minutes to go, and it's all square.",
-    "Two minutes left, and nothing between them."
+    "Two minutes left, and nothing between them.",
+    "Two minutes left, all square.",
+    "Level with two minutes to play.",
+    "Two minutes, and nothing between them."
    ]
   },
   "t120_close": {
@@ -1825,7 +2280,12 @@
     "Five seconds!",
     "Final seconds!",
     "Last chance!",
-    "Seconds left!"
+    "Seconds left!",
+    "Five seconds to go!",
+    "Final five!",
+    "Running out of time!",
+    "Last few seconds!",
+    "Here's the final push!"
    ]
   },
   "zero_g": {
@@ -1833,9 +2293,14 @@
    "mood": "hype",
    "fill": null,
    "templates": [
+    "Zero on the clock!",
     "Zero on the clock! The ball has to touch the ground!",
     "Zero seconds! It's not over until it hits the floor!",
-    "The clock's at zero, but the ball's still alive!"
+    "The clock's at zero, but the ball's still alive!",
+    "Zero!",
+    "Clock's done!",
+    "Time's up, ball's live!",
+    "No time left!"
    ]
   },
   "ot_1min": {
@@ -1844,7 +2309,9 @@
    "fill": null,
    "templates": [
     "We're a minute into overtime.",
-    "One minute of overtime gone."
+    "One minute of overtime gone.",
+    "A minute into overtime.",
+    "Overtime rolling on, a minute in."
    ]
   },
   "ot_2min": {
@@ -1853,7 +2320,10 @@
    "fill": null,
    "templates": [
     "Two minutes of overtime, and still nothing.",
-    "Two minutes into overtime now."
+    "Two minutes into overtime now.",
+    "Two minutes of overtime now.",
+    "Still going, two minutes in.",
+    "Two minutes of extra time."
    ]
   },
   "ot_long": {
@@ -1863,7 +2333,13 @@
    "templates": [
     "This overtime just keeps going!",
     "Neither team can find the winner.",
-    "This is a marathon of an overtime."
+    "This is a marathon of an overtime.",
+    "This overtime just won't end!",
+    "Somebody has to break eventually.",
+    "The longest overtime in a while.",
+    "Nerves are fraying now.",
+    "Every touch could end it.",
+    "Still deadlocked."
    ]
   },
   "momentum_run": {
@@ -1896,6 +2372,34 @@
     "Game on! {team} are back in this!"
    ]
   },
+  "need_something": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} need something here, otherwise this might be too far to come back from."
+   ]
+  },
+  "series_clinch": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} are one win away from the series, and this game is all but over.",
+    "{team} are about to close out this series.",
+    "This series is nearly wrapped up. {team} are cruising."
+   ]
+  },
+  "series_won": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "And that's the series! {team} take it!",
+    "{team} win the series!",
+    "{team} close it out, and the series is theirs!"
+   ]
+  },
   "need_goal": {
    "role": "color",
    "mood": "calm",
@@ -1918,7 +2422,12 @@
     "{team} have been solid at the back.",
     "{team} are pushing high, and that's risky.",
     "You can see {team} growing into this game.",
-    "{team} have to be careful on the counter."
+    "{team} have to be careful on the counter.",
+    "{team} look really sharp today.",
+    "{team} are winning the little battles.",
+    "{team} are being so patient with it.",
+    "{team} are moving the ball beautifully.",
+    "There's a real plan behind what {team} are doing."
    ]
   },
   "color_player": {
@@ -1976,7 +2485,639 @@
     "Nobody is backing down.",
     "This could go either way.",
     "What a contest this is.",
-    "The quality on display is outstanding."
+    "The quality on display is outstanding.",
+    "Liking what I see from both sides.",
+    "That's smart, low-risk play.",
+    "Good discipline there.",
+    "The spacing has been really good.",
+    "They're reading each other well.",
+    "Nobody's chasing the ball.",
+    "That's textbook rotation.",
+    "Really composed on the ball.",
+    "Clean, simple decisions.",
+    "That's experience showing.",
+    "Good patience from the attack.",
+    "Everyone knows their job.",
+    "The defense looks organized.",
+    "Lovely movement off the ball.",
+    "They're playing the percentages.",
+    "They're not giving up easy shots.",
+    "It's all about angles here.",
+    "Nice and controlled.",
+    "Good awareness at the back.",
+    "They're making it look simple.",
+    "It's a tactical battle.",
+    "Every challenge is calculated.",
+    "That was a great read.",
+    "Not much space out there.",
+    "The positioning is spot on.",
+    "Lots of confidence on the ball.",
+    "They're squeezing the space.",
+    "Really well drilled.",
+    "They trust each other.",
+    "Communication looks great.",
+    "A real test of patience.",
+    "Neither side is rattled.",
+    "Smart use of the boost.",
+    "Their first touches are clean.",
+    "That's how you control tempo.",
+    "The structure's holding.",
+    "Hard to break down.",
+    "They pick their moments.",
+    "I like the aggression.",
+    "Measured and calm.",
+    "That's intelligent play.",
+    "They're building nicely.",
+    "Pressure without panic.",
+    "That's a good habit.",
+    "It's all about timing.",
+    "They're winning the races.",
+    "Sensible from the defense.",
+    "Compact at the back.",
+    "So much quality on the ball.",
+    "They read that early."
+   ]
+  },
+  "filler_early_pbp": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "Quiet start to this one.",
+    "Nobody's in a rush here.",
+    "Still feeling each other out.",
+    "Lots of respect early on.",
+    "A cagey opening so far.",
+    "Everybody's playing it safe.",
+    "Testing the waters early.",
+    "Nobody wants to blink first.",
+    "Still waiting on that first chance.",
+    "The ball's living in midfield.",
+    "Plenty of time left on the clock.",
+    "Not a lot going on just yet.",
+    "Slow and steady to start.",
+    "They're taking their time with it.",
+    "Just knocking it around for now.",
+    "No real danger yet.",
+    "Nothing doing so far.",
+    "A quiet minute of Rocket League.",
+    "Both sides sitting back.",
+    "Easy does it early on.",
+    "They're not giving much away.",
+    "Still searching for an opening.",
+    "Lots of touches, not many chances.",
+    "The calm before the storm, maybe.",
+    "Somebody's got to make a move."
+   ]
+  },
+  "filler_early_color": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Nobody wants to concede first.",
+    "This is the feeling-out phase.",
+    "Right now it's all about positioning.",
+    "No need to force anything this early.",
+    "They're happy to let it come to them.",
+    "Both teams are being really careful.",
+    "You learn a lot in these quiet spells.",
+    "It's a patient start from both sides.",
+    "That first goal is going to be huge.",
+    "I'm watching the rotations right now.",
+    "Neither team wants to overextend yet.",
+    "It's going to open up, give it time.",
+    "Low risk, low reward so far.",
+    "Nobody's taking any big swings yet.",
+    "They're saving the fireworks for later."
+   ]
+  },
+  "filler_early_long": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "You don't win it in the first minute, but you can definitely lose it.",
+    "Early on like this, it's more about reading the other team than scoring.",
+    "Whoever wins the boost battle now is going to feel it later in the game.",
+    "These quiet stretches never last long at this level. Something's coming.",
+    "Neither side is forcing it, and honestly, that's a sign of two confident teams.",
+    "I'd expect this to open right up the moment somebody finds the first goal.",
+    "It's quiet, but this is where you find out which team is more disciplined.",
+    "Both teams look like they've done their homework. Nobody's giving anything cheap.",
+    "Sometimes the first few minutes are just a conversation. Now somebody has to say something.",
+    "Not much happening on the scoreboard, but there's a lot going on off the ball."
+   ]
+  },
+  "filler_blowout_pbp": {
+   "role": "pbp",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "And they keep coming.",
+    "No let-up here at all.",
+    "Still pushing, still hungry.",
+    "More of the same out there.",
+    "They want even more.",
+    "Running away with this one.",
+    "Another wave coming forward.",
+    "The pressure just doesn't stop."
+   ]
+  },
+  "filler_blowout_color": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "This one's pretty much decided.",
+    "It's been one-way traffic.",
+    "Everything they hit is going in.",
+    "Just one of those days for them.",
+    "They're playing with total freedom now.",
+    "Hard to find any answers right now.",
+    "The damage is well and truly done.",
+    "Nothing's going right for the defense.",
+    "It's about pride at this point.",
+    "They're not letting up, either.",
+    "This has turned into a statement game.",
+    "A tough watch for the other side."
+   ]
+  },
+  "filler_blowout_long": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Once a lead gets this big, you just play loose and enjoy it.",
+    "You almost feel for the defense at this point. They've had no help at all.",
+    "The scoreline looks harsh, but honestly, every bit of it has been earned.",
+    "There's no shame in losing to a team playing like this. They're on fire.",
+    "The result's not really in doubt anymore. It's about finishing the job properly.",
+    "When it snowballs like this, the hardest thing is to stop it. One goal turns into three.",
+    "For the team behind, it's damage control now. Take something positive into the next one.",
+    "This is what it looks like when a team is completely locked in. Every rotation is on time.",
+    "Credit where it's due. Not many teams could live with this level today.",
+    "You can see the confidence. They're trying things they'd never try in a close game.",
+    "The game's decided, but nobody's switching off. That's the mark of a good team."
+   ]
+  },
+  "blowout_leader": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} are cruising now.",
+    "{team} are making this look easy.",
+    "{team} just keep coming.",
+    "{team} are in complete control of this one.",
+    "This has been a clinic from {team}.",
+    "{team} are having fun out there now.",
+    "{team} haven't taken their foot off the gas once.",
+    "You can't take anything away from {team} today."
+   ]
+  },
+  "blowout_trailer": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} just need to reset and go again.",
+    "Tough day at the office for {team}.",
+    "{team} will want to forget this one quickly.",
+    "{team} are playing for pride now.",
+    "Nothing's falling for {team} today."
+   ]
+  },
+  "series_rout": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "This series hasn't been close.",
+    "It's been all one direction in this series.",
+    "I don't think anyone expected this series to be so one-sided."
+   ]
+  },
+  "series_rout_leader": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} have been dominant from the first game.",
+    "{team} have had an answer for everything this series.",
+    "{team} look like the real deal in this series.",
+    "Whoever plays {team} next will have been watching this closely."
+   ]
+  },
+  "series_rout_trailer": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} need something special to turn this series around.",
+    "{team} have to find something, or this series is over.",
+    "It's been a long series for {team}.",
+    "{team} are running out of games to fix this."
+   ]
+  },
+  "drift_open": {
+   "role": "pbp",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Well, while we've got a minute...",
+    "Let's zoom out for a second.",
+    "Not much drama left, so...",
+    "While this one plays out...",
+    "Let's look at the bigger picture.",
+    "So, with this one wrapped up...",
+    "Quick word on the season, then."
+   ]
+  },
+  "drift_ask": {
+   "role": "pbp",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Let's talk standings for a second. Where does this leave them?",
+    "Since this one's settled, what does it mean for the table?",
+    "What do you make of their season so far?",
+    "Big picture, how worried should the other side be?",
+    "Be honest, did you see this coming?"
+   ]
+  },
+  "drift_table": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "It's a big one for the table.",
+    "Every win counts in the standings.",
+    "The table will look nice for them.",
+    "Honestly, this does a lot for their spot in the standings.",
+    "Goal difference could matter at the end of the season, so they'll take every one of these.",
+    "If you're the team behind, you're watching the goal difference now. Keep it respectable.",
+    "The race at the top of the table is getting really interesting.",
+    "Somewhere, the teams above them are watching this and not loving it.",
+    "There's a long way to go this season, but results like this add up.",
+    "The rest of the league will have noticed this one."
+   ]
+  },
+  "drift_table_pos": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "pos",
+   "templates": [
+    "They came into this one sitting {pos} in the standings.",
+    "A win here moves them up to {pos} in the table."
+   ]
+  },
+  "drift_table_team": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} are going to like the look of the table after tonight.",
+    "{team} are going to need a better week to climb the standings."
+   ]
+  },
+  "drift_season": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "What a season it's turning into for them.",
+    "Think about where they were at the start of the season.",
+    "They've been quietly putting together a really strong season.",
+    "Honestly, this has been coming. They've looked sharp for weeks.",
+    "You don't get results like this by accident. They've been building to it all season.",
+    "For the team behind, it's been a rough patch. They'll be looking for a reset.",
+    "They're turning into one of the form teams in the league."
+   ]
+  },
+  "drift_season_team": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} have been one of the stories of the season.",
+    "It's been a season to forget so far for {team}."
+   ]
+  },
+  "drift_bracket": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Whoever comes through this is going to be a tough draw for anyone.",
+    "You've got to think they're looking at the next round already.",
+    "The bracket's opening up nicely for them.",
+    "There's a trophy at the end of all this, and right now they look like contenders.",
+    "If they play like this in the next round, good luck to whoever's waiting."
+   ]
+  },
+  "drift_bracket_team": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} have to be one of the favorites now."
+   ]
+  },
+  "drift_muse": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "My notes aren't getting much use.",
+    "Not a lot of drama, I'll admit.",
+    "Long night for the defense.",
+    "Funny how quickly that got away.",
+    "I'll be honest, I'm already thinking about the next game.",
+    "I had a whole thing ready about how close this was going to be.",
+    "I was going to talk about their kickoffs, but it doesn't really matter now.",
+    "If you're just tuning in, you haven't missed much drama. You've missed a lot of goals.",
+    "At this point, I'm just here to enjoy the mechanics.",
+    "Honestly, the most interesting battle left is for the stats.",
+    "Somebody check on the defense after this. They've had a long night.",
+    "You call enough of these, and every now and then you get one like this.",
+    "It's one of those games you just let play out."
+   ]
+  },
+  "goal_rout_flat": {
+   "role": "pbp",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Oh, and that's another one.",
+    "And, yep, that's in as well.",
+    "That's in too. Of course it is.",
+    "Oh, they've scored again.",
+    "Add it to the pile.",
+    "And another one. Sure.",
+    "There's another goal, while we were talking.",
+    "Well, that one's in too."
+   ]
+  },
+  "drift_back": {
+   "role": "pbp",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Anyway, back to the game.",
+    "Right, back to it.",
+    "Sorry, where were we? Same story.",
+    "Back to it. Nothing's changed.",
+    "Anyway. Still a blowout."
+   ]
+  },
+  "momentum_shift": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "The pressure is starting to tell.",
+    "One goal, and the whole mood changes.",
+    "The tide is turning.",
+    "You could sense that goal coming.",
+    "That's been building for a while.",
+    "They've grabbed hold of this game now.",
+    "This is their window.",
+    "You can feel the momentum starting to shift.",
+    "That goal changes the whole feel of this game.",
+    "All of a sudden, it's a different game.",
+    "That's the kind of goal that swings a match.",
+    "There's a real swing happening out there.",
+    "The energy has completely flipped in the last minute.",
+    "Momentum is a funny thing in this game. It can turn on one touch.",
+    "Two minutes ago they were on the back foot. Now look at them.",
+    "This is the spell where games get decided.",
+    "Whoever wins the next minute probably wins this game.",
+    "This is where a good team really pushes on.",
+    "You can see the confidence growing with every touch.",
+    "The other side needs to stop the bleeding, and fast.",
+    "Watch how they play now with a bit of momentum behind them.",
+    "They're playing like a team that knows it's on top.",
+    "Momentum doesn't last forever, so they need to cash in now.",
+    "The game's opened up in the last couple of minutes.",
+    "There's a different look in the way they're playing now."
+   ]
+  },
+  "bounce_back": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "The question now is how they respond.",
+    "I'd expect a reaction here.",
+    "Heads can't drop now.",
+    "One goal doesn't decide anything.",
+    "That stings, but they can answer.",
+    "Let's see what they're made of.",
+    "Reset, regroup, and go again.",
+    "Composure is everything now.",
+    "They can't let that goal get to them.",
+    "This is where you find out about a team's character.",
+    "A response here would change everything.",
+    "Conceding hurts, but the next kickoff is a fresh start.",
+    "The best teams have short memories. Forget it and go again.",
+    "They've bounced back before, and they can do it again.",
+    "They need to come out of this kickoff with some fire.",
+    "It's how you handle the next couple of minutes that matters.",
+    "You want to see them stay patient and not chase it.",
+    "There's no need to panic. Stick to the plan.",
+    "The worst thing they can do now is overcommit looking for a quick one back.",
+    "They just need one good spell to get back into this.",
+    "They've looked dangerous all game. The chances will come."
+   ]
+  },
+  "response": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "What a response!",
+    "And they hit right back!",
+    "That's the answer they needed!",
+    "Straight back into it!",
+    "They didn't wait long to reply!",
+    "That's how you respond!",
+    "Answered straight away!"
+   ]
+  },
+  "back_level": {
+   "role": "color",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "And just like that, it's level again.",
+    "It's a brand new game now.",
+    "Nobody's in front now. Game on.",
+    "From here, it's anybody's game.",
+    "All that work, and we're back to square one.",
+    "Back on level terms, and everything to play for.",
+    "The pressure's right back on the other side now.",
+    "Level again, and the momentum is with the team that just scored."
+   ]
+  },
+  "comeback_on": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": null,
+   "templates": [
+    "Now we've got a game!",
+    "This is far from over.",
+    "Suddenly, there's belief.",
+    "They're right back in this!",
+    "Don't count them out yet.",
+    "That's game on.",
+    "The lead isn't safe anymore.",
+    "They've given themselves a chance.",
+    "That's a lifeline.",
+    "You can feel the comeback brewing.",
+    "The nerves are on the other side now.",
+    "Now the pressure's on the team in front."
+   ]
+  },
+  "survived": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "They bent, but they didn't break.",
+    "That's a big stand from the defense.",
+    "Now they can finally catch their breath.",
+    "They survived that spell, and that might be huge.",
+    "You get through a spell like that, and it gives you confidence.",
+    "If they'd conceded there, it might have been a different game.",
+    "That's the kind of defending that wins you games.",
+    "The attack threw everything at them, and they held."
+   ]
+  },
+  "save_swing": {
+   "role": "color",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "That could be the turning point.",
+    "That keeps them in it.",
+    "They'll get a real lift from that.",
+    "That's a momentum save.",
+    "That save is worth as much as a goal.",
+    "Saves like that can swing a whole game.",
+    "You can feel the energy from that save."
+   ]
+  },
+  "settling": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "They're starting to settle in.",
+    "That looked a lot more comfortable.",
+    "They've found their feet now.",
+    "Starting to look like themselves.",
+    "That was a much better spell.",
+    "They've grown into this game.",
+    "The nerves seem to have gone.",
+    "That's more like it."
+   ]
+  },
+  "managing_lead": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "They don't need to force anything now.",
+    "Smart to slow it down with the lead.",
+    "The lead lets them be patient.",
+    "Keep it simple, keep it safe.",
+    "Game management is everything now.",
+    "They've got the clock on their side.",
+    "They can sit back a bit and pick their moments.",
+    "No need to take risks. Let the other side come to them.",
+    "Protect the lead, but don't stop playing.",
+    "The worst thing they can do is sit back too much."
+   ]
+  },
+  "chasing": {
+   "role": "color",
+   "mood": "lively",
+   "fill": null,
+   "templates": [
+    "They have to start taking risks now.",
+    "Time to throw bodies forward.",
+    "Every second matters for them now.",
+    "No choice now but to go for it.",
+    "It has to be now or never.",
+    "Desperation is starting to creep in.",
+    "They're running out of chances.",
+    "They need to commit more players to the attack.",
+    "The pressure's all on them to make something happen."
+   ]
+  },
+  "series_momentum": {
+   "role": "color",
+   "mood": "calm",
+   "fill": null,
+   "templates": [
+    "Last game is history. It's a clean slate.",
+    "The first goal in this game will matter a lot.",
+    "The team that lost has to shake that off quickly.",
+    "Winning that last game gives them real momentum going into this one.",
+    "Momentum carries over in a series, but it can disappear in one kickoff.",
+    "Losing that last game will sting, but there's a lot of series left.",
+    "They'll want to start fast and put the last game behind them.",
+    "After a loss like that, the first couple of minutes are huge.",
+    "This is a big game for the series. Win it, and things look very different.",
+    "It's all about the response after losing the last one.",
+    "Back-to-back wins would put them in a great spot.",
+    "A win here and this series is wide open again.",
+    "They'll have talked about that last game. Let's see what changes."
+   ]
+  },
+  "momentum_team": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} need to respond to that.",
+    "This is a big test for {team}.",
+    "{team} have to stay calm here.",
+    "{team} are right back in this.",
+    "{team} won't go away.",
+    "{team} are building something here.",
+    "{team} have weathered the storm.",
+    "{team} need a big spell now.",
+    "{team} are pushing for the next one.",
+    "{team} are making a game of it.",
+    "{team} have to regroup after that.",
+    "{team} are firmly on top now.",
+    "{team} will feel they're due a goal.",
+    "Big response needed from {team}.",
+    "{team} have all the momentum right now.",
+    "{team} are taking control of this game.",
+    "{team} have been the better team for the last couple of minutes.",
+    "{team} are the ones with the confidence now."
+   ]
+  },
+  "response_team": {
+   "role": "pbp",
+   "mood": "hype",
+   "fill": "team",
+   "templates": [
+    "What a response from {team}!"
+   ]
+  },
+  "series_momentum_team": {
+   "role": "color",
+   "mood": "calm",
+   "fill": "team",
+   "templates": [
+    "{team} have the momentum in this series.",
+    "{team} need to bounce back in this one.",
+    "{team} have to shake off that last game.",
+    "{team} come in riding the momentum from the last game."
    ]
   }
  },
@@ -2136,6 +3277,20 @@
    "Boston",
    "Paris",
    "Fort Worth"
+  ],
+  "pos": [
+   "first",
+   "second",
+   "third",
+   "fourth",
+   "fifth",
+   "sixth",
+   "seventh",
+   "eighth",
+   "ninth",
+   "tenth",
+   "eleventh",
+   "twelfth"
   ]
  }
 }

@@ -1,10 +1,29 @@
-RL CAREER CASTERS  v2.1.2
+RL CAREER CASTERS  v2.2.0
 =========================
 
 Two AI casters for your Rocket League / RL Career Hub matches: a male
 play-by-play caster who calls the action and a female analyst who breaks
 down goals on the replay. Both run on your own PC, so there's no account,
 no internet needed after setup, and nothing to pay for.
+
+New in 2.2: the casters follow the story of the game. Needs the voice pack
+add-on from 2026-11-26 23:41 (3,226 new lines) next to your pack.
+- Momentum: a team that answers straight back ("And they hit right back!"),
+  a team that just conceded ("The question now is how they respond."), back
+  level ("It's a brand new game now."), back in it from two down ("Now we've
+  got a game!"), a defense that survived a long spell of pressure, a save
+  that could turn the game, the team in front managing the clock and the
+  team behind chasing it.
+- A quiet start sounds like one: "Still feeling each other out."
+- Blowouts: "Gentle Mates are cruising now." Deep into a game that's over,
+  the casters drift off the way real casters do: the standings and the
+  season from RL Career Hub, the bracket, or nothing much at all ("I had a
+  whole thing ready about how close this was going to be."). The next goal
+  gets "Oh, and that's another one.", then "Anyway, back to the game."
+- Series: a line before kickoff about where the series stands, and how the
+  last game went ("Gentle Mates need to bounce back in this one.").
+- More versions of nearly every call, so games sound less alike.
+- Without the new add-on, 2.2 plays like 2.1.2.
 
 New in 2.1.2: RL Career Hub series, and your notes from the best of five.
 - The casters welcome you and introduce both teams before the first

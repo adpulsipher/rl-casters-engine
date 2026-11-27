@@ -124,8 +124,12 @@ class CareerHub {
     const table = [...new Set(st.teams.filter((t) => region(t.id) === region(sideTeam[0])).map((t) => t.id))]
       .map((id) => ({ id, p: pts.get(id) || 0 })).sort((a, b) => b.p - a.p);
     const pos = (id) => table.findIndex((r) => r.id === id);
-    let tablePos = null;
+    let tablePos = null, place = null, placeIfWin = null;
     if (fx.eventId == null && league.length >= 4) {
+      // each side's place in the table (0 = top), and where a win tonight would take it (2.2)
+      place = [pos(sideTeam[0]), pos(sideTeam[1])];
+      placeIfWin = sideTeam.map((id) => { const p = (pts.get(id) || 0) + 1; return table.filter((r) => r.id !== id && r.p > p).length; });
+      if (place.some((x) => x < 0 || x > 11)) place = placeIfWin = null;
       const [a, b] = [pos(sideTeam[0]), pos(sideTeam[1])];
       if (a >= 0 && b >= 0 && Math.max(a, b) <= 1) tablePos = 'top';
       else if (Math.abs((pts.get(sideTeam[0]) || 0) - (pts.get(sideTeam[1]) || 0)) <= 1) tablePos = 'close';
@@ -159,6 +163,7 @@ class CareerHub {
       stage: stageOf(fx.stage || (fx.slot && fx.slot.stage) || (ev && ev.stage)),
       form: [formOf(sideTeam[0]), formOf(sideTeam[1])],
       table: tablePos,
+      place, placeIfWin,
       metBefore: played.some(between),
       seasonGoals: (n) => statOf(n, 'goals'),
       seasonSaves: (n) => statOf(n, 'saves'),

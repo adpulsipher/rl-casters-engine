@@ -219,6 +219,7 @@ class GameModel {
     if (prev === t) return;
     m.time = t;
     m.clockAt = this.now();
+    if (prev !== null && t > prev && !m.overtime) m.countsUp = true; // an unlimited match: no "time left" (2.2)
     // the clock only runs in live play: if we joined late or missed the kickoff event, this tells us
     // the clock only runs in live play: if it's moving, play is on, whatever events we missed
     // (a kickoff after a goal included, as long as the game isn't showing a replay)
